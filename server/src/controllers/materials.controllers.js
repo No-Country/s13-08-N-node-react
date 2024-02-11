@@ -1,7 +1,33 @@
 const GenerateQRcode = require("../utils/qrgenerator.js");
 const { decodeToken } = require("../helpers/generateToken.js");
 const Material = require("../models/material.models.js");
+const User = require("../models/user.models.js");
 module.exports = {
+  getUserDetails: async (userId) => {
+    try {
+      // Consultar el usuario en la base de datos utilizando Mongoose
+      const user = await User.findById(userId);
+
+      // Verificar si se encontró el usuario
+      if (!user) {
+        throw new Error("Usuario no encontrado");
+      }
+
+      // Devolver los detalles del usuario encontrados
+      return {
+        nombre: user.nombre,
+        descripción: user.descripción,
+        valor: user.valor,
+        categoria: user.categoria,
+        imagen: user.imagen,
+      };
+    } catch (error) {
+      // Manejar cualquier error que ocurra durante la consulta
+      console.error("Error al obtener los detalles del usuario:", error);
+      throw error; // Relanzar el error para que pueda ser manejado por el controlador
+    }
+  },
+
   QRGenerator: async (req, res) => {
     try {
       // Verificar si el token está presente en los headers de la solicitud
@@ -20,6 +46,11 @@ module.exports = {
 
       const userId = decodedToken._id;
 
+      // Verificar si userId tiene la estructura esperada
+      if (!userId || typeof userId !== "object" || !userId.nombre) {
+        return res.status(400).json({ error: "Datos de usuario no válidos" });
+      }
+
       // Generar el código QR
       const codigoQR = await GenerateQRcode(userId);
 
@@ -27,10 +58,10 @@ module.exports = {
       const material = new Material({
         nombre: userId.nombre,
         descripción: userId.descripción,
-        codigoQR: userId.codigoQR,
+        codigoQR,
         valor: userId.valor,
         categoria: userId.categoria,
-        imagen: [userId.imagen],
+        imagen: userId.imagen,
       });
       await material.save();
 
@@ -41,3 +72,12 @@ module.exports = {
     }
   },
 };
+
+// Esta función debería obtener los detalles del usuario a partir de su ID
+async function getUserDetails(userId) {
+  // Aquí deberías implementar la lógica para obtener los detalles del usuario,
+  // ya sea consultando una base de datos u otra fuente de datos.
+  // Por ejemplo:
+  // const user = await User.findById(userId);
+  // return user;
+}
