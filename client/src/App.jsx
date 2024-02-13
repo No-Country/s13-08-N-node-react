@@ -1,7 +1,11 @@
-import React from 'react';
+import { useMongoDBStore } from './stores/mongoDB.store';
 
-function App() {
-  return <div className="text-center">S13</div>;
+export default function App() {
+  const trial = useMongoDBStore(state => state.trial)
+
+  return (
+    <div>
+      <p>{trial}</p>
+    </div>
+  )
 }
-
-export default App;
