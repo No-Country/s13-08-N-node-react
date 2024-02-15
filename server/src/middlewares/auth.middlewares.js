@@ -1,5 +1,5 @@
 const { verifyToken } = require("../helpers/generateToken.js");
-const UserSchema = require("../models/user.models.js");
+const userSchema = require("../models/user.models.js");
 
 module.exports = {
   AuthMiddleware: async (req, res, next) => {
@@ -26,7 +26,7 @@ module.exports = {
       // Verify the token
       const tokenData = await verifyToken(token);
       //comparara si la id del token es igual al id del user
-      const user = await UserSchema.findById(tokenData._id);
+      const user = await userSchema.findById(tokenData._id);
       req.user = user;
       console.log(tokenData);
       next();

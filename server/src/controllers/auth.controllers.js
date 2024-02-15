@@ -1,6 +1,7 @@
-const UserSchema = require("../models/user.models.js");
+const User = require("../models/user.models.js");
 const { emailValidator, passwordValidator } = require("../utils/validators.js");
 const { tokenSign, verifyToken } = require("../helpers/generateToken.js");
+const { emailRegistro } = require("../email/email.js")
 const bcrypt = require("bcrypt");
 
 module.exports = {
@@ -35,7 +36,7 @@ module.exports = {
       }
 
       // Verificar si el correo electrónico ya está registrado
-      const existingUser = await userSchema.findOne({ email });
+      const existingUser = await User.findOne({ email });
       if (existingUser) {
         return res
           .status(400)
@@ -43,7 +44,7 @@ module.exports = {
       }
 
       // Crear un nuevo usuario
-      const newUser = new userSchema({
+      const newUser = new User({
         nombre,
         apellido,
         email,
@@ -58,6 +59,12 @@ module.exports = {
       // Guardar el nuevo usuario en la base de datos
       const savedUser = await newUser.save();
 
+      //Enviar email de confirmación
+      emailRegistro({
+        email: newUser.email,
+        nombre: newUser.nombre
+      })
+
       return res.status(201).json({
         message: "Usuario registrado exitosamente",
       });
@@ -71,7 +78,7 @@ module.exports = {
       const { email, password } = req.body;
 
       // Find the user by email
-      const user = await UserSchema.findOne({ email });
+      const user = await User.findOne({ email });
 
       // Check if the user exists
       if (user) {
