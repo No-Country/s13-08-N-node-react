@@ -1,11 +1,11 @@
-import { useMongoDBStore } from './stores/mongoDB.store';
+/* eslint-disable react/react-in-jsx-scope */
+
+import { Map } from './components/Map/Map';
 
 export default function App() {
-  const trial = useMongoDBStore(state => state.trial)
-
   return (
-    <div>
-      <p>{trial}</p>
-    </div>
-  )
+    <>
+      <Map />
+    </>
+  );
 }
