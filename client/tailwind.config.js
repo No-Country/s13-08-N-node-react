@@ -5,8 +5,8 @@ export default {
     extend: {
       colors: {
         greenMain: '#099382',
-        darkMain: '#302F2F'
-      }
+        darkMain: '#302F2F',
+      },
     },
   },
   plugins: [],
