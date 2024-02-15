@@ -1,6 +1,7 @@
 import React from 'react';
 import { IoBusinessOutline } from 'react-icons/io5';
 import { LuUser2 } from 'react-icons/lu';
+import { Link } from 'react-router-dom';
 
 export default function FrameBottom() {
   return (
@@ -8,14 +9,10 @@ export default function FrameBottom() {
       <div className="border-2 border-gray-200 w-36 mx-auto rounded-3xl"></div>
 
       <div className="flex flex-col gap-y-4 px-5">
-        <a href="/" className="bg-greenMain text-white rounded-lg py-2 text-center text-base">
-          Inicio de sesión
-        </a>
-        <a href="/" className="bg-white text-greenMain rounded-lg py-2 text-center text-base border border-greenMain">
-          Registro
-        </a>
+        <Link to="/home" className="bg-greenMain text-white rounded-lg py-2 text-center text-base">Inicio de sesión</Link>
+        <Link to="/" className="bg-white text-greenMain rounded-lg py-2 text-center text-base border border-greenMain">Registro</Link>
       </div>
-
+      
       <button className="text-sm underline text-darkMain">Continuar como invitado</button>
 
       <div className="flex justify-between">
