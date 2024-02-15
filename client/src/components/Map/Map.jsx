@@ -44,7 +44,7 @@ export const Map = () => {
   return (
     <>
       <MapContainer
-        className="h-[75vh] sm:h-[50vh] sm:w-3/4 mx-auto"
+        className="h-[100vh] sm:h-[50vh] sm:w-3/4 mx-auto relative z-0"
         center={{ lat: '-34.579716', lng: '-58.426167' }}
         zoom={15}
         scrollWheelZoom={true}
@@ -76,7 +76,7 @@ export const Map = () => {
         ))}
       </MapContainer>
       <p>
-        lat {location[0]} lng {location[1]}
+        {/* lat {location[0]} lng {location[1]} */}
       </p>
     </>
   );
