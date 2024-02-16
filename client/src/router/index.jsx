@@ -13,10 +13,8 @@ export const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<FullWithLayout />}>
-        <Route index element={<App />} />
-      </Route>
-      <Route path="/home" element={<FullWithLayout />}>
         <Route index element={<Home />} />
+        <Route path="/map" element={<App />} />
       </Route>
       {/* <Route path="/auth" element={<AuthLayout />}>
         <Route index element={<Login />} />
