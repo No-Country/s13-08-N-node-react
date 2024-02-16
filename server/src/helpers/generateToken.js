@@ -42,4 +42,14 @@ module.exports = {
     );
     return JSON.parse(base64);
   },
+
+
+
+  confirmToken: () => {
+    const random = Math.random().toString(32).substring(2)
+    const fecha = Date.now().toString(32)
+    return random + fecha
+  }
+  
 };
+

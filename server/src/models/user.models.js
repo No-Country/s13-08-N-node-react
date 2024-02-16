@@ -46,6 +46,13 @@ const userSchema = new mongoose.Schema({
   historial_reciclaje: String,
   puntos: Number,
   beneficios: [String],
+
+  confirmToken: String,
+
+  confirmado: {
+    type: Boolean, 
+    default: false
+  }
 });
 
 // Antes de guardar, hashear la contraseña si se ha modificado

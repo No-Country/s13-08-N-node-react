@@ -1,6 +1,6 @@
 const User = require("../models/user.models.js");
 const { emailValidator, passwordValidator } = require("../utils/validators.js");
-const { tokenSign, verifyToken } = require("../helpers/generateToken.js");
+const { tokenSign, verifyToken, confirmToken } = require("../helpers/generateToken.js");
 const { emailRegistro } = require("../email/email.js")
 const bcrypt = require("bcrypt");
 
@@ -54,10 +54,16 @@ module.exports = {
         historial_reciclaje,
         puntos,
         beneficios,
+        confirmado: false,
+        confirmToken
       });
 
+      newUser.confirmToken = confirmToken()
+
       // Guardar el nuevo usuario en la base de datos
-      const savedUser = await newUser.save();
+      await newUser.save();
+
+     
 
       //Enviar email de confirmación
       emailRegistro({

@@ -24,7 +24,7 @@ const emailRegistro = async (datos) => {
       const info = await transport.sendMail({
             from: '"App de Reciclaje para el futuro" <cuentas@app.com>',
             to: email,
-            subject: "Confirma tu cuenta",
+            subject: "Gracias por registrarte! Confirma tu cuenta",
             text: 'Confirma tu cuenta ',
             html: `<p>Hola: ${nombre} </p>
                 <p>Tu cuenta ya esta casi lista, solo debes comprobarla en el siguiente enlace</p>

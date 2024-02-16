@@ -8,6 +8,8 @@ const materialsRoutes = require("./routes/materials.Routes.js");
 // const userRoutes = require("./routes/user.Routes.js");
 const authUserRoutes = require("./routes/authUser.Routes.js");
 // const authAdminRoutes = require("./routes/authAdmin.Routes.js");
+const pointsRoutes = require("./routes/recyclingcenter.Routes")
+
 const cors = require("cors");
 const app = express();
 
@@ -22,6 +24,7 @@ app.use("/materials", materialsRoutes);
 // app.use("/users", userRoutes);
 app.use("/authUser", authUserRoutes);
 // app.use("/authAdmin", authAdminRoutes);
+app.use("/recycking-center", pointsRoutes)
 
 app.get("/", (req, res) => {
   res.send("Welcome to my api");
