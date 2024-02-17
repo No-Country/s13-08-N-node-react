@@ -6,7 +6,7 @@ import { LuUser2 } from 'react-icons/lu';
 export const FrameBottom = () => {
   return (
     <>
-      <div className="w-full fixed bottom-0 flex flex-col gap-y-10 pt-4 rounded-t-3xl bg-white">
+      
         <div className="border-2 border-gray-200 w-36 mx-auto rounded-3xl"></div>
 
         <div className="flex flex-col gap-y-4 px-5">
@@ -37,7 +37,6 @@ export const FrameBottom = () => {
             Empresa
           </a>
         </div>
-      </div>
     </>
   );
 };
