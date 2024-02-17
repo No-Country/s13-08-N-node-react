@@ -16,24 +16,24 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     minlength: [5, "El correo electrónico debe tener al menos 5 caracteres"],
-    // validate: [
-    //   {
-    //     validator: async function (value) {
-    //       const emailExists = await mongoose
-    //         .model("user")
-    //         .findOne({ email: value });
-    //       return !emailExists;
-    //     },
-    //     message: "Este correo electrónico ya está registrado",
-    //   },
-    //   {
-    //     validator: function (value) {
-    //       // Validación de formato de correo electrónico
-    //       return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value);
-    //     },
-    //     message: "Formato de correo electrónico no válido",
-    //   },
-    // ],
+    validate: [
+      {
+        validator: async function (value) {
+          const emailExists = await mongoose
+            .model("User")
+            .findOne({ email: value });
+          return !emailExists;
+        },
+        message: "Este correo electrónico ya está registrado",
+      },
+      {
+        validator: function (value) {
+          // Validación de formato de correo electrónico
+          return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value);
+        },
+        message: "Formato de correo electrónico no válido",
+      },
+    ],
   },
   password: String,
   roles: [

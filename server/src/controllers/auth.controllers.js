@@ -5,18 +5,18 @@ const { emailRegistro } = require("../email/email.js")
 const bcrypt = require("bcrypt");
 
 module.exports = {
+
   RegisterUser: async (req, res) => {
     try {
       const {
         nombre,
         email,
-        apellido,
         password,
         roles,
         ubicación,
         historial_reciclaje,
-        puntos,
-        beneficios,
+        puntosAcumulados,
+        beneficiosObtenidos,
       } = req.body;
 
       // Validar el correo electrónico
@@ -36,7 +36,7 @@ module.exports = {
       }
 
       // Verificar si el correo electrónico ya está registrado
-      const existingUser = await User.findOne({ email });
+      const existingUser = await UserSchema.findOne({ email });
       if (existingUser) {
         return res
           .status(400)
@@ -44,32 +44,19 @@ module.exports = {
       }
 
       // Crear un nuevo usuario
-      const newUser = new User({
+      const newUser = new UserSchema({
         nombre,
-        apellido,
         email,
         password,
         roles,
         ubicación,
         historial_reciclaje,
-        puntos,
-        beneficios,
-        confirmado: false,
-        confirmToken
+        puntosAcumulados,
+        beneficiosObtenidos,
       });
 
-      newUser.confirmToken = confirmToken()
-
       // Guardar el nuevo usuario en la base de datos
-      await newUser.save();
-
-     
-
-      //Enviar email de confirmación
-      emailRegistro({
-        email: newUser.email,
-        nombre: newUser.nombre
-      })
+      const savedUser = await newUser.save();
 
       return res.status(201).json({
         message: "Usuario registrado exitosamente",
@@ -79,6 +66,81 @@ module.exports = {
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   },
+
+  // RegisterUser: async (req, res) => {
+  //   try {
+  //     const {
+  //       nombre,
+  //       email,
+  //       apellido,
+  //       password,
+  //       roles,
+  //       ubicación,
+  //       historial_reciclaje,
+  //       puntos,
+  //       beneficios,
+  //     } = req.body;
+
+  //     // Validar el correo electrónico
+  //     const isEmailValid = emailValidator.some((validator) =>
+  //       validator.validator(email)
+  //     );
+  //     if (!isEmailValid) {
+  //       return res.status(400).json({ error: "Correo electrónico no válido" });
+  //     }
+
+  //     // Validar la contraseña
+  //     const isPasswordValid = passwordValidator.every((validator) =>
+  //       validator.validator(password)
+  //     );
+  //     if (!isPasswordValid) {
+  //       return res.status(400).json({ error: "Contraseña no válida" });
+  //     }
+
+  //     // Verificar si el correo electrónico ya está registrado
+  //     const existingUser = await User.findOne({ email });
+  //     if (existingUser) {
+  //       return res
+  //         .status(400)
+  //         .json({ error: "El correo electrónico ya está registrado" });
+  //     }
+
+  //     // Crear un nuevo usuario
+  //     const newUser = new User({
+  //       nombre,
+  //       apellido,
+  //       email,
+  //       password,
+  //       roles,
+  //       ubicación,
+  //       historial_reciclaje,
+  //       puntos,
+  //       beneficios,
+  //       confirmado: false,
+  //       confirmToken
+  //     });
+
+  //     newUser.confirmToken = confirmToken()
+
+  //     // Guardar el nuevo usuario en la base de datos
+  //     await newUser.save();
+
+     
+
+  //     //Enviar email de confirmación
+  //     emailRegistro({
+  //       email: newUser.email,
+  //       nombre: newUser.nombre
+  //     })
+
+  //     return res.status(201).json({
+  //       message: "Usuario registrado exitosamente",
+  //     });
+  //   } catch (error) {
+  //     console.error("Error al registrar usuario:", error);
+  //     return res.status(500).json({ error: "Error interno del servidor" });
+  //   }
+  // },
   LoginUA: async (req, res) => {
     try {
       const { email, password } = req.body;

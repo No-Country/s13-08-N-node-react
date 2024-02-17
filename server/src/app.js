@@ -24,7 +24,7 @@ app.use("/materials", materialsRoutes);
 // app.use("/users", userRoutes);
 app.use("/authUser", authUserRoutes);
 // app.use("/authAdmin", authAdminRoutes);
-app.use("/recycking-center", pointsRoutes)
+app.use("/recycling-center", pointsRoutes)
 
 app.get("/", (req, res) => {
   res.send("Welcome to my api");

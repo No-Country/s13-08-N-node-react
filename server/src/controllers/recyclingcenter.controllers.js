@@ -57,20 +57,21 @@ module.exports = {
     filterPointsByLatLng: async (req, res) => {
         try {
             const { lat, lng } = req.query;
-
+    
             if (!lat || !lng) {
-                return res.status(400).json({ error: "Se deben proporcionar las coordenadas de latitud y longitud" });
+                return res.status(400).json({ error: 'Se deben proporcionar valores para lat y lng.' });
             }
 
-            const puntosReciclaje = await Point.find({
-                "latLng.lat": lat,
-                "latLng.lng": lng
+            const dbPoints = await Point.find({
+                "latLng.lat": { $gte: parseFloat(lat) },
+                "latLng.lng": { $gte: parseFloat(lng) }
             });
-
-            res.status(200).json(puntosReciclaje);
+    
+            res.status(200).json(dbPoints);
         } catch (error) {
-            console.error("Error al filtrar puntos de reciclaje:", error);
+            console.error("Error al filtrar puntos de reciclaje por latitud y longitud:", error);
             res.status(500).json({ error: "Error interno del servidor" });
         }
     }
+    
 };

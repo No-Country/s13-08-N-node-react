@@ -21,10 +21,12 @@ const pointSchema = new mongoose.Schema({
         },
         required: true
     },
-    materiales: {
-        type: [String],
-        required: true
-    },
+    tipoMaterialAcepta: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Material",
+        },
+    ],
     dia_hora: {
         type: String,
         required: true
