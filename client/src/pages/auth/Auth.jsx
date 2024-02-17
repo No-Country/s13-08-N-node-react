@@ -5,7 +5,7 @@ import { LuUser2 } from 'react-icons/lu';
 
 export default function Auth() {
     return (
-        <div className='flex flex-col gap-y-7'>
+        <div className='flex flex-col gap-y-8'>
             <div className="flex flex-col gap-y-4 px-5">
                 <Link to="/auth/login" className="bg-greenMain text-white rounded-lg py-2 text-center text-base">
                     Inicio de sesión
@@ -15,7 +15,9 @@ export default function Auth() {
                 </Link>
             </div>
 
-            <button className="text-sm underline text-darkMain">Continuar como invitado</button>
+            <span className='px-5'><hr /> <span className='flex justify-center relative'><span className='absolute -top-3 bg-white px-5 text-gray-500 text-base'>O</span></span></span>
+
+            <p className='text-center'>No tienes cuenta? <Link to="/auth/register" className="text-sm text-darkMain font-bold">Registrate ahora</Link> </p>
 
             <div className="flex justify-between">
                 <a href="#" className="bg-green-100 w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center">
