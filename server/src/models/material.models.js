@@ -22,9 +22,13 @@ const materialSchema = new mongoose.Schema({
   },
   categoria: String,
   imagen: [{}],
+  centrosReciclaje: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "RecyclingCenterMaterial",
+    },
+  ],
 });
 
 // Define el modelo a partir del esquema
-const Material = mongoose.model("Material", materialSchema);
-
-module.exports = Material;
+module.exports = mongoose.model("Material", materialSchema);

@@ -1,24 +1,24 @@
-const Point = require("../models/point.models");
+const RecyclingCenter = require("../models/recyclingcenter.models.js")
 
 module.exports = {
     createPoint: async (req, res) => {
         try {
             const {
                 nombre,
+                ubicacion,
+                horario_atencion,
                 imagen,
                 latLng,
-                materiales,
-                dia_hora,
-                hora
+                materiales
             } = req.body;
 
-            const nuevoPunto = new Point({
+            const nuevoPunto = new RecyclingCenter({
                 nombre,
+                ubicacion,
+                horario_atencion,
                 imagen,
                 latLng,
-                materiales,
-                dia_hora,
-                hora
+                materiales
             });
 
             const puntoGuardado = await nuevoPunto.save();
@@ -32,7 +32,7 @@ module.exports = {
 
     getAllPoints: async (req, res) => {
         try {
-            const puntosReciclaje = await Point.find();
+            const puntosReciclaje = await RecyclingCenter.find();
             res.status(200).json(puntosReciclaje);
         } catch (error) {
             console.error("Error al obtener puntos de reciclaje:", error);
@@ -43,7 +43,7 @@ module.exports = {
     getPointById: async (req, res) => {
         try {
             const { id } = req.params;
-            const puntoReciclaje = await Point.findById(id);
+            const puntoReciclaje = await RecyclingCenter.findById(id);
             if (!puntoReciclaje) {
                 return res.status(404).json({ error: "Punto de reciclaje no encontrado" });
             }
@@ -62,7 +62,7 @@ module.exports = {
                 return res.status(400).json({ error: 'Se deben proporcionar valores para lat y lng.' });
             }
 
-            const dbPoints = await Point.find({
+            const dbPoints = await RecyclingCenter.find({
                 "latLng.lat": { $gte: parseFloat(lat) },
                 "latLng.lng": { $gte: parseFloat(lng) }
             });

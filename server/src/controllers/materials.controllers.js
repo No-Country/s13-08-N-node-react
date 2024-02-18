@@ -1,7 +1,7 @@
 const GenerateQRcode = require("../utils/qrgenerator.js");
 const { decodeToken } = require("../helpers/generateToken.js");
 const Material = require("../models/material.models.js");
-const User = require("../models/user.models.js");
+//const User = require("../models/user.models.js");
 module.exports = {
   getUserDetails: async (userId) => {
     try {
@@ -72,12 +72,3 @@ module.exports = {
     }
   },
 };
-
-// Esta función debería obtener los detalles del usuario a partir de su ID
-async function getUserDetails(userId) {
-  // Aquí deberías implementar la lógica para obtener los detalles del usuario,
-  // ya sea consultando una base de datos u otra fuente de datos.
-  // Por ejemplo:
-  // const user = await User.findById(userId);
-  // return user;
-}

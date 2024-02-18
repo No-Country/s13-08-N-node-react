@@ -3,11 +3,11 @@ const router = express.Router();
 
 const {
   LoginUA,
-  RegisterUser,
+  RegisterUA,
   LogoutUA,
 } = require("../controllers/auth.controllers.js");
 
-router.post("/registerUser", RegisterUser);
+router.post("/registerUser", RegisterUA);
 router.post("/loginUser", LoginUA);
 router.post("/logoutUser", LogoutUA);
 
