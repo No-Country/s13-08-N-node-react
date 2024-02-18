@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-export const fetchDataFromJson = async (url) => {
+export const fetchDataFronJson = async (url) => {
   try {
     const response = await fetch(url);
     const data = await response.json();

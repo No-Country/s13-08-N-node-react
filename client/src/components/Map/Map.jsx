@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Popup, Marker, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getUserLocation } from '../../helpers/getUserLocation';
-
-import mapMock from '../../mocks/mapMock';
+import { fetchDataFronJson } from '../../helpers/fetchDataFromJson';
+import { Link } from 'react-router-dom';
 
 const ubicaciones = [
   {
@@ -38,12 +38,19 @@ const purpleOptions = { color: 'red' };
 
 export const Map = () => {
   const [location, setLocation] = useState([]);
-  const [map, setMap] = useState({});
+  const [map, setMap] = useState([]);
 
   useEffect(() => {
     getUserLocation().then((coords) => setLocation(coords));
-    setMap(mapMock);
-    console.log(map);
+
+    fetchDataFronJson('https://points-production.up.railway.app/points')
+      .then((data) => {
+        setMap(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data: ', error);
+      });
   }, []);
 
   // var OpenStreetMap_DE = L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
@@ -54,7 +61,7 @@ export const Map = () => {
   return (
     <>
       <MapContainer
-        className="h-[100vh] sm:h-[50vh] sm:w-3/4 mx-auto relative z-0"
+        className="h-[100vh] sm:h-[50vh] sm:w-3/4 mx-auto relative  sm:mt-10"
         center={{ lat: '-34.582716', lng: '-58.426167' }}
         zoom={15}
         scrollWheelZoom={true}
@@ -94,26 +101,28 @@ export const Map = () => {
         ))}
 
         {/* MAPEO DE UBICACIONES MOCKEADAS CON FAKE JSON TRAIDAS DESDE mapMock.js */}
-        {mapMock.features.map((ubicacion, index) => (
-          <Marker key={index} position={[ubicacion.geometry.coordinates[1], ubicacion.geometry.coordinates[0]]}>
+        {map.map((ubicacion, index) => (
+          <Marker key={index} position={[ubicacion.latLng.lng, ubicacion.latLng.lat]}>
             <Popup>
-              {ubicacion.img
-                ? (
-                <img src={ubicacion.geometry.coordinates[0]} alt={ubicacion.geometry.coordinates[1]} />
-                  )
-                : null}
+              {ubicacion.imagen ? <img src={ubicacion.imagen} alt={ubicacion.nombre} /> : null}
               <br />
               {/* Condición para verificar si existe ubicacion.img */}
-              <span className="text-green-900 text-lg font-bold">{ubicacion.properties.cooperativ}</span> <br />
-              {ubicacion.properties.direccion} <br />⌚ {ubicacion.properties.dia_hora} <br />
-              MAS INFO: {ubicacion.properties.mas_info}
+              <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
+              <br />⌚ {ubicacion.dia_hora} <br />
+              MATERIALES: {ubicacion.materiales.join(', ')}
+              <br />
+              <button className=" bg-slate-500 text-white py-2 rounded-lg">
+                <Link to={ubicacion._id}> ir al punto </Link>
+              </button>
             </Popup>
           </Marker>
         ))}
+        <div className=" w-full" style={{ position: 'absolute', top: '10px', left: '10px', zIndex: '1000' }}>
+          <h1 className="text-3xl text-center">
+            tu loc actual: lng: {location[0]} lat: {location[1]}{' '}
+          </h1>
+        </div>
       </MapContainer>
-      <p>
-        lat {location[0]} lng {location[1]}
-      </p>
     </>
   );
 };
