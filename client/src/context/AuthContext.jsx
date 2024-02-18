@@ -1,23 +1,21 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import { createContext, useState } from "react"
+import React, { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
+
 export const AuthContext = createContext();
 
+const AuthContextProvider = ({ children }) => {
+  const [userData, setUserData] = useState({ name: '', lastname: '' });
 
-const AuthContextProvicer = ({ children }) => {
-  const [userData, setUserData] = useState({ name: "", lastname: "" })
-  const data = {
+  const contextValue = {
     userData,
-    setUserData
-  }
+    setUserData,
+  };
 
-  return (
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
+};
 
-    <AuthContext.Provider value={data}>
+AuthContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-      {children}
-
-    </AuthContext.Provider>
-
-  )
-}
+export default AuthContextProvider;
