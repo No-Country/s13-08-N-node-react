@@ -2,10 +2,10 @@ import React from 'react';
 import { MenuIcon } from '../assets';
 import { DetailCard } from '../components/ui/Cards/DetailCard';
 import { CardButton } from '../components/ui/Buttons/CardButton';
-import chart from '../assets/chart.png';
 import picture from '../assets/picture.png';
 import { TeamCard } from '../components/ui/Cards/TeamCard';
 import { Footer } from '../components/Footer/Footer';
+import SimpleDonut from '../components/Chart/SimpleDonut';
 
 export const Home = () => {
   const articles = [
@@ -83,7 +83,7 @@ export const Home = () => {
         <DetailCard
           title="El progreso"
           description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
-          image={<img src={chart} alt="Article Image" />}
+          image={<SimpleDonut />}
           linkText={<CardButton linkText="Ver más" />}
         />
         <h2 className="text-xl font-semibold">Materiales a Reciclar</h2>
