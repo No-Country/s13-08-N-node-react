@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { getUserLocation } from '../../helpers/getUserLocation';
 import { fetchDataFronJson } from '../../helpers/fetchDataFromJson';
 import { Link } from 'react-router-dom';
+import SearchMap from '../SearchMap/SearchMap';
 
 const ubicaciones = [
   {
@@ -93,7 +94,6 @@ export const Map = () => {
             <Popup>
               {ubicacion.img ? <img src={ubicacion.img} alt={ubicacion.titulo} /> : null}
               <br />
-              {/* Condición para verificar si existe ubicacion.img */}
               <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
               {ubicacion.direccion} <br />⌚ {ubicacion.horario} <br />
             </Popup>
@@ -103,26 +103,38 @@ export const Map = () => {
         {/* MAPEO DE UBICACIONES MOCKEADAS CON FAKE JSON TRAIDAS DESDE mapMock.js */}
         {map.map((ubicacion, index) => (
           <Marker key={index} position={[ubicacion.latLng.lng, ubicacion.latLng.lat]}>
-            <Popup>
-              {ubicacion.imagen ? <img src={ubicacion.imagen} alt={ubicacion.nombre} /> : null}
-              <br />
+            <Popup minWidth={300}>
+              <div className="flex flex-row gap-4">
+                <img
+                  className="w-1/3 h-2/3"
+                  src="https://defensoria.org.ar/wp-content/uploads/2022/12/Punto-Verde-scaled-1.jpg"
+                  alt={ubicacion.nombre}
+                />
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
+                    Materiales: {ubicacion.materiales.join(', ')}
+                    <br />
+                    Horario: {ubicacion.dia_hora} <br />
+                  </div>
+                  <div className="text-right">
+                    <button className="bg-transparent p-0">
+                      <Link to={ubicacion._id}> Ir allá. </Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
               {/* Condición para verificar si existe ubicacion.img */}
-              <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
-              <br />⌚ {ubicacion.dia_hora} <br />
-              MATERIALES: {ubicacion.materiales.join(', ')}
-              <br />
-              <button className=" bg-slate-500 text-white py-2 rounded-lg">
-                <Link to={ubicacion._id}> ir al punto </Link>
-              </button>
             </Popup>
           </Marker>
         ))}
         <div className=" w-full" style={{ position: 'absolute', top: '10px', left: '10px', zIndex: '1000' }}>
-          <h1 className="text-3xl text-center">
-            tu loc actual: lng: {location[0]} lat: {location[1]}{' '}
-          </h1>
+          <SearchMap />
         </div>
       </MapContainer>
+      <h1 className="text-3xl text-center">
+        tu loc actual: lng: {location[0]} lat: {location[1]}{' '}
+      </h1>
     </>
   );
 };

@@ -11,7 +11,7 @@ export const DetailMap = ({ latLng }) => {
 
   return (
     <MapContainer
-      className="h-[100vh] sm:h-[30vh] sm:w-2/4 mx-auto relative  sm:mt-10"
+      className="h-[30vh] sm:w-2/4 mx-auto relative  sm:mt-10"
       center={{ lat: latLng.lng, lng: latLng.lat }}
       zoom={15}
       scrollWheelZoom={true}
