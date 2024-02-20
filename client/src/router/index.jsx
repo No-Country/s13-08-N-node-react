@@ -9,6 +9,7 @@ import { FullWithLayout } from '../hocs/layouts/FullWithLayout';
 import Auth from '../pages/auth/Auth';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
+import DetailPoint from '../components/DetailPoint/DetailPoint';
 
 export const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRouter = () => {
       <Route path="/" element={<FullWithLayout />}>
         <Route index element={<Home />} />
         <Route path="/map" element={<App />} />
+        <Route path="/map/:id" element={<DetailPoint />} />
       </Route>
       <Route path="/auth" element={<AuthLayout />}>
         <Route index element={<Auth />} />
