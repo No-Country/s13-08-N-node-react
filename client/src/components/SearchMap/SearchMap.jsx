@@ -1,6 +1,24 @@
-import React from 'react';
+/* eslint-disable */
 
-function SearchMap() {
+import { useState } from 'react';
+function SearchMap({ setResults }) {
+  const [input, setInput] = useState('');
+  const fetchData = (value) => {
+    fetch('https://points-dev-jeqd.3.us-1.fl0.io/recycling-center/points')
+      .then((response) => response.json())
+      .then((json) => {
+        const results = json.filter((point) => {
+          return value && point && point.nombre && point.nombre.toLowerCase().includes(value);
+        });
+        setResults(results);
+      });
+  };
+
+  const handleChange = (value) => {
+    setInput(value);
+    fetchData(value);
+  };
+
   return (
     <form className="w-9/12 sm:w-4/12 mx-auto">
       <div className="flex">
@@ -24,6 +42,8 @@ function SearchMap() {
             id="search-dropdown"
             className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-white rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500  "
             placeholder="Busqueda..."
+            onChange={(e) => handleChange(e.target.value)}
+            value={input}
           />
           <button
             type="submit"
