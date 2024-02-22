@@ -5,7 +5,7 @@ import { DiscoveryIcon, HomeIcon, ProfileIcon, RecycleIcon, TicketIcon } from '.
 export const Menu = () => {
   return (
     <>
-      <div className="fixed bottom-0 w-full z-50 bg-white border-t border-gray-500 shadow-md rounded-t-[40px] py-3">
+      <div className="fixed bottom-0 w-full z-[1000] bg-white border-t border-gray-500 shadow-md rounded-t-[40px] py-3">
         <ul className="flex flex-row justify-around items-center p-2">
           <li>
             <Link to="/" className="text-gray-600 hover:text-gray-800 flex flex-col items-center">
