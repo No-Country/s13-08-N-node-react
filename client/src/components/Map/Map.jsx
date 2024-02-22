@@ -5,37 +5,10 @@ import { getUserLocation } from '../../helpers/getUserLocation';
 import { fetchDataFronJson } from '../../helpers/fetchDataFromJson';
 import { Link } from 'react-router-dom';
 import SearchMap from '../SearchMap/SearchMap';
-
-const ubicaciones = [
-  {
-    nombre: 'EcoReciclaje',
-    latLng: { lat: '-34.574716', lng: '-58.421167' },
-    horario: '09:00 a 18:00',
-    direccion: 'Calle 123',
-  },
-  {
-    nombre: 'EcoVerde',
-    img: 'https://media.tenor.com/qG-IUmC8wQgAAAAM/pepe-tired-done.gif',
-    latLng: { lat: '-34.580716', lng: '-58.432167' },
-    horario: '10:00 a 19:00',
-    direccion: 'Avenida Principal 456',
-  },
-  {
-    nombre: 'ReciGreen',
-    latLng: { lat: '-34.583716', lng: '-58.426167' },
-    horario: '08:00 a 17:00',
-    direccion: 'Calle Secundaria 789',
-  },
-  {
-    nombre: 'EcoReutiliza',
-    latLng: { lat: '-34.576716', lng: '-58.424167' },
-    horario: '11:00 a 20:00',
-    direccion: 'Avenida Principal 0123',
-  },
-];
+import { Icon } from 'leaflet';
 
 const greenOptions = { color: 'green', fillColor: 'green' };
-const purpleOptions = { color: 'red' };
+const redOptions = { color: 'red' };
 
 export const Map = () => {
   const [location, setLocation] = useState([]);
@@ -44,15 +17,19 @@ export const Map = () => {
   useEffect(() => {
     getUserLocation().then((coords) => setLocation(coords));
 
-    fetchDataFronJson('https://points-production.up.railway.app/points')
+    fetchDataFronJson('https://points-dev-jeqd.3.us-1.fl0.io/recycling-center/points')
       .then((data) => {
         setMap(data);
-        console.log(data);
       })
       .catch((error) => {
         console.error('Error fetching data: ', error);
       });
   }, []);
+
+  const userIcon = new Icon({
+    iconUrl: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png',
+    iconSize: [32, 32],
+  });
 
   // var OpenStreetMap_DE = L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
   //   maxZoom: 18,
@@ -67,11 +44,6 @@ export const Map = () => {
         zoom={15}
         scrollWheelZoom={true}
       >
-        {/* <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        /> */}
-        {/* b628c55280msheb2b2ae6c91c18bp1c71bejsncdb5e88638d6 */}
         <TileLayer
           attribution="OpenStreetMap DE"
           url="https://tile.openstreetmap.de/{z}/{x}/{y}.png"
@@ -82,14 +54,19 @@ export const Map = () => {
           <Popup>Tu ubicación actual.</Popup>
         </Marker> */}
 
-        <Circle center={{ lat: '-34.579716', lng: '-58.426167' }} pathOptions={purpleOptions} radius={3} />
-
-        <Circle center={{ lat: '-34.579716', lng: '-58.426167' }} pathOptions={greenOptions} radius={800}>
-          <Popup>Tu ubicación actual.</Popup>
+        <Circle center={{ lat: '-34.582716', lng: '-58.426167' }} pathOptions={greenOptions} radius={800}>
+          <Marker position={['-34.582716', '-58.426167']} pathOptions={redOptions} icon={userIcon} radius={3}>
+            <Popup>
+              <p className=" text-center">
+                tu loc actual: lng: {location[0]} lat: {location[1]}{' '}
+              </p>
+            </Popup>
+          </Marker>
         </Circle>
+        {/* <Marker center={{ lat: '-34.582716', lng: '-58.426167' }} pathOptions={redOptions} radius={3} /> */}
 
         {/* MAPEO DE UBICACIONES HARCODEADAS EN COMPONENTE */}
-        {ubicaciones.map((ubicacion, index) => (
+        {/* {ubicaciones.map((ubicacion, index) => (
           <Marker key={index} position={[ubicacion.latLng.lat, ubicacion.latLng.lng]}>
             <Popup>
               {ubicacion.img ? <img src={ubicacion.img} alt={ubicacion.titulo} /> : null}
@@ -98,7 +75,7 @@ export const Map = () => {
               {ubicacion.direccion} <br />⌚ {ubicacion.horario} <br />
             </Popup>
           </Marker>
-        ))}
+        ))} */}
 
         {/* MAPEO DE UBICACIONES MOCKEADAS CON FAKE JSON TRAIDAS DESDE mapMock.js */}
         {map.map((ubicacion, index) => (
@@ -113,9 +90,9 @@ export const Map = () => {
                 <div className="flex flex-col justify-between">
                   <div>
                     <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
-                    Materiales: {ubicacion.materiales.join(', ')}
+                    Materiales: {ubicacion.tipoMaterialAcepta.join(', ')}
                     <br />
-                    Horario: {ubicacion.dia_hora} <br />
+                    Horario: {ubicacion.horario_atencion} <br />
                   </div>
                   <div className="text-right">
                     <button className="bg-transparent p-0">
@@ -132,9 +109,6 @@ export const Map = () => {
           <SearchMap />
         </div>
       </MapContainer>
-      <h1 className="text-3xl text-center">
-        tu loc actual: lng: {location[0]} lat: {location[1]}{' '}
-      </h1>
     </>
   );
 };
