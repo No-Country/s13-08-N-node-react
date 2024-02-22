@@ -6,6 +6,8 @@ import { fetchDataFronJson } from '../../helpers/fetchDataFromJson';
 import { Link } from 'react-router-dom';
 import SearchMap from '../SearchMap/SearchMap';
 import { Icon } from 'leaflet';
+import { SearchResultsList } from '../SearchResultsList/SearchResultsList';
+import useMapSearch from '../../stores/mapSearchStore';
 
 const greenOptions = { color: 'green', fillColor: 'green' };
 const redOptions = { color: 'red' };
@@ -13,6 +15,10 @@ const redOptions = { color: 'red' };
 export const Map = () => {
   const [location, setLocation] = useState([]);
   const [map, setMap] = useState([]);
+  const [results, setResults] = useState([]);
+  const [initialPoint, setInitialPoint] = useState({ lat: '-34.582716', lng: '-58.426167' });
+
+  const { selectedMapPoint } = useMapSearch();
 
   useEffect(() => {
     getUserLocation().then((coords) => setLocation(coords));
@@ -26,21 +32,28 @@ export const Map = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (Object.keys(selectedMapPoint).length > 0) {
+      setInitialPoint((prevState) => {
+        const newPoint = { lat: selectedMapPoint.lng, lng: selectedMapPoint.lat };
+
+        return newPoint;
+      });
+      setResults([]);
+    }
+  }, [selectedMapPoint]);
+
   const userIcon = new Icon({
     iconUrl: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png',
     iconSize: [32, 32],
   });
 
-  // var OpenStreetMap_DE = L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
-  //   maxZoom: 18,
-  //   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  // });
-
   return (
     <>
       <MapContainer
+        key={`${initialPoint.lat}-${initialPoint.lng}`}
         className="h-[100vh] sm:h-[50vh] sm:w-3/4 mx-auto relative  sm:mt-10"
-        center={{ lat: '-34.582716', lng: '-58.426167' }}
+        center={initialPoint}
         zoom={15}
         scrollWheelZoom={true}
       >
@@ -50,11 +63,7 @@ export const Map = () => {
           key="b628c55280msheb2b2ae6c91c18bp1c71bejsncdb5e88638d6"
         />
 
-        {/* <Marker position={{ lat: 'longitud', lng: 'latitud' }}>
-          <Popup>Tu ubicación actual.</Popup>
-        </Marker> */}
-
-        <Circle center={{ lat: '-34.582716', lng: '-58.426167' }} pathOptions={greenOptions} radius={800}>
+        <Circle center={initialPoint} pathOptions={greenOptions} radius={800}>
           <Marker position={['-34.582716', '-58.426167']} pathOptions={redOptions} icon={userIcon} radius={3}>
             <Popup>
               <p className=" text-center">
@@ -63,21 +72,7 @@ export const Map = () => {
             </Popup>
           </Marker>
         </Circle>
-        {/* <Marker center={{ lat: '-34.582716', lng: '-58.426167' }} pathOptions={redOptions} radius={3} /> */}
 
-        {/* MAPEO DE UBICACIONES HARCODEADAS EN COMPONENTE */}
-        {/* {ubicaciones.map((ubicacion, index) => (
-          <Marker key={index} position={[ubicacion.latLng.lat, ubicacion.latLng.lng]}>
-            <Popup>
-              {ubicacion.img ? <img src={ubicacion.img} alt={ubicacion.titulo} /> : null}
-              <br />
-              <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
-              {ubicacion.direccion} <br />⌚ {ubicacion.horario} <br />
-            </Popup>
-          </Marker>
-        ))} */}
-
-        {/* MAPEO DE UBICACIONES MOCKEADAS CON FAKE JSON TRAIDAS DESDE mapMock.js */}
         {map.map((ubicacion, index) => (
           <Marker key={index} position={[ubicacion.latLng.lng, ubicacion.latLng.lat]}>
             <Popup minWidth={300}>
@@ -101,12 +96,15 @@ export const Map = () => {
                   </div>
                 </div>
               </div>
-              {/* Condición para verificar si existe ubicacion.img */}
             </Popup>
           </Marker>
         ))}
-        <div className=" w-full" style={{ position: 'absolute', top: '10px', left: '10px', zIndex: '1000' }}>
-          <SearchMap />
+        <div
+          className=" w-full flex flex-col justify-center items-center "
+          style={{ position: 'absolute', top: '10px', left: '10px', zIndex: '1000' }}
+        >
+          <SearchMap setResults={setResults} />
+          {results && results.length > 0 && <SearchResultsList results={results} />}
         </div>
       </MapContainer>
     </>
