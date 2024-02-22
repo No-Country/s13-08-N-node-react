@@ -1,6 +1,6 @@
-// ModalPoint.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
+// eslint-disable-next-line react/prop-types
 const ModalPoint = ({ onClose }) => {
   const [selectedMaterials, setSelectedMaterials] = useState([]);
 
@@ -55,6 +55,3 @@ const ModalPoint = ({ onClose }) => {
 };
 
 export default ModalPoint;
-
-
-
