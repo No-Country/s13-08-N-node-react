@@ -30,7 +30,7 @@ const ModalPoint = ({ onClose }) => {
       onClick={onClose} // Cerrar modal haciendo clic en el fondo oscuro
     >
       <div
-        className='bg-white p-8 max-w-md rounded-lg relative'
+        className='bg-white p-8 max-w-md rounded-lg relative flex flex-col '
         onClick={handleModalClick} // Evitar que el clic llegue al contenedor principal
       >
         <h2 className='text-2xl font-bold mb-4'>{ubicacionData.nombre}</h2>
@@ -43,12 +43,13 @@ const ModalPoint = ({ onClose }) => {
                 id={material}
                 checked={selectedMaterials.includes(material)}
                 onChange={() => handleMaterialToggle(material)}
-                className='mr-2 text-indigo-600 focus:ring-indigo-500 h-4 w-4'
+                className={`mr-2 text-indigo-600 focus:ring-indigo-500 h-4 w-4 ${selectedMaterials.includes(material) ? 'bg-green-500' : ''}`}
               />
               <label htmlFor={material} className='text-gray-700'>{material}</label>
             </div>
           ))}
         </div>
+        <button className='bg-black text-white center py-1 rounded-md'> + Aplicar</button>
       </div>
     </div>
   );
