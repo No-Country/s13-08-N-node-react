@@ -108,7 +108,7 @@ export const Home = () => {
           title="Listo para Recilcar?"
           description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
           image={<img src={picture} alt="Article Image" />}
-          linkText={<CardButton linkText="Empezemos" path="map" />}
+          linkText={<CardButton linkText="Empezemos" path="auth" />}
         />
         <p className="text-xl font-semibold">Articulos publicados</p>
         <div className="flex flex-col gap-3">
