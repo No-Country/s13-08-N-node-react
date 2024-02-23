@@ -40,6 +40,20 @@ module.exports = {
         }
     },
 
+    // {
+    //     "nombre": "Punto de Reciclaje 1",
+    //     "ubicacion": "Avenida El Sapito 55",
+    //     "horario_atencion": "Martes a Sábado de 11 a 17 hs.",
+    //     "materials": [
+    //         "65d8f1ac89b012a63d744f9b", "65d8f21189b012a63d744fa7"
+    //     ],
+    //     "imagen": "https://pixabay.com/get/g18b1ef311640eca6a298c963ca6466032e6a34cc9f515d3c022fc13f27dfad4a09f93d58a6fd7a781725eb80dcba3b5b_1280.jpg",
+    //     "latLng": {
+    //         "lat": "-58.46463459803104",
+    //         "lng": "-34.5673114271266"
+    //     }
+    // }
+
     getAllPoints: async (req, res) => {
         try {
             const puntosReciclaje = await RecyclingCenter.find();

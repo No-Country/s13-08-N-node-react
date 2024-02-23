@@ -4,7 +4,7 @@ const router = express.Router();
 const { createPoint, getAllPoints, getPointById ,filterPointsByLatLng, filterPointsByMaterial, editPointById, deletePointById, deleteAllPoints } = require("../controllers/recyclingcenter.controllers")
 
 router.get("/points", getAllPoints)
-router.post("/points", createPoint )
+router.post("/create", createPoint )
 router.get("/point/:id", getPointById)
 
 router.get("/filter-points", filterPointsByLatLng);
