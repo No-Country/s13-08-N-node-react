@@ -9,7 +9,9 @@ export const DetailCard = ({ title, description, image, linkText }) => {
         <p className="text-sm font-normal mb-2 line-clamp-2">{description}</p>
         {linkText}
       </div>
-      <div className="w-[200px] h-full flex items-center">{image}</div>
+      <div className="w-[200px] h-full flex items-center">
+        <img src={`/src/assets/${image}`} alt="Article Image" />
+      </div>
     </div>
   );
 };
