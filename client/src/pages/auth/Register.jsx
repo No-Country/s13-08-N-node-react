@@ -1,10 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { FaGoogle, FaFacebookF } from 'react-icons/fa';
 
 import { RiAppleFill } from 'react-icons/ri';
+import { useAuthStore } from '../../stores/auth.store';
 
 export default function Register() {
+
+  const isAuth = useAuthStore(state => state.isAuth)
+
+  if (isAuth) {
+    return <Navigate to="/user" />
+  }
+
   return (
     <div className="flex flex-col gap-y-10 px-5 pb-14">
       <p className="flex flex-col">
