@@ -18,7 +18,7 @@ export default function Login() {
         </div>
 
         <div className="flex flex-col gap-y-3">
-          <Link to="/#" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">
+          <Link to="/user" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">
             Iniciar sesión
           </Link>
           <div className="flex justify-between gap-x-5">
