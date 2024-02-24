@@ -7,7 +7,7 @@ const RequireAuth = ({ roles }) => {
   const location = useLocation();
   console.log(roles);
 
-  const isAuthorized = roles.includes(2001);
+  const isAuthorized = roles.includes(1984);
 
   return isAuthorized ? <Outlet /> : <Navigate to="/auth" state={{ from: location }} replace />;
 };
