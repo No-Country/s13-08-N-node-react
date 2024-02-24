@@ -6,6 +6,8 @@ import picture from '../assets/picture.png';
 import { TeamCard } from '../components/ui/Cards/TeamCard';
 import { Footer } from '../components/Footer/Footer';
 import SimpleDonut from '../components/Chart/SimpleDonut';
+import Materials from '../components/Materials/Materials';
+import Company from '../components/Company/Company';
 
 export const Home = () => {
   const articles = [
@@ -88,26 +90,18 @@ export const Home = () => {
         />
         <h2 className="text-xl font-semibold">Materiales a Reciclar</h2>
         <div className="flex gap-5 slider">
-          <div className="bg-white flex w-24 p-2 slide rounded-lg">
-            <img src={picture} alt="Article Image" />
-          </div>
-          <div className="bg-white flex w-24 p-2 slide rounded-lg">
-            <img src={picture} alt="Article Image" />
-          </div>
-          <div className="bg-white flex w-24 p-2 slide rounded-lg">
-            <img src={picture} alt="Article Image" />
-          </div>
-          <div className="bg-white flex w-24 p-2 slide rounded-lg">
-            <img src={picture} alt="Article Image" />
-          </div>
+          <Materials picture="carton.jpg" />
+          <Materials picture="vidrio.jpg" />
+          <Materials picture="plastico.jpg" />
+          <Materials picture="metal.jpg" />
         </div>
         <div className="flex justify-end">
           <span className="underline">Ver más</span>
         </div>
         <DetailCard
           title="Listo para Recilcar?"
-          description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
-          image={<img src={picture} alt="Article Image" />}
+          description="Unete a Ecovale, aprende a reciclar y suma puntos en el proceso"
+          image="reciclaje-verde.jpg"
           linkText={<CardButton linkText="Empezemos" path="auth" />}
         />
         <p className="text-xl font-semibold">Articulos publicados</p>
@@ -131,10 +125,10 @@ export const Home = () => {
         </div>
         <h2 className="text-xl font-semibold">Empresas colaboradoras</h2>
         <div className="flex gap-5 slider">
-          <div className="custom-border-radius w-24 h-24 bg-gray-500 slide p-2"></div>
-          <div className="custom-border-radius w-24 h-24 bg-gray-500 slide p-2"></div>
-          <div className="custom-border-radius w-24 h-24 bg-gray-500 slide p-2"></div>
-          <div className="custom-border-radius w-24 h-24 bg-gray-500 slide p-2"></div>
+          <Company picture="dar_sentido.jpg" />
+          <Company picture="psa.jpg" />
+          <Company picture="kolibri.jpg" />
+          <Company picture="zafran.jpg" />
         </div>
         <div className="flex justify-end">
           <span className="underline">Ver más</span>
