@@ -12,7 +12,7 @@ export const SearchResult = ({ results, result }) => {
   };
 
   return (
-    <div className="hover:bg-[#efefef] p-6" onClick={(e) => handleClick(result)}>
+    <div className="hover:bg-[#efefef]  p-6" onClick={(e) => handleClick(result)}>
       {result}
     </div>
   );
