@@ -6,15 +6,14 @@ import { RiAppleFill } from 'react-icons/ri';
 import { useAuthStore } from '../../stores/auth.store';
 
 export default function Login() {
-
-  const isAuth = useAuthStore(state => state.isAuth)
-  const email = useAuthStore(state => state.email)
-  const setEmail = useAuthStore(state => state.setEmail)
-  const password = useAuthStore(state => state.password)
-  const setPassword = useAuthStore(state => state.setPassword)
+  const isAuth = useAuthStore((state) => state.isAuth);
+  const email = useAuthStore((state) => state.email);
+  const setEmail = useAuthStore((state) => state.setEmail);
+  const password = useAuthStore((state) => state.password);
+  const setPassword = useAuthStore((state) => state.setPassword);
 
   if (isAuth) {
-    return <Navigate to="/user" />
+    return <Navigate to="/user" />;
   }
 
   return (
@@ -23,13 +22,19 @@ export default function Login() {
 
       <form className="flex flex-col gap-y-10">
         <div className="flex flex-col gap-y-4">
-          <input type="text" placeholder="Email" className="border border-gray-400 p-2 rounded-lg" 
+          <input
+            type="text"
+            placeholder="Email"
+            className="border border-gray-400 p-2 rounded-lg"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input type="password" placeholder="Password" className="border border-gray-400 p-2 rounded-lg" 
+          <input
+            type="password"
+            placeholder="Password"
+            className="border border-gray-400 p-2 rounded-lg"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <Link className="flex justify-center">Olvidaste tu constraseña?</Link>
