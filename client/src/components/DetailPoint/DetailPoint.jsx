@@ -8,7 +8,7 @@ const DetailPoint = () => {
   const [pointData, setPointData] = useState({});
 
   useEffect(() => {
-    const url = `https://points-dev-jeqd.3.us-1.fl0.io/recycling-center/point/${id}`;
+    const url = `https://points-89az.onrender.com/recycling-center/point/${id}`;
     fetchDataFronJson(url)
       .then((data) => {
         setPointData(data);
@@ -36,8 +36,7 @@ const DetailPoint = () => {
         <div className="mt-2">
           <DetailMap latLng={pointData.latLng} />
           <p className="text-gray-600">
-            Materiales:{' '}
-            {pointData?.tipoMaterialAcepta?.length > 0 ? pointData?.tipoMaterialAcepta?.join(', ') : 'No especificado'}
+            Materiales: {pointData?.materials?.length > 0 ? pointData?.materials?.join(', ') : 'No especificado'}
           </p>
         </div>
       </div>

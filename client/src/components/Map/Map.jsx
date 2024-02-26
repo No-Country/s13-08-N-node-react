@@ -8,6 +8,7 @@ import SearchMap from '../SearchMap/SearchMap';
 import { Icon } from 'leaflet';
 import { SearchResultsList } from '../SearchResultsList/SearchResultsList';
 import useMapSearch from '../../stores/mapSearchStore';
+import ModalPoint from '../ModalPoint/ModalPoint';
 
 const greenOptions = { color: 'green', fillColor: 'green' };
 const redOptions = { color: 'red' };
@@ -16,14 +17,20 @@ export const Map = () => {
   const [location, setLocation] = useState([]);
   const [map, setMap] = useState([]);
   const [results, setResults] = useState([]);
+  const [radiusCircle, setRadiusCircle] = useState(800);
+  const [modalVisible, setModalVisible] = useState(false);
   const [initialPoint, setInitialPoint] = useState({ lat: '-34.582716', lng: '-58.426167' });
 
   const { selectedMapPoint } = useMapSearch();
 
+  const cerrarModal = () => {
+    setModalVisible(false);
+  };
+
   useEffect(() => {
     getUserLocation().then((coords) => setLocation(coords));
 
-    fetchDataFronJson('https://points-dev-jeqd.3.us-1.fl0.io/recycling-center/points')
+    fetchDataFronJson('https://points-89az.onrender.com/recycling-center/points')
       .then((data) => {
         setMap(data);
       })
@@ -39,6 +46,7 @@ export const Map = () => {
 
         return newPoint;
       });
+      setRadiusCircle(0);
       setResults([]);
     }
   }, [selectedMapPoint]);
@@ -48,6 +56,10 @@ export const Map = () => {
     iconSize: [32, 32],
   });
 
+  const markIcon = new Icon({
+    iconUrl: 'https://cdn1.iconfinder.com/data/icons/flat-flags-1/32/flag_green-favorites-512.png',
+    iconSize: [48, 48],
+  });
   return (
     <>
       <MapContainer
@@ -63,7 +75,7 @@ export const Map = () => {
           key="b628c55280msheb2b2ae6c91c18bp1c71bejsncdb5e88638d6"
         />
 
-        <Circle center={initialPoint} pathOptions={greenOptions} radius={800}>
+        <Circle center={initialPoint} pathOptions={greenOptions} radius={radiusCircle}>
           <Marker position={['-34.582716', '-58.426167']} pathOptions={redOptions} icon={userIcon} radius={3}>
             <Popup>
               <p className=" text-center">
@@ -74,7 +86,7 @@ export const Map = () => {
         </Circle>
 
         {map.map((ubicacion, index) => (
-          <Marker key={index} position={[ubicacion.latLng.lng, ubicacion.latLng.lat]}>
+          <Marker key={index} icon={markIcon} position={[ubicacion.latLng.lng, ubicacion.latLng.lat]}>
             <Popup minWidth={300}>
               <div className="flex flex-row gap-4">
                 <img
@@ -85,7 +97,7 @@ export const Map = () => {
                 <div className="flex flex-col justify-between">
                   <div>
                     <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
-                    Materiales: {ubicacion.tipoMaterialAcepta.join(', ')}
+                    Materiales: {ubicacion.materials.join(', ')}
                     <br />
                     Horario: {ubicacion.horario_atencion} <br />
                   </div>
@@ -100,11 +112,16 @@ export const Map = () => {
           </Marker>
         ))}
         <div
-          className=" w-full flex flex-col justify-center items-center "
+          className=" w-full flex flex-col justify-end items-end  "
           style={{ position: 'absolute', top: '10px', left: '10px', zIndex: '1000' }}
         >
-          <SearchMap setResults={setResults} />
-          {results && results.length > 0 && <SearchResultsList results={results} />}
+          <SearchMap setResults={setResults} setModalVisible={setModalVisible} />
+
+          <div className="w-full flex justify-center items-center">
+            {results && results.length > 0 && <SearchResultsList results={results} setResults={setResults} />}
+          </div>
+
+          {modalVisible && <ModalPoint onClose={cerrarModal} />}
         </div>
       </MapContainer>
     </>
