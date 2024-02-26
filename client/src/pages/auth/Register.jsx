@@ -4,11 +4,39 @@ import { FaGoogle, FaFacebookF } from 'react-icons/fa';
 
 import { RiAppleFill } from 'react-icons/ri';
 import { useAuthStore } from '../../stores/auth.store';
+import { useForm } from 'react-hook-form';
+import { registerRequest } from '../../api/auth';
 
 export default function Register() {
 
-  const isAuth = useAuthStore(state => state.isAuth)
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   try{
+  //     const response = fetch('http://localhost:3000/authUser', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         nombre: e.target[0].value,
+  //         email: e.target[1].value,
+  //         password: e.target[2].value,
+  //         confirmPassword: e.target[3].value
+  //       })
+  //     })
+  //     if(response.status === 201){
+  //       console.log('Usuario registrado')
+  //     }else{
+  //       console.log('Error al registrar usuario')
+  //     }
+  //   }catch(error){
+  //     console.error(error)
+  //   }
+  // }
 
+  const { register, handleSubmit } = useForm()
+
+  const isAuth = useAuthStore(state => state.isAuth)
   if (isAuth) {
     return <Navigate to="/user" />
   }
@@ -20,18 +48,29 @@ export default function Register() {
         <span className="text-xl font-bold text-center">Registrese para empezar</span>
       </p>
 
-      <form className="flex flex-col gap-y-10">
+      <form className="flex flex-col gap-y-10" onSubmit={handleSubmit(async values => {
+        console.log(values)
+        const res = await registerRequest(values)
+        console.log(res)
+      })}>
         <div className="flex flex-col gap-y-4">
-          <input type="text" placeholder="Nombre" className="border border-gray-400 p-2 rounded-lg" />
-          <input type="text" placeholder="Email" className="border border-gray-400 p-2 rounded-lg" />
-          <input type="password" placeholder="Contraseña" className="border border-gray-400 p-2 rounded-lg" />
-          <input type="password" placeholder="Confirmar contraseña" className="border border-gray-400 p-2 rounded-lg" />
+          <input type="text" placeholder="Nombre" className="border border-gray-400 p-2 rounded-lg" 
+            {...register('nombre', { required: true })}
+            />
+          <input type="text" placeholder="Email" className="border border-gray-400 p-2 rounded-lg" 
+            {...register('email', { required: true })}
+            />
+          <input type="password" placeholder="Contraseña" className="border border-gray-400 p-2 rounded-lg" 
+            {...register('password', { required: true })}
+            />
+          <input type="password" placeholder="Confirmar contraseña" className="border border-gray-400 p-2 rounded-lg" 
+            {...register('confirmPassword', { required: true })}
+          />
         </div>
 
         <div className="flex flex-col gap-y-3">
-          <Link to="/#" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">
-            Registrarse
-          </Link>
+          <input type="submit" value="Registrarse" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block"/>
+          {/* <Link to="/#" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">Registrarse</Link> */}
           <span className="my-3">
             <hr />{' '}
             <span className="flex justify-center relative">
