@@ -1,15 +1,22 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { useLocation, Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
-const RequireAuth = ({ roles }) => {
-  // const { auth } = useAuth();
-  const location = useLocation();
-  console.log(roles);
+const RequireAuth = ({ isAuthenticated, roles, redirectTo }) => {
+  const cookies = new Cookies();
+  if (!isAuthenticated) {
+    return <Navigate to={redirectTo} replace />;
+  }
 
-  const isAuthorized = roles.includes(1984);
+  if (roles && roles.length > 0) {
+    const userRole = cookies.get('role') || 'user';
+    if (!roles.includes(userRole)) {
+      return <Navigate to="/" replace />;
+    }
+  }
 
-  return isAuthorized ? <Outlet /> : <Navigate to="/auth" state={{ from: location }} replace />;
+  return <Outlet />;
 };
 
 export default RequireAuth;

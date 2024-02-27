@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import AuthLayout from '../hocs/layouts/AuthLayout';
 
 import { Home } from '../pages/Home';
@@ -13,12 +13,16 @@ import { UserMap } from '../pages/user/UserMap';
 import RequireAuth from '../components/RequireAuth';
 import { CompanyHome } from '../pages/company/CompanyHome';
 import { MainLayout } from '../hocs/layouts/MainLayout';
+import Cookies from 'universal-cookie';
 
 export const AppRouter = () => {
-  const ROLES = {
-    User: 2001,
-    Company: 1984,
-  };
+  const cookies = new Cookies();
+  const token = cookies.get('token');
+  const isAuthenticated = !!token;
+
+  const userRole = cookies.get('role') || 'user';
+  const isUser = userRole === 'user';
+  const isAdmin = userRole === 'admin';
 
   return (
     <Routes>
@@ -33,15 +37,18 @@ export const AppRouter = () => {
       </Route>
 
       {/* Protected routes */}
-      <Route element={<RequireAuth roles={[ROLES.User]} />}>
+      <Route
+        element={
+          <RequireAuth isAuthenticated={isAuthenticated} redirectTo="/auth">
+            {isUser && <Navigate to="/user" replace />}
+            {isAdmin && <Navigate to="/company" replace />}
+          </RequireAuth>
+        }
+      >
         <Route element={<MainLayout />}>
           <Route path="/user" element={<UserHome />} />
           <Route path="/user/map" element={<UserMap />} />
           <Route path="/user/map/:id" element={<DetailPoint />} />
-        </Route>
-      </Route>
-      <Route element={<RequireAuth roles={[ROLES.Company]} />}>
-        <Route element={<MainLayout />}>
           <Route path="/company" element={<CompanyHome />} />
         </Route>
       </Route>
