@@ -12,11 +12,11 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const name = userRef.current?.name?.value;
+    const nombre = userRef.current?.name?.value;
     const email = userRef.current?.email?.value;
     const password = userRef.current?.password?.value;
     try {
-      await register({ name, email, password });
+      await register({ nombre, email, password });
       userRef.current && userRef.current.reset();
     } catch (error) {
       console.log('Ocurrió un error al ingresar al sistema', error.message);

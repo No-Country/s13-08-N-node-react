@@ -25,7 +25,6 @@ export const useAuth = () => {
 
   // Inicio de sesión
   const login = async (userData) => {
-    console.log(userData);
     try {
       const result = await loginUser(userData);
       console.log(result);

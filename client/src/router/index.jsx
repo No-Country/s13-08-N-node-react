@@ -17,8 +17,6 @@ import Cookies from 'universal-cookie';
 
 export const AppRouter = () => {
   const cookies = new Cookies();
-  const token = cookies.get('token');
-  const isAuthenticated = !!token;
 
   const userRole = cookies.get('role') || 'user';
   const isUser = userRole === 'user';
@@ -39,7 +37,7 @@ export const AppRouter = () => {
       {/* Protected routes */}
       <Route
         element={
-          <RequireAuth isAuthenticated={isAuthenticated} redirectTo="/auth">
+          <RequireAuth redirectTo="/auth">
             {isUser && <Navigate to="/user" replace />}
             {isAdmin && <Navigate to="/company" replace />}
           </RequireAuth>
