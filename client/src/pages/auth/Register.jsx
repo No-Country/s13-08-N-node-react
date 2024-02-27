@@ -10,7 +10,7 @@ export default function Register() {
   const { register } = authContext;
   const userRef = useRef(null);
 
-  const handleRegister = async(e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     const name = userRef.current?.name?.value;
     const email = userRef.current?.email?.value;

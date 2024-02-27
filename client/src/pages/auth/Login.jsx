@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom';
 import { FaGoogle, FaFacebookF } from 'react-icons/fa';
 
 import { RiAppleFill } from 'react-icons/ri';
-// import { useAuth } from '../../context/useAuth';
 import { AuthContext } from '../../context/AuthContext';
 
-export default function Login() {
+export default function Login () {
   const authContext = useContext(AuthContext);
   const { login } = authContext;
   const userRef = useRef(null);
 
-  const handleLogin = async(e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const email = userRef.current?.email?.value;
     const password = userRef.current?.password?.value;

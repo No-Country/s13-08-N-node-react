@@ -16,10 +16,9 @@ export const Navbar = ({ name, image }) => {
     setOpenMenu(!openMenu);
   };
 
-  const handleLogout = async() => {
+  const handleLogout = async () => {
     try {
-      // Call the logout function from useAuth
-      await logout({ token }); // You might need to handle the logout logic in your useAuth hook
+      await logout({ token });
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }

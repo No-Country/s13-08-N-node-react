@@ -24,7 +24,7 @@ export const useAuth = () => {
   };
 
   // Inicio de sesión
-  const login = async(userData) => {
+  const login = async (userData) => {
     console.log(userData);
     try {
       const result = await loginUser(userData);
@@ -44,7 +44,7 @@ export const useAuth = () => {
   };
 
   // Cerrar sesión
-  const logout = async(userData) => {
+  const logout = async (userData) => {
     try {
       const result = await logoutUser(userData);
       console.log(result);
