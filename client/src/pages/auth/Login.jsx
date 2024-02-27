@@ -5,7 +5,7 @@ import { FaGoogle, FaFacebookF } from 'react-icons/fa';
 import { RiAppleFill } from 'react-icons/ri';
 import { AuthContext } from '../../context/AuthContext';
 
-export default function Login () {
+export default function Login() {
   const authContext = useContext(AuthContext);
   const { login } = authContext;
   const userRef = useRef(null);

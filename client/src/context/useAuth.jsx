@@ -8,7 +8,7 @@ export const useAuth = () => {
   const navigate = useNavigate();
 
   // Registro
-  const register = async(userData) => {
+  const register = async (userData) => {
     try {
       const result = await registerUser(userData);
       console.log(result);
