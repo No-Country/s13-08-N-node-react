@@ -1,13 +1,28 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MenuIcon, ProfileIcon } from '../../assets';
 import { IoSettingsOutline } from 'react-icons/io5';
+import Cookies from 'universal-cookie';
+import { AuthContext } from '../../context/AuthContext';
 
 export const Navbar = ({ name, image }) => {
+  const authContext = useContext(AuthContext);
+  const { logout } = authContext;
   const [openMenu, setOpenMenu] = useState(false);
+  const cookies = new Cookies();
+  const token = cookies.get('token');
 
   const handleChange = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const handleLogout = async() => {
+    try {
+      // Call the logout function from useAuth
+      await logout({ token }); // You might need to handle the logout logic in your useAuth hook
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
   };
 
   return (
@@ -23,9 +38,14 @@ export const Navbar = ({ name, image }) => {
           <MenuIcon onClick={handleChange} />
         </button>
         {openMenu && (
-          <button className="absolute text-sm font-medium flex gap-x-2 -left-[122px] top-[60px] bg-white shadow-lg px-3 py-4 rounded-xl">
-            <IoSettingsOutline className="text- text-2xl" /> Configuración
-          </button>
+          <div className="absolute text-sm font-medium -left-[122px] bg-white shadow-lg px-3 py-4 rounded-xl top-[60px]">
+            <button className="flex gap-x-2 mb-3 hover:bg-slate-100">
+              <IoSettingsOutline className="text-2xl" /> Configuración
+            </button>
+            <button className="flex gap-x-2 hover:bg-slate-100" onClick={handleLogout}>
+              <IoSettingsOutline className="text-2xl" /> Cerrar Sesión
+            </button>
+          </div>
         )}
       </div>
     </div>

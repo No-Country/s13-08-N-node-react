@@ -5,11 +5,13 @@ import { useAuth } from './useAuth';
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  const { login } = useAuth();
+  const { register, login, logout } = useAuth();
   // const [userData, setUserData] = useState({ name: '', lastname: '' });
 
   const contextValue = {
+    register,
     login,
+    logout,
   };
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;

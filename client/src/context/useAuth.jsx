@@ -1,14 +1,29 @@
 import { useMemo } from 'react';
 import Cookies from 'universal-cookie';
-import { loginUser } from '../services/users';
+import { loginUser, logoutUser, registerUser } from '../services/users';
 import { useNavigate } from 'react-router-dom';
 
 export const useAuth = () => {
   const cookies = useMemo(() => new Cookies(), []);
-  console.log(cookies.get('token'));
-  console.log(cookies.get('role'));
   const navigate = useNavigate();
 
+  // Registro
+  const register = async(userData) => {
+    try {
+      const result = await registerUser(userData);
+      console.log(result);
+      if (result) {
+        console.log('Usuario registrado con éxito', result.message);
+        navigate('/auth/login');
+      } else {
+        console.error('Error al registrar usuario:', result.message);
+      }
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+    }
+  };
+
+  // Inicio de sesión
   const login = async(userData) => {
     console.log(userData);
     try {
@@ -28,5 +43,23 @@ export const useAuth = () => {
     }
   };
 
-  return { login };
+  // Cerrar sesión
+  const logout = async(userData) => {
+    try {
+      const result = await logoutUser(userData);
+      console.log(result);
+      if (result) {
+        cookies.remove('token');
+        cookies.remove('role');
+        console.log(result.message);
+        navigate('/');
+      } else {
+        console.error('Error al cerrar sesión:', result.message);
+      }
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
+  };
+
+  return { login, logout, register };
 };

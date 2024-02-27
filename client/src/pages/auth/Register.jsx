@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGoogle, FaFacebookF } from 'react-icons/fa';
 
 import { RiAppleFill } from 'react-icons/ri';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Register() {
+  const authContext = useContext(AuthContext);
+  const { register } = authContext;
+  const userRef = useRef(null);
+
+  const handleRegister = async(e) => {
+    e.preventDefault();
+    const name = userRef.current?.name?.value;
+    const email = userRef.current?.email?.value;
+    const password = userRef.current?.password?.value;
+    try {
+      await register({ name, email, password });
+      userRef.current && userRef.current.reset();
+    } catch (error) {
+      console.log('Ocurrió un error al ingresar al sistema', error.message);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-y-10 px-5 pb-14">
       <p className="flex flex-col">
@@ -12,18 +30,42 @@ export default function Register() {
         <span className="text-xl font-bold text-center">Registrese para empezar</span>
       </p>
 
-      <form className="flex flex-col gap-y-10">
+      <form ref={userRef} onSubmit={handleRegister} className="flex flex-col gap-y-10">
         <div className="flex flex-col gap-y-4">
-          <input type="text" placeholder="Nombre" className="border border-gray-400 p-2 rounded-lg" />
-          <input type="text" placeholder="Email" className="border border-gray-400 p-2 rounded-lg" />
-          <input type="password" placeholder="Contraseña" className="border border-gray-400 p-2 rounded-lg" />
-          <input type="password" placeholder="Confirmar contraseña" className="border border-gray-400 p-2 rounded-lg" />
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Nombre"
+            className="border border-gray-400 p-2 rounded-lg"
+          />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            className="border border-gray-400 p-2 rounded-lg"
+          />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Contraseña"
+            className="border border-gray-400 p-2 rounded-lg"
+          />
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirmar contraseña"
+            className="border border-gray-400 p-2 rounded-lg"
+          />
         </div>
 
         <div className="flex flex-col gap-y-3">
-          <Link to="/#" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">
+          <button type="submit" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">
             Registrarse
-          </Link>
+          </button>
           <span className="my-3">
             <hr />{' '}
             <span className="flex justify-center relative">
