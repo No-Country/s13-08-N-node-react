@@ -24,7 +24,7 @@ export const Map = () => {
 
   const { selectedMapPoint } = useMapSearch();
 
-  const cerrarModal = async (selectedMaterialIds) => {
+  const cerrarModal = async(selectedMaterialIds) => {
     if (selectedMaterialIds && selectedMaterialIds.length > 0) {
       try {
         const requests = selectedMaterialIds.map((id) =>
