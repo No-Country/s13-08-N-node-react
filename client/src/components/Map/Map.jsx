@@ -18,12 +18,37 @@ export const Map = () => {
   const [map, setMap] = useState([]);
   const [results, setResults] = useState([]);
   const [radiusCircle, setRadiusCircle] = useState(800);
+  const [zoomRadius, setZoomRadius] = useState(15);
   const [modalVisible, setModalVisible] = useState(false);
   const [initialPoint, setInitialPoint] = useState({ lat: '-34.582716', lng: '-58.426167' });
 
   const { selectedMapPoint } = useMapSearch();
 
-  const cerrarModal = () => {
+  const cerrarModal = async (selectedMaterialIds) => {
+    if (selectedMaterialIds && selectedMaterialIds.length > 0) {
+      try {
+        const requests = selectedMaterialIds.map((id) =>
+          fetch(`https://points-89az.onrender.com/recycling-center/filter-points-by-materials/${id}`).then(
+            (response) => {
+              return response.json();
+            }
+          )
+        );
+
+        const responses = await Promise.all(requests);
+        const filteredResponses = responses.filter((data) => !data.error);
+        const combinedData = filteredResponses.reduce((acc, curr) => acc.concat(curr), []);
+        // console.log(combinedData);
+        if (combinedData.length > 0) {
+          setZoomRadius(12);
+          setRadiusCircle(0);
+          setMap(combinedData);
+        }
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+      }
+    }
+
     setModalVisible(false);
   };
 
@@ -38,6 +63,8 @@ export const Map = () => {
         console.error('Error fetching data: ', error);
       });
   }, []);
+
+  useEffect(() => {}, [zoomRadius, location]);
 
   useEffect(() => {
     if (Object.keys(selectedMapPoint).length > 0) {
@@ -63,10 +90,10 @@ export const Map = () => {
   return (
     <>
       <MapContainer
-        key={`${initialPoint.lat}-${initialPoint.lng}`}
+        key={`${initialPoint.lat}-${initialPoint.lng}-${zoomRadius}`}
         className="h-[100vh] sm:h-[50vh] sm:w-3/4 mx-auto relative  sm:mt-10"
         center={initialPoint}
-        zoom={15}
+        zoom={zoomRadius}
         scrollWheelZoom={true}
       >
         <TileLayer

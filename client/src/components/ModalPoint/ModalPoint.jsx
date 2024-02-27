@@ -3,7 +3,25 @@ import PropTypes from 'prop-types';
 
 const ModalPoint = ({ onClose }) => {
   const [selectedMaterials, setSelectedMaterials] = useState([]);
+  const [listedMaterials, setListedMaterials] = useState([]);
   const modalRef = useRef(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://points-89az.onrender.com/materials');
+        if (!response.ok) {
+          throw new Error('Failed to fetch materials');
+        }
+        const data = await response.json();
+        setListedMaterials(data);
+      } catch (error) {
+        console.error('Error fetching materials:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -20,8 +38,8 @@ const ModalPoint = ({ onClose }) => {
   }, [onClose]);
 
   const ubicacionData = {
-    nombre: 'Ubicación de Prueba',
-    materiales: ['plastico', 'papel/carton', 'vidrio', 'metales', 'pilas/baterias'],
+    nombre: 'Filtrado de material',
+    materiales: listedMaterials.map((material) => material.nombre) || [],
   };
 
   const handleMaterialToggle = (material) => {
@@ -35,9 +53,12 @@ const ModalPoint = ({ onClose }) => {
   };
 
   const handleApplyClick = () => {
-    // Aquí puedes hacer lo que necesites con los materiales seleccionados
-    // Por ejemplo, enviarlos a través de una función onClose
-    onClose();
+    const selectedMaterialIds = selectedMaterials.map((material) => {
+      const foundMaterial = listedMaterials.find((item) => item.nombre === material);
+      return foundMaterial._id;
+    });
+
+    onClose(selectedMaterialIds);
   };
 
   return (
