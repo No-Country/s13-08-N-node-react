@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-export const DetailCard = ({ title, description, image, linkText }) => {
+export const DetailCard = ({ children, title, description, image, linkText }) => {
   return (
     <div className="flex bg-white p-3 rounded-lg gap-3">
       <div className="flex flex-col gap-2">
@@ -9,9 +9,14 @@ export const DetailCard = ({ title, description, image, linkText }) => {
         <p className="text-sm font-normal mb-2 line-clamp-2">{description}</p>
         {linkText}
       </div>
-      <div className="w-[200px] h-full flex items-center">
-        <img src={`/src/assets/${image}`} alt="Article Image" />
-      </div>
+
+      {image && (
+        <div className="w-[200px] h-full flex items-center">
+          <img src={`/src/assets/${image}`} alt="Article Image" />
+        </div>
+      )}
+
+      {children}
     </div>
   );
 };
