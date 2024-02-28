@@ -2,6 +2,7 @@ const RecyclingCenter = require("../models/recyclingcenter.models.js")
 const Material = require("../models/material.models")
 
 module.exports = {
+
     createPoint: async (req, res) => {
         try {
             const {
@@ -12,48 +13,37 @@ module.exports = {
                 latLng,
                 materials
             } = req.body;
-
-        // Verificar si ya existe un punto de reciclaje con el mismo nombre, ubicación y latLng
-        const existingPoint = await RecyclingCenter.findOne({ nombre, ubicacion, "latLng.lat": latLng.lat, "latLng.lng": latLng.lng });
-        
-        if (existingPoint) {
-            return res.status(400).json({ error: "Ya existe un punto de reciclaje con el mismo nombre, ubicación y coordenadas" });
-        }
-
+    
+            // Verificar si ya existe un punto de reciclaje con el mismo nombre, ubicación y latLng
+            const existingPoint = await RecyclingCenter.findOne({ nombre, ubicacion, "latLng.lat": latLng.lat, "latLng.lng": latLng.lng });
+            
+            if (existingPoint) {
+                return res.status(400).json({ error: "Ya existe un punto de reciclaje con el mismo nombre, ubicación y coordenadas" });
+            }
+    
+            // Buscar los nombres y IDs de los materiales
+            const materialDetails = await Material.find({ _id: { $in: materials } });
+    
+            const materialInfo = materialDetails.map(material => ({ _id: material._id, nombre: material.nombre }));
+    
             const nuevoPunto = new RecyclingCenter({
                 nombre,
                 ubicacion,
                 horario_atencion,
                 imagen,
                 latLng,
-                materials
+                materials: materialInfo
             });
-
+    
             const puntoGuardado = await nuevoPunto.save();
-
-            await Material.findByIdAndUpdate(materials, {$push: {recyclingCenters: puntoGuardado._id}})
-
+    
             res.status(201).json(puntoGuardado);
         } catch (error) {
             console.error("Error al crear punto de reciclaje:", error);
             res.status(500).json({ error: "Error interno del servidor" });
         }
     },
-
-    // {
-    //     "nombre": "Punto de Reciclaje 1",
-    //     "ubicacion": "Avenida El Sapito 55",
-    //     "horario_atencion": "Martes a Sábado de 11 a 17 hs.",
-    //     "materials": [
-    //         "65d8f1ac89b012a63d744f9b", "65d8f21189b012a63d744fa7"
-    //     ],
-    //     "imagen": "https://pixabay.com/get/g18b1ef311640eca6a298c963ca6466032e6a34cc9f515d3c022fc13f27dfad4a09f93d58a6fd7a781725eb80dcba3b5b_1280.jpg",
-    //     "latLng": {
-    //         "lat": "-58.46463459803104",
-    //         "lng": "-34.5673114271266"
-    //     }
-    // }
-
+    
     getAllPoints: async (req, res) => {
         try {
             const puntosReciclaje = await RecyclingCenter.find();
@@ -102,15 +92,15 @@ module.exports = {
 
     filterPointsByMaterial: async (req, res) => {
         try {
-            const { materialId } = req.params;
-
+            const { materialName } = req.params;
+    
             // Buscar los puntos de reciclaje que contengan el material específico
-            const puntosReciclaje = await RecyclingCenter.find({ materials: materialId });
-
+            const puntosReciclaje = await RecyclingCenter.find({ "materials.nombre": materialName });
+    
             if (!puntosReciclaje || puntosReciclaje.length === 0) {
                 return res.status(404).json({ error: "No se encontraron puntos de reciclaje para el material especificado" });
             }
-
+    
             res.status(200).json(puntosReciclaje);
         } catch (error) {
             console.error("Error al filtrar puntos de reciclaje por material:", error);
