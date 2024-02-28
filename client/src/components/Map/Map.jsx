@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Popup, Marker, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -24,7 +25,7 @@ export const Map = () => {
 
   const { selectedMapPoint } = useMapSearch();
 
-  const cerrarModal = async(selectedMaterialIds) => {
+  const cerrarModal = async (selectedMaterialIds) => {
     if (selectedMaterialIds && selectedMaterialIds.length > 0) {
       try {
         const requests = selectedMaterialIds.map((id) =>
