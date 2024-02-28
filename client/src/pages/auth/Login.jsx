@@ -14,10 +14,11 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = userRef.current?.email?.value;
+    const emailempresa = userRef.current?.email?.value;
     const password = userRef.current?.password?.value;
     try {
       if (isCompany) {
-        await loginEmpresa({ email, password });
+        await loginEmpresa({ emailempresa, password });
       } else {
         await loginUsuario({ email, password });
       }

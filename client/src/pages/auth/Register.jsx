@@ -13,11 +13,16 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     const nombre = userRef.current?.name?.value;
+    const nombreempresa = userRef.current?.name?.value;
+    const rubro = userRef.current?.customSelect?.value;
     const email = userRef.current?.email?.value;
+    const emailempresa = userRef.current?.email?.value;
+    const direccion = userRef.current?.address?.value;
     const password = userRef.current?.password?.value;
+    console.log(nombre, rubro);
     try {
       if (isCompany) {
-        await registerEmpresa({ nombre, email, password });
+        await registerEmpresa({ nombreempresa, rubro, emailempresa, direccion, password });
       } else {
         await registerUsuario({ nombre, email, password });
       }
@@ -26,14 +31,9 @@ export default function Register() {
       console.log('Ocurrió un error al ingresar al sistema', error.message);
     }
   };
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
-  };
-  const [selectedOption, setSelectedOption] = useState('');
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
   };
 
   return (
@@ -42,25 +42,22 @@ export default function Register() {
         <span className="text-3xl font-bold text-center">Hola!</span>
         <span className="text-xl font-bold text-center">Registrese para empezar</span>
       </p>
-
-      {isCompany ? (
-        <form ref={userRef} onSubmit={handleRegister} className="flex flex-col gap-y-10">
-          <div className="flex flex-col gap-y-4">
-            {/* Nombre */}
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Nombre de la Empresa"
-              className="border border-gray-400 p-2 rounded-lg"
-            />
-            {/* Rubro */}
+      <form ref={userRef} onSubmit={handleRegister} className="flex flex-col gap-y-10">
+        <div className="flex flex-col gap-y-4">
+          {/* Nombre */}
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder={isCompany ? 'Nombre de la Empresa' : 'Nombre'}
+            className="border border-gray-400 p-2 rounded-lg"
+          />
+          {/* Rubro */}
+          {isCompany && (
             <div className="relative">
               <select
                 id="customSelect"
                 name="customSelect"
-                value={selectedOption}
-                onChange={handleOptionChange}
                 className="border border-gray-400 p-2 rounded-lg w-full appearance-none"
               >
                 <option value="">Rubro</option>
@@ -83,135 +80,74 @@ export default function Register() {
                 </svg>
               </div>
             </div>
-            {/* Email */}
+          )}
+          {/* Email */}
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder={isCompany ? 'Email de empresa' : 'Email'}
+            className="border border-gray-400 p-2 rounded-lg"
+          />
+          {/* direccion */}
+          {isCompany && (
             <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email"
-              className="border border-gray-400 p-2 rounded-lg"
-            />
-            {/* direccion */}
-            <input
-              id="direccion"
-              name="direccion"
+              id="address"
+              name="address"
               type="text"
               placeholder="Direccion"
               className="border border-gray-400 p-2 rounded-lg"
             />
-            {/* Pass */}
-            <div className="relative">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Contraseña"
-                className="border border-gray-400 p-2 rounded-lg w-full"
-              />
-              <button type="button" className="absolute right-2 top-2 text-gray-500" onClick={toggleShowPassword}>
-                {showPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
-            </div>
+          )}
+          {/* Pass */}
+          <div className="relative">
             <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirmar contraseña"
-              className="border border-gray-400 p-2 rounded-lg"
-            />
-          </div>
-
-          <div className="flex flex-col gap-y-3">
-            <button type="submit" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">
-              Registrarse
-            </button>
-            <span className="my-3">
-              <hr />{' '}
-              <span className="flex justify-center relative">
-                <span className="absolute -top-3 bg-white px-5 text-gray-500 text-base">o registre con</span>
-              </span>
-            </span>
-            <div className="flex justify-between gap-x-5">
-              <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
-                <FaGoogle />
-              </Link>
-              <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
-                <FaFacebookF />
-              </Link>
-              <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
-                <RiAppleFill />
-              </Link>
-            </div>
-
-            <p className="text-xs text-center">
-              Al continuar, usted acepta las Condiciones del servicio y la Política de privacidad de Nombre de la App
-            </p>
-          </div>
-        </form>
-      ) : (
-        <form ref={userRef} onSubmit={handleRegister} className="flex flex-col gap-y-10">
-          <div className="flex flex-col gap-y-4">
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Nombre"
-              className="border border-gray-400 p-2 rounded-lg"
-            />
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email"
-              className="border border-gray-400 p-2 rounded-lg"
-            />
-            <input
+              type={showPassword ? 'text' : 'password'}
               id="password"
               name="password"
-              type="password"
               placeholder="Contraseña"
-              className="border border-gray-400 p-2 rounded-lg"
+              className="border border-gray-400 p-2 rounded-lg w-full"
             />
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirmar contraseña"
-              className="border border-gray-400 p-2 rounded-lg"
-            />
-          </div>
-
-          <div className="flex flex-col gap-y-3">
-            <button type="submit" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">
-              Registrarse
+            <button type="button" className="absolute right-2 top-2 text-gray-500" onClick={toggleShowPassword}>
+              {showPassword ? '👁️' : '👁️‍🗨️'}
             </button>
-            <span className="my-3">
-              <hr />{' '}
-              <span className="flex justify-center relative">
-                <span className="absolute -top-3 bg-white px-5 text-gray-500 text-base">o registre con</span>
-              </span>
-            </span>
-            <div className="flex justify-between gap-x-5">
-              <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
-                <FaGoogle />
-              </Link>
-              <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
-                <FaFacebookF />
-              </Link>
-              <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
-                <RiAppleFill />
-              </Link>
-            </div>
-
-            <p className="text-xs text-center">
-              Al continuar, usted acepta las Condiciones del servicio y la Política de privacidad de Nombre de la App
-            </p>
           </div>
-        </form>
-      )}
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirmar contraseña"
+            className="border border-gray-400 p-2 rounded-lg"
+          />
+        </div>
 
+        <div className="flex flex-col gap-y-3">
+          <button type="submit" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">
+            Registrarse
+          </button>
+          <span className="my-3">
+            <hr />{' '}
+            <span className="flex justify-center relative">
+              <span className="absolute -top-3 bg-white px-5 text-gray-500 text-base">o registre con</span>
+            </span>
+          </span>
+          <div className="flex justify-between gap-x-5">
+            <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
+              <FaGoogle />
+            </Link>
+            <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
+              <FaFacebookF />
+            </Link>
+            <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
+              <RiAppleFill />
+            </Link>
+          </div>
+
+          <p className="text-xs text-center">
+            Al continuar, usted acepta las Condiciones del servicio y la Política de privacidad de Nombre de la App
+          </p>
+        </div>
+      </form>
       <p className="text-center font-light">
         Ya tienes cuenta?{' '}
         <Link to="/auth/login" className="text-sm text-darkMain font-bold">

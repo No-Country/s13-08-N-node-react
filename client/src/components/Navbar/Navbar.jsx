@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 export const Navbar = ({ name, image }) => {
   const authContext = useContext(AuthContext);
-  const { logout } = authContext;
+  const { logoutUsuario, logoutEmpresa, isCompany } = authContext;
   const [openMenu, setOpenMenu] = useState(false);
   const cookies = new Cookies();
   const token = cookies.get('token');
@@ -18,7 +18,11 @@ export const Navbar = ({ name, image }) => {
 
   const handleLogout = async () => {
     try {
-      await logout({ token });
+      if (isCompany) {
+        await logoutEmpresa({ token });
+      } else {
+        await logoutUsuario({ token });
+      }
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
