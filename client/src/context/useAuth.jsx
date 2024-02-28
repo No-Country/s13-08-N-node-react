@@ -72,7 +72,7 @@ export const useAuth = () => {
       console.log(result);
       if (result) {
         console.log('Usuario registrado con éxito', result.message);
-        navigate('/auth/login');
+        navigate('/auth');
       } else {
         console.error('Error al registrar usuario:', result.message);
       }
@@ -89,7 +89,7 @@ export const useAuth = () => {
       if (result) {
         cookies.set('token', result.tokenSession);
         cookies.set('role', result.isAdmin);
-        navigate('/user');
+        navigate('/company');
       } else {
         console.error('Error al iniciar sesión:', result.message);
       }
