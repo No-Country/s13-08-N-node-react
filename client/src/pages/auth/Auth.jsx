@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IoBusinessOutline } from 'react-icons/io5';
 import { LuUser2 } from 'react-icons/lu';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Auth() {
+  const authContext = useContext(AuthContext);
+  const { isCompany, setIsCompany } = authContext;
+  console.log(isCompany);
+
+  const handleUser = () => {
+    setIsCompany(false);
+  };
+
+  const handleCompany = () => {
+    setIsCompany(true);
+  };
+
   return (
     <div className="flex flex-col gap-y-8">
       <div className="flex flex-col gap-y-4 px-5">
@@ -33,18 +46,24 @@ export default function Auth() {
       </p>
 
       <div className="flex justify-between">
-        <a href="#" className="bg-green-100 w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center">
+        <button
+          onClick={handleUser}
+          className={`${isCompany ? '' : 'bg-green-100'} w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center`}
+        >
           <span className="text-base">
             <LuUser2 />
           </span>
           Usuario
-        </a>
-        <a href="#" className=" w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center">
+        </button>
+        <button
+          onClick={handleCompany}
+          className={`${isCompany ? 'bg-green-100' : ''} w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center`}
+        >
           <span className="text-base">
             <IoBusinessOutline />
           </span>
           Empresa
-        </a>
+        </button>
       </div>
     </div>
   );

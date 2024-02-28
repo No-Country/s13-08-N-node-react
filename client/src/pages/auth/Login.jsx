@@ -7,7 +7,8 @@ import { AuthContext } from '../../context/AuthContext';
 
 export default function Login() {
   const authContext = useContext(AuthContext);
-  const { login } = authContext;
+  const { loginUsuario, loginEmpresa, isCompany } = authContext;
+  console.log(isCompany);
   const userRef = useRef(null);
 
   const handleLogin = async (e) => {
@@ -15,7 +16,11 @@ export default function Login() {
     const email = userRef.current?.email?.value;
     const password = userRef.current?.password?.value;
     try {
-      await login({ email, password });
+      if (isCompany) {
+        await loginEmpresa({ email, password });
+      } else {
+        await loginUsuario({ email, password });
+      }
       userRef.current && userRef.current.reset();
     } catch (error) {
       console.log('Ocurrió un error al ingresar al sistema', error.message);
@@ -24,7 +29,6 @@ export default function Login() {
   return (
     <div className="flex flex-col gap-y-10 px-5 pb-14">
       <p className="text-3xl font-bold text-center">Hola de nuevo!</p>
-
       <form ref={userRef} onSubmit={handleLogin} className="flex flex-col gap-y-10">
         <div className="flex flex-col gap-y-4">
           <input
@@ -62,7 +66,6 @@ export default function Login() {
           </div>
         </div>
       </form>
-
       <p className="text-center font-light">
         No tienes cuenta?{' '}
         <Link to="/auth/register" className="text-sm text-darkMain font-bold">
