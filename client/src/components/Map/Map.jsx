@@ -38,11 +38,14 @@ export const Map = () => {
         const responses = await Promise.all(requests);
         const filteredResponses = responses.filter((data) => !data.error);
         const combinedData = filteredResponses.reduce((acc, curr) => acc.concat(curr), []);
+
         // console.log(combinedData);
         if (combinedData.length > 0) {
           setZoomRadius(12);
           setRadiusCircle(0);
           setMap(combinedData);
+        } else {
+          window.alert('Ningún punto tiene ese material');
         }
       } catch (error) {
         console.error('Error al obtener datos:', error);
@@ -124,7 +127,7 @@ export const Map = () => {
                 <div className="flex flex-col justify-between">
                   <div>
                     <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
-                    Materiales: {ubicacion.materials.join(', ')}
+                    Materiales: {ubicacion.materials.map((material) => `${material.nombre} `)}
                     <br />
                     Horario: {ubicacion.horario_atencion} <br />
                   </div>

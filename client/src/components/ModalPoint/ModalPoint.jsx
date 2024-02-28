@@ -55,7 +55,7 @@ const ModalPoint = ({ onClose }) => {
   const handleApplyClick = () => {
     const selectedMaterialIds = selectedMaterials.map((material) => {
       const foundMaterial = listedMaterials.find((item) => item.nombre === material);
-      return foundMaterial._id;
+      return foundMaterial.nombre;
     });
 
     onClose(selectedMaterialIds);

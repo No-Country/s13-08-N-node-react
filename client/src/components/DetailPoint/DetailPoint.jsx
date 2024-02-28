@@ -22,7 +22,7 @@ const DetailPoint = () => {
   return (
     <>
       <div className="mt-1 p-4  rounded-lg ">
-        <div className="flex items-center mt-2">
+        <div className="flex   justify-start items-center mt-2">
           <img src={pointData?.imagen} alt="Imagen" className="w-16 h-16 rounded-full mr-2" />
           <div className="flex flex-col">
             <h2 className="text-4xl font-bold ">{pointData?.nombre}</h2>
@@ -35,8 +35,11 @@ const DetailPoint = () => {
         </div>
         <div className="mt-2">
           <DetailMap latLng={pointData.latLng} />
-          <p className="text-gray-600">
-            Materiales: {pointData?.materials?.length > 0 ? pointData?.materials?.join(', ') : 'No especificado'}
+          <p className="text-gray-600 mt-4">
+            Materiales:{' '}
+            {pointData?.materials?.length > 0
+              ? pointData?.materials?.map((material) => `${material.nombre} `)
+              : 'No especificado'}
           </p>
         </div>
       </div>
