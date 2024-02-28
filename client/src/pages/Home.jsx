@@ -75,20 +75,20 @@ export const Home = () => {
   return (
     <>
       <div className="fixed top-0 w-full z-50 bg-white border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-5 pt-8 flex justify-between items-center">
-        <p className="text-2xl font-semibold">Hola, Bienvenido</p>
+        <p className="text-2xl font-semibold text-center">Hola, Bienvenido</p>
         <div>
           <MenuIcon />
         </div>
       </div>
       <div className="px-5 pt-24 pb-10 bg-gray-300 flex flex-col gap-3">
-        <h1 className="text-xl font-semibold">Hábitos medioambientales</h1>
+        <h2 className="text-xl font-semibold text-center mt-5">Hábitos Medioambientales</h2>
         <DetailCard
           title="El progreso"
           description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
           image={<SimpleDonut />}
           linkText={<CardButton linkText="Ver más" />}
         />
-        <h2 className="text-xl font-semibold">Materiales a Reciclar</h2>
+        <h2 className="text-xl font-semibold text-center my-3">Materiales a Reciclar</h2>
         <div className="flex gap-5 slider">
           <Materials picture="carton.jpg" />
           <Materials picture="vidrio.jpg" />
@@ -99,12 +99,12 @@ export const Home = () => {
           <span className="underline">Ver más</span>
         </div>
         <DetailCard
-          title="Listo para Recilcar?"
+          title="Listo para Reciclar?"
           description="Unete a Ecovale, aprende a reciclar y suma puntos en el proceso"
           image="reciclaje-verde.jpg"
           linkText={<CardButton linkText="Empezemos" path="auth" />}
         />
-        <p className="text-xl font-semibold">Articulos publicados</p>
+        <h2 className="text-xl font-semibold text-center my-3">Articulos publicados</h2>
         <div className="flex flex-col gap-3">
           {articles.map(({ title, description }, i) => (
             <DetailCard
@@ -123,8 +123,8 @@ export const Home = () => {
             <span className="underline">Ver más</span>
           </div>
         </div>
-        <h2 className="text-xl font-semibold">Empresas colaboradoras</h2>
-        <div className="flex gap-5 slider">
+        <h2 className="text-xl font-semibold text-center my-3">Empresas colaboradoras</h2>
+        <div className="gap-5 slider max-w-[768px] mx-auto">
           <Company picture="dar_sentido.jpg" />
           <Company picture="psa.jpg" />
           <Company picture="kolibri.jpg" />
@@ -133,8 +133,8 @@ export const Home = () => {
         <div className="flex justify-end">
           <span className="underline">Ver más</span>
         </div>
-        <p className="text-xl font-semibold">Nuestro Equipo</p>
-        <div className="gap-5 slider">
+        <p className="text-xl font-semibold text-center my-3">Nuestro Equipo</p>
+        <div className="gap-5 slider max-w-[768px] mx-auto">
           {teamMembers.map((teamMember, i) => (
             <TeamCard key={i} {...teamMember} />
           ))}

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const Materials = ({ picture }) => {
   return (
-    <div className="bg-white flex w-24 p-2 slide rounded-lg">
-      <img src={`/src/assets/${picture}`} alt="Article Image" />
+    <div className="flex bg-white p-2 rounded-lg items-center gap-3  max-w-[768px] mx-auto">
+      <img className="min-w-[150px]" src={`/src/assets/${picture}`} alt="Article Image" />
     </div>
   );
 };
