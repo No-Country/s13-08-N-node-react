@@ -99,7 +99,7 @@ export const Home = () => {
           <span className="underline">Ver más</span>
         </div>
         <DetailCard
-          title="Listo para Recilcar?"
+          title="Listo para Reciclar?"
           description="Unete a Ecovale, aprende a reciclar y suma puntos en el proceso"
           image="reciclaje-verde.jpg"
           linkText={<CardButton linkText="Empezemos" path="auth" />}
@@ -134,7 +134,7 @@ export const Home = () => {
           <span className="underline">Ver más</span>
         </div>
         <p className="text-xl font-semibold">Nuestro Equipo</p>
-        <div className="gap-5 slider">
+        <div className="gap-5 slider max-w-[768px] mx-auto">
           {teamMembers.map((teamMember, i) => (
             <TeamCard key={i} {...teamMember} />
           ))}

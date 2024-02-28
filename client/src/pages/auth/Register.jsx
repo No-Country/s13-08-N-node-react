@@ -1,7 +1,6 @@
-import React, { useContext, useRef } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGoogle, FaFacebookF } from 'react-icons/fa';
-
 import { RiAppleFill } from 'react-icons/ri';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -27,6 +26,18 @@ export default function Register() {
     }
   };
 
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const [selectedOption, setSelectedOption] = useState('');
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
   return (
     <div className="flex flex-col gap-y-10 px-5 pb-14">
       <p className="flex flex-col">
@@ -35,19 +46,50 @@ export default function Register() {
       </p>
 
       {isCompany
-        ? (
-        <span>empresa</span>
-          )
-        : (
-        <form ref={userRef} onSubmit={handleRegister} className="flex flex-col gap-y-10">
+        ? <span>empresa</span>
+        : <form
+          ref={userRef}
+          onSubmit={handleRegister}
+          className="flex flex-col gap-y-10">
           <div className="flex flex-col gap-y-4">
+            {/* Nombre */}
             <input
               id="name"
               name="name"
               type="text"
-              placeholder="Nombre"
+              placeholder="Nombre de la Empresa"
               className="border border-gray-400 p-2 rounded-lg"
             />
+            {/* Rubro */}
+            <div className="relative">
+              <select
+                id="customSelect"
+                name="customSelect"
+                value={selectedOption}
+                onChange={handleOptionChange}
+                className="border border-gray-400 p-2 rounded-lg w-full appearance-none"
+              >
+                <option value="">Rubro</option>
+                <option value="Carton">Carton</option>
+                <option value="Plastico">Plastico</option>
+                <option value="Vidrio">Vidrio</option>
+                <option value="Metal">Metal</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <svg
+                  className="h-5 w-5 text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M6.293 7.293a1 1 0 0 1 1.414 0L10 9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z"
+                  />
+                </svg>
+              </div>
+            </div>
+            {/* Email */}
             <input
               id="email"
               name="email"
@@ -55,13 +97,29 @@ export default function Register() {
               placeholder="Email"
               className="border border-gray-400 p-2 rounded-lg"
             />
+            {/* direccion */}
             <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Contraseña"
+              id="direccion"
+              name="direccion"
+              type="text"
+              placeholder="Direccion"
               className="border border-gray-400 p-2 rounded-lg"
             />
+            {/* Pass */}
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Contraseña"
+                className="border border-gray-400 p-2 rounded-lg w-full"
+              />
+              <button type="button" className="absolute right-2 top-2 text-gray-500" onClick={toggleShowPassword}>
+                {showPassword ? '👁️' : '👁️‍🗨️'}
+              </button>
+            </div>
             <input
               id="confirmPassword"
               name="confirmPassword"
@@ -98,7 +156,7 @@ export default function Register() {
             </p>
           </div>
         </form>
-          )}
+      }
 
       <p className="text-center font-light">
         Ya tienes cuenta?{' '}
