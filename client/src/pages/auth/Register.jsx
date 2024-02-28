@@ -36,7 +36,7 @@ export default function Register() {
 
       {isCompany
         ? (
-            'empresa'
+        <span>empresa</span>
           )
         : (
         <form ref={userRef} onSubmit={handleRegister} className="flex flex-col gap-y-10">
