@@ -7,7 +7,7 @@ const ModalPoint = ({ onClose }) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       try {
         const response = await fetch('https://points-89az.onrender.com/materials');
         if (!response.ok) {
