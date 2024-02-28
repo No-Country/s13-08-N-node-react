@@ -20,6 +20,15 @@ module.exports = {
     }
   },
 
+  verifyCompanyToken: async (token) => {
+    try {
+      return jwt.verify(token, process.env.TOKEN_KEY);
+    } catch (e) {
+      console.error("Error al verificar el token de la empresa:", e);
+      return null;
+    }
+  },
+
   // decodeToken: (token) => {
   //   try {
   //     const decoded = jwt.decode(token);
@@ -30,19 +39,39 @@ module.exports = {
   //   }
   // },
 
+  // decodeToken: (token) => {
+  //   const base64Url = token.split(".")[1];
+  //   const base64 = decodeURIComponent(
+  //     atob(base64Url)
+  //       .split("")
+  //       .map((c) => {
+  //         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+  //       })
+  //       .join("")
+  //   );
+  //   return JSON.parse(base64);
+  // },
+
   decodeToken: (token) => {
-    const base64Url = token.split(".")[1];
-    const base64 = decodeURIComponent(
-      atob(base64Url)
-        .split("")
-        .map((c) => {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
-    );
-    return JSON.parse(base64);
+    try {
+      const decoded = jwt.decode(token);
+      return decoded;
+    } catch (error) {
+      console.error("Error al decodificar el token:", error.message);
+      return null;
+    }
   },
 
+    // Decodificar un token para empresas
+    decodeCompanyToken: (token) => {
+      try {
+        const decoded = jwt.decode(token);
+        return decoded;
+      } catch (error) {
+        console.error("Error al decodificar el token de empresa:", error.message);
+        return null;
+      }
+    },
 
 
   confirmToken: () => {
