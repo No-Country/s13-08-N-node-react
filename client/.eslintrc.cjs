@@ -24,6 +24,6 @@ module.exports = {
     'prettier/prettier': 'off',
     'comma-dangle': 'off',
     semi: ['error', 'always'],
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': 'off',
   },
 };

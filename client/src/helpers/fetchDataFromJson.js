@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export const fetchDataFronJson = async (url) => {
   try {
     const response = await fetch(url);

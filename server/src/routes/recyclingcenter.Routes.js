@@ -9,7 +9,10 @@ router.get("/point/:id", getPointById)
 
 router.get("/filter-points", filterPointsByLatLng);
 
-router.get("/filter-points-by-materials/:materialId", filterPointsByMaterial);
+router.get('/filter-points-by-materials/:materialName([a-zA-Z]+)', (req, res, next) => {
+    req.params.materialName = req.params.materialName.charAt(0).toUpperCase() + req.params.materialName.slice(1).toLowerCase();
+    next();
+}, filterPointsByMaterial);
 
 router.put("/edit/:id", editPointById);
 
