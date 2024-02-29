@@ -239,9 +239,9 @@ export const MenuIcon = ({ className, ...props }) => (
     className={classNames(className)}
     {...props}
   >
-    <rect width="21" height="2" rx="1" fill="#757171" />
-    <rect y="6" width="21" height="2" rx="1" fill="#757171" />
-    <rect y="12" width="21" height="2" rx="1" fill="#757171" />
+    <rect width="21" height="2" rx="1" fill="currentColor" />
+    <rect y="6" width="21" height="2" rx="1" fill="currentColor" />
+    <rect y="12" width="21" height="2" rx="1" fill="currentColor" />
   </svg>
 );
 
