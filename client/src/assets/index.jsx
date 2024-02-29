@@ -132,6 +132,18 @@ export const DiscoveryIcon = ({ className, ...props }) => (
   </svg>
 );
 
+export const NotificationIcon = ({ className, ...props }) => (
+  <svg width="25" height="25" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M16 7.4C16 5.70261 15.3679 4.07475 14.2426 2.87452C13.1174 1.67428 11.5913 1 10 1C8.4087 1 6.88258 1.67428 5.75736 2.87452C4.63214 4.07475 4 5.70261 4 7.4C4 14.8667 1 17 1 17H19C19 17 16 14.8667 16 7.4Z"
+      stroke="#757171"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const ProfileIcon = ({ className, ...props }) => (
   <svg
     width="19"
