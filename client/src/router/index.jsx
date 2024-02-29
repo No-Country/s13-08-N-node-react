@@ -15,6 +15,7 @@ import { UserMap } from '../pages/user/UserMap';
 import RequireAuth from '../components/RequireAuth';
 import { CompanyHome } from '../pages/company/CompanyHome';
 import { MainLayout } from '../hocs/layouts/MainLayout';
+import UserVoucher from '../pages/user/UserVoucher';
 
 
 export const AppRouter = () => {
@@ -48,6 +49,7 @@ export const AppRouter = () => {
           <Route path="/company" element={<CompanyHome />} />
           <Route path="/company/profile" element={<Profile />} />
           <Route path="/company/profile/edit" element={<ProfileEdit />} />
+          <Route path="/company/profile/voucher" element={<UserVoucher />} />
         </Route>
       </Route>
     </Routes>

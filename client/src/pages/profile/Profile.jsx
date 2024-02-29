@@ -25,7 +25,7 @@ export default function CompanyProfile() {
 
             <div className='flex flex-col px-5 gap-y-3'>
                 <Link to={'edit'} className='bg-white p-4 rounded-xl flex items-center gap-x-2'><span><CgProfile /></span>Editar perfil</Link>
-                <Link className='bg-white p-4 rounded-xl flex items-center gap-x-2'><span><MdOutlineSecurity /></span>Seguridad</Link>
+                <Link to={'voucher'} className='bg-white p-4 rounded-xl flex items-center gap-x-2'><span><MdOutlineSecurity /></span>Seguridad</Link>
                 <Link className='bg-white p-4 rounded-xl flex items-center gap-x-2'><span><MdOutlinePolicy /></span>Términos y Políticas</Link>
                 <Link className='bg-white p-4 rounded-xl flex items-center gap-x-2'><span><RiCustomerService2Fill /></span>FAQ y soporte</Link>
                 <Link className='bg-white p-4 rounded-xl flex items-center gap-x-2'><span><BiLogOutCircle /></span>Cerrar sesión</Link>

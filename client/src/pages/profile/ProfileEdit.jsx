@@ -25,11 +25,16 @@ export default function ProfileEdit() {
                 </div>
                 <div className='flex flex-col'>
                     <label className='text-sm mb-2'>Correo</label>
-                    <input type="text" placeholder='' className='p-2 rounded-[10px]'/>
+                    <input type="text" placeholder='ejemplo@gmail.com' className='p-2 rounded-[10px]'/>
                 </div>
                 <div className='flex flex-col'>
                     <label className='text-sm mb-2'>Dirección</label>
-                    <input type="text" placeholder='' className='p-2 rounded-[10px]'/>
+                    <input type="text" placeholder='Av. ejemplo - Estado, País' className='p-2 rounded-[10px]'/>
+                </div>
+                <div className='flex flex-col gap-y-2'>
+                    <label className='text-sm'>Contraseña</label>
+                    <input type="text" placeholder='Contraseña' className='p-2 rounded-[10px] mb-2'/>
+                    <input type="text" placeholder='Confirmar contraseña' className='p-2 rounded-[10px]'/>
                 </div>
             </form>
         </div>
