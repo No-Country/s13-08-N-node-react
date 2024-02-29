@@ -3,6 +3,15 @@ import { MenuIcon } from '../assets';
 import { DetailCard } from '../components/ui/Cards/DetailCard';
 import { CardButton } from '../components/ui/Buttons/CardButton';
 import picture from '../assets/picture.png';
+import reciclajeverde from '../assets/reciclaje-verde.jpg';
+import darsentido from '../assets/dar_sentido.jpg';
+import psa from '../assets/psa.jpg';
+import kolibri from '../assets/kolibri.jpg';
+import zafran from '../assets/zafran.jpg';
+import carton from '../assets/carton.jpg';
+import vidrio from '../assets/vidrio.jpg';
+import plastico from '../assets/plastico.jpg';
+import metal from '../assets/metal.jpg';
 import { TeamCard } from '../components/ui/Cards/TeamCard';
 import { Footer } from '../components/Footer/Footer';
 import SimpleDonut from '../components/Chart/SimpleDonut';
@@ -85,15 +94,16 @@ export const Home = () => {
         <DetailCard
           title="El progreso"
           description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
-          image={<SimpleDonut />}
           linkText={<CardButton linkText="Ver más" />}
-        />
+        >
+          <SimpleDonut />
+        </DetailCard>
         <h2 className="text-xl font-semibold text-center my-3">Materiales a Reciclar</h2>
         <div className="flex gap-5 slider">
-          <Materials picture="carton.jpg" />
-          <Materials picture="vidrio.jpg" />
-          <Materials picture="plastico.jpg" />
-          <Materials picture="metal.jpg" />
+          <Materials picture={carton} />
+          <Materials picture={vidrio} />
+          <Materials picture={plastico} />
+          <Materials picture={metal} />
         </div>
         <div className="flex justify-end">
           <span className="underline">Ver más</span>
@@ -101,7 +111,7 @@ export const Home = () => {
         <DetailCard
           title="Listo para Reciclar?"
           description="Unete a Ecovale, aprende a reciclar y suma puntos en el proceso"
-          image="reciclaje-verde.jpg"
+          image={reciclajeverde}
           linkText={<CardButton linkText="Empezemos" path="auth" />}
         />
         <h2 className="text-xl font-semibold text-center my-3">Articulos publicados</h2>
@@ -111,7 +121,7 @@ export const Home = () => {
               key={i}
               title={title}
               description={description}
-              image={<img src={picture} alt="Article Image" />}
+              image={picture}
               linkText={
                 <div className="flex justify-end">
                   <span className="underline">Leer más</span>
@@ -125,10 +135,10 @@ export const Home = () => {
         </div>
         <h2 className="text-xl font-semibold text-center my-3">Empresas colaboradoras</h2>
         <div className="gap-5 slider max-w-[768px] mx-auto">
-          <Company picture="dar_sentido.jpg" />
-          <Company picture="psa.jpg" />
-          <Company picture="kolibri.jpg" />
-          <Company picture="zafran.jpg" />
+          <Company picture={darsentido} />
+          <Company picture={psa} />
+          <Company picture={kolibri} />
+          <Company picture={zafran} />
         </div>
         <div className="flex justify-end">
           <span className="underline">Ver más</span>

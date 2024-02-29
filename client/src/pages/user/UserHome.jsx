@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { BsTicketPerforated, BsBagDash } from 'react-icons/bs';
 import { FaRegStar } from 'react-icons/fa';
-
+import picture from '../../assets/picture.png';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
 import { CardButton } from '../../components/ui/Buttons/CardButton';
@@ -70,7 +70,7 @@ export const UserHome = () => {
               key={i}
               title={title}
               description={description}
-              image={'picture.png'}
+              image={picture}
               linkText={
                 <div className="flex justify-end">
                   <span className="underline">Leer más</span>
