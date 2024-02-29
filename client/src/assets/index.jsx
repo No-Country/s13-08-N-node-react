@@ -132,6 +132,18 @@ export const DiscoveryIcon = ({ className, ...props }) => (
   </svg>
 );
 
+export const NotificationIcon = ({ className, ...props }) => (
+  <svg width="25" height="25" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M16 7.4C16 5.70261 15.3679 4.07475 14.2426 2.87452C13.1174 1.67428 11.5913 1 10 1C8.4087 1 6.88258 1.67428 5.75736 2.87452C4.63214 4.07475 4 5.70261 4 7.4C4 14.8667 1 17 1 17H19C19 17 16 14.8667 16 7.4Z"
+      stroke="#757171"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const ProfileIcon = ({ className, ...props }) => (
   <svg
     width="19"
@@ -230,5 +242,25 @@ export const MenuIcon = ({ className, ...props }) => (
     <rect width="21" height="2" rx="1" fill="#757171" />
     <rect y="6" width="21" height="2" rx="1" fill="#757171" />
     <rect y="12" width="21" height="2" rx="1" fill="#757171" />
+  </svg>
+);
+
+export const FaqIcon = ({ className, ...props }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M9 9.00001C9 5.49998 14.5 5.50001 14.5 9.00001C14.5 11.5 12 10.9999 12 13.9999"
+      stroke="#21272A"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path d="M12 18.01L12.01 17.9989" stroke="#21272A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.8214 2.48697 15.5291 3.33782 17L2.5 21.5L7 20.6622C8.47087 21.513 10.1786 22 12 22Z"
+      stroke="#21272A"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );

@@ -9,8 +9,8 @@ const Company = ({ picture }) => {
   };
 
   return (
-    <div className="custom-border-radius w-24 h-24 bg-gray-500 slide p-2 overflow-hidden">
-      <img src={`/src/assets/${picture}`} alt="Article Image" style={imageStyle} />
+    <div className="custom-border-radius w-24 h-24 bg-gray-500 slide overflow-hidden max-w-[768px] mx-auto">
+      <img src={picture} alt="Article Image" style={imageStyle} />
     </div>
   );
 };
