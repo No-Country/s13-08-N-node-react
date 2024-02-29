@@ -4,7 +4,7 @@ import { Menu } from '../../components/Menu/Menu';
 
 export const MainLayout = () => {
   return (
-    <div className="bg-[#F7FAFC]">
+    <div className="bg-gray-200">
       <Outlet />
       <Menu />
     </div>

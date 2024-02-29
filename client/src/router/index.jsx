@@ -8,11 +8,14 @@ import Auth from '../pages/auth/Auth';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import DetailPoint from '../components/DetailPoint/DetailPoint';
+import Profile from '../pages/profile/Profile';
+import ProfileEdit from '../pages/profile/ProfileEdit';
 import { UserHome } from '../pages/user/UserHome';
 import { UserMap } from '../pages/user/UserMap';
 import RequireAuth from '../components/RequireAuth';
 import { CompanyHome } from '../pages/company/CompanyHome';
 import { MainLayout } from '../hocs/layouts/MainLayout';
+
 
 export const AppRouter = () => {
   const ROLES = {
@@ -43,6 +46,8 @@ export const AppRouter = () => {
       <Route element={<RequireAuth roles={[ROLES.Company]} />}>
         <Route element={<MainLayout />}>
           <Route path="/company" element={<CompanyHome />} />
+          <Route path="/company/profile" element={<Profile />} />
+          <Route path="/company/profile/edit" element={<ProfileEdit />} />
         </Route>
       </Route>
     </Routes>

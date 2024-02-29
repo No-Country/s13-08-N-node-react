@@ -33,7 +33,7 @@ export const Menu = () => {
             </Link>
           </li>
           <li>
-            <Link to="/profile" className="text-gray-600 hover:text-gray-800 flex flex-col items-center">
+            <Link to="/company/profile" className="text-gray-600 hover:text-gray-800 flex flex-col items-center">
               <ProfileIcon />
               Perfil
             </Link>
