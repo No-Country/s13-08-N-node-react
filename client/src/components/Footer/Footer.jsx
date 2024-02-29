@@ -3,10 +3,10 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaYoutube } from 're
 
 export const Footer = () => {
   return (
-    <div className="bg-white py-10">
-      <div className="flex flex-col items-center gap-3">
-        <p className="text-gray-400 text-sm">EcoVale &copy; {new Date().getFullYear()}. All rights reserved. </p>
-        <div className="text-gray-400 flex justify-center gap-5 text-2xl">
+    <div className="bg-[#062d46] py-10">
+      <div className="flex flex-col items-center gap-3 text-[#feffff]">
+        <p className="text-sm">EcoVale &copy; {new Date().getFullYear()}. All rights reserved. </p>
+        <div className="flex justify-center gap-5 text-2xl">
           <FaYoutube />
           <FaFacebookF />
           <FaTwitter />

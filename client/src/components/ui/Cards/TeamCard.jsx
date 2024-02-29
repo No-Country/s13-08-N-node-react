@@ -12,7 +12,7 @@ import {
   FaYoutube,
 } from 'react-icons/fa';
 
-export const TeamCard = ({ name, description, image, socialLinks = [] }) => {
+export const TeamCard = ({ name, rol, image, socialLinks = [] }) => {
   const iconsMap = {
     facebook: FaFacebookF,
     twitter: FaTwitter,
@@ -32,7 +32,7 @@ export const TeamCard = ({ name, description, image, socialLinks = [] }) => {
       if (IconComponent && link) {
         return (
           <a key={iconName} to={link} target="_blank" rel="noopener noreferrer">
-            <IconComponent className="text-gray-400" />
+            <IconComponent />
           </a>
         );
       } else {
@@ -48,11 +48,12 @@ export const TeamCard = ({ name, description, image, socialLinks = [] }) => {
         <div className="w-12 h-12 flex justify-center items-center bg-slate-200 rounded-full">
           {image ? <img src={image} alt="Profile" /> : <ProfileIcon />}
         </div>
-        <div>
-          <p className="text-[13px] font-bold">{name}</p>
-          <p className="text-xs line-clamp-2">{description}</p>
+        <p className="text-sm font-bold">{name}</p>
+        <div className="flex items-center gap-x-3">
+          <p className="text-sm font-bold line-clamp-2">{rol}</p>
+          <hr className="border border-slate-500 h-full" />
+          <div className="flex justify-center gap-2">{renderSocialIcons()}</div>
         </div>
-        <div className="flex justify-center gap-2">{renderSocialIcons()}</div>
       </div>
     </div>
   );
