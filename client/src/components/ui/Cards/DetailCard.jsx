@@ -12,7 +12,7 @@ export const DetailCard = ({ children, title, description, image, linkText }) =>
 
       {image && (
         <div className="w-[200px] flex-shrink-0">
-          <img className="w-full h-full object-cover" src={`/src/assets/${image}`} alt="Article Image" />
+          <img className="w-full h-full object-cover" src={image} alt="Article Image" />
         </div>
       )}
 
