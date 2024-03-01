@@ -16,6 +16,7 @@ import RequireAuth from '../components/RequireAuth';
 import { CompanyHome } from '../pages/company/CompanyHome';
 import { MainLayout } from '../hocs/layouts/MainLayout';
 import Cookies from 'universal-cookie';
+import UserVoucher from '../pages/user/UserVoucher';
 
 export const AppRouter = () => {
   const cookies = new Cookies();
