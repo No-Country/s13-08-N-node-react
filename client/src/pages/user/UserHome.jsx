@@ -3,11 +3,14 @@ import { Navbar } from '../../components/Navbar/Navbar';
 import { BsTicketPerforated, BsBagDash } from 'react-icons/bs';
 import { FaRegStar } from 'react-icons/fa';
 import articulos from '../../assets/home/articulos.png';
+import codigoqrImg from '../../assets/codigoqr.svg';
+import entradasImg from '../../assets/entradas.svg';
 import claves from '../../assets/home/claves.png';
 import consejos from '../../assets/home/consejos.png';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
 import { CardButton } from '../../components/ui/Buttons/CardButton';
+import { Link } from 'react-router-dom';
 
 export const UserHome = () => {
   const articles = [
@@ -52,7 +55,19 @@ export const UserHome = () => {
   return (
     <div>
       <Navbar name="Usuario" />
-      <div className="px-5 py-28 bg-bgGreen flex flex-col gap-3">
+      <div className="px-5 py-28 bg-bgGreen flex flex-col gap-3 mt-6">
+        <div className='flex justify-between gap-x-5'>
+            <Link to={'/user/codigo-canje'} className='bg-white w-full rounded-[10px] px-2 py-3'>
+              <img src={codigoqrImg} alt="" className='mx-auto mb-2 h-[60px]'/>
+              <p className='text-base text-center font-semibold'>Código de canejo</p>
+            </Link>
+            <Link to={'/user/puntos'} className='bg-white w-full rounded-[10px] px-2 py-3'>
+              <img src={entradasImg} alt="" className='mx-auto mb-2 h-[60px]'/>
+              <p className='text-base text-center font-semibold'>Vourchers a canjear</p>
+            </Link>
+        </div>
+
+
         <div className="bg-white w-full flex justify-between py-3 px-6 rounded-[10px]">
           {details.map(({ icon, title, quantity }, i) => (
             <div key={i} className="flex flex-col gap-1 items-center font-medium">

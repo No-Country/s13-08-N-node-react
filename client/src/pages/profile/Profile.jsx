@@ -9,8 +9,10 @@ import { IoChevronBack } from 'react-icons/io5';
 
 export default function CompanyProfile() {
   return (
-    <div className="h-[100vh] pt-40">
-      <div className="fixed top-0 w-full z-50 bg-white border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-7 pt-10 flex justify-between items-center">
+    <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue">
+
+
+      <div className="fixed top-0 w-full z-50 bg-darkBlue border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-7 pt-10 flex justify-between items-center text-white">
         <div className="flex justify-between items-center w-full">
           <p className="text-2xl font-medium">Configuración</p>
           <span className="text-xl">
@@ -26,7 +28,7 @@ export default function CompanyProfile() {
           </span>
           Editar perfil
         </Link>
-        <Link to={'voucher'} className="bg-white p-4 rounded-xl flex items-center gap-x-2">
+        <Link className="bg-white p-4 rounded-xl flex items-center gap-x-2">
           <span>
             <MdOutlineSecurity />
           </span>

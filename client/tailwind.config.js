@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        greenMain: '#099382',
+        // greenMain: '#099382',
+        greenMain: '#36da9e',
         darkMain: '#302F2F',
         bgGreen: '#E5F1F1',
         darkBlue: '#062d46',
