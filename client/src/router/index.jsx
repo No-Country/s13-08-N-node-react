@@ -15,7 +15,6 @@ import { UserMap } from '../pages/user/UserMap';
 import RequireAuth from '../components/RequireAuth';
 import { CompanyHome } from '../pages/company/CompanyHome';
 import { MainLayout } from '../hocs/layouts/MainLayout';
-import UserVoucher from '../pages/user/UserVoucher';
 import Cookies from 'universal-cookie';
 
 export const AppRouter = () => {
