@@ -5,9 +5,27 @@ import { FaGoogle, FaFacebookF } from 'react-icons/fa';
 import { RiAppleFill } from 'react-icons/ri';
 import { AuthContext } from '../../context/AuthContext';
 
+const getPasswordStrength = (value) => {
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{7,}$/;
+
+  if (passwordRegex.test(value)) {
+    return 'Fuerte';
+  } else if (value.length >= 7) {
+    return 'Moderada';
+  } else {
+    return 'Débil';
+  }
+};
+
 export default function Register() {
   const authContext = useContext(AuthContext);
   const { registerUsuario, registerEmpresa, isCompany } = authContext;
+  const [passwordStrength, setPasswordStrength] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [rubroError, setRubroError] = useState('');
+  const [addressError, setAddressError] = useState('');
   const userRef = useRef(null);
 
   const handleRegister = async (e) => {
@@ -19,7 +37,47 @@ export default function Register() {
     const emailempresa = userRef.current?.email?.value;
     const direccion = userRef.current?.address?.value;
     const password = userRef.current?.password?.value;
-    console.log(nombre, rubro);
+
+    const strength = getPasswordStrength(password);
+    setPasswordStrength(strength);
+
+    if (!email && !password && !nombre && !nombreempresa && !rubro && !emailempresa && !direccion) {
+      setEmailError('El campo de correo electrónico no puede estar vacío.');
+      setNameError('El campo de nombre no puede estar vacío.');
+      setRubroError('El campo de rubro no puede estar vacío.');
+      setAddressError('El campo de dirección no puede estar vacío.');
+      setPasswordError('El campo de contraseña no puede estar vacío.');
+      setPasswordStrength('');
+      return;
+    } else if (!direccion) {
+      setAddressError('El campo de nombre no puede estar vacío.');
+      return;
+    } else if (!emailempresa) {
+      setEmailError('El campo de correo electrónico no puede estar vacío.');
+      return;
+    } else if (!rubro) {
+      setRubroError('El campo de rubro no puede estar vacío.');
+      return;
+    } else if (!nombreempresa) {
+      setNameError('El campo de nombre no puede estar vacío.');
+      return;
+    } else if (!nombre) {
+      setNameError('El campo de nombre no puede estar vacío.');
+      return;
+    } else if (!email) {
+      setEmailError('El campo de correo electrónico no puede estar vacío.');
+      return;
+    } else if (!password) {
+      setPasswordError('El campo de contraseña no puede estar vacío.');
+      return;
+    } else if (!isValidEmail(email) || strength === 'Débil') {
+      setEmailError('El correo electrónico no es válido. Inténtalo de nuevo.');
+      setPasswordError(
+        'La contraseña es débil. Debe contener al menos 7 caracteres, una letra mayúscula y un número. Inténtalo de nuevo.'
+      );
+      return;
+    }
+
     try {
       if (isCompany) {
         await registerEmpresa({ nombreempresa, rubro, emailempresa, direccion, password });
@@ -34,6 +92,28 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const isValidEmail = (email) => {
+    // Utiliza una expresión regular simple para validar el formato del correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleEmailChange = () => {
+    const email = userRef.current?.email?.value;
+    setEmailError(!isValidEmail(email) ? 'El correo electrónico no es válido. Inténtalo de nuevo.' : '');
+  };
+
+  // Función para manejar el cambio en el campo de contraseña
+  const handlePasswordChange = () => {
+    const password = userRef.current?.password?.value;
+    setPasswordError(
+      getPasswordStrength(password) === 'Débil'
+        ? 'La contraseña es débil. Debe contener al menos 7 carácteres, una letra mayúscula y un número.'
+        : ''
+    );
+    setPasswordStrength(getPasswordStrength(password));
   };
 
   return (
@@ -52,6 +132,7 @@ export default function Register() {
             placeholder={isCompany ? 'Nombre de la Empresa' : 'Nombre'}
             className="border border-gray-400 p-2 rounded-lg"
           />
+          {nameError && <p className="text-red-500 text-sm">{nameError}</p>}
           {/* Rubro */}
           {isCompany && (
             <div className="relative">
@@ -81,6 +162,7 @@ export default function Register() {
               </div>
             </div>
           )}
+          {rubroError && <p className="text-red-500 text-sm">{rubroError}</p>}
           {/* Email */}
           <input
             id="email"
@@ -88,7 +170,9 @@ export default function Register() {
             type="email"
             placeholder={isCompany ? 'Email de empresa' : 'Email'}
             className="border border-gray-400 p-2 rounded-lg"
+            onChange={handleEmailChange}
           />
+          {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
           {/* direccion */}
           {isCompany && (
             <input
@@ -99,6 +183,7 @@ export default function Register() {
               className="border border-gray-400 p-2 rounded-lg"
             />
           )}
+          {addressError && <p className="text-red-500 text-sm">{addressError}</p>}
           {/* Pass */}
           <div className="relative">
             <input
@@ -107,11 +192,28 @@ export default function Register() {
               name="password"
               placeholder="Contraseña"
               className="border border-gray-400 p-2 rounded-lg w-full"
+              onChange={handlePasswordChange}
             />
             <button type="button" className="absolute right-2 top-2 text-gray-500" onClick={toggleShowPassword}>
               {showPassword ? '👁️' : '👁️‍🗨️'}
             </button>
           </div>
+          {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
+
+          {passwordStrength && (
+            <div>
+              <p
+                className={`text-${passwordStrength.toLowerCase()} text-sm font-semibold ${passwordStrength === 'Débil' ? 'text-[#ff5252]' : passwordStrength === 'Moderada' ? 'text-[#FFD740]' : 'text-[#4CAF50]'}`}
+              >
+                Fuerza de la contraseña: {passwordStrength}
+              </p>
+              <div className="w-full h-1 bg-red-200 mt-3">
+                <div
+                  className={`h-full ${passwordStrength === 'Débil' ? 'w-1/3 bg-[#ff5252]' : passwordStrength === 'Moderada' ? 'w-2/3 bg-[#FFD740]' : 'w-full bg-[#4CAF50]'}`}
+                ></div>
+              </div>
+            </div>
+          )}
           <input
             id="confirmPassword"
             name="confirmPassword"
