@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BsTicketPerforated } from 'react-icons/bs';
 
-export default function CardVoucher() {
+export const CardVoucher = () => {
   const [hidePoints, setHidePoints] = useState(true);
 
   return (
@@ -43,4 +43,4 @@ export default function CardVoucher() {
       </div>
     </div>
   );
-}
+};
