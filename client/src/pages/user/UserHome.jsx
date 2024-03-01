@@ -2,7 +2,9 @@ import React from 'react';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { BsTicketPerforated, BsBagDash } from 'react-icons/bs';
 import { FaRegStar } from 'react-icons/fa';
-import picture from '../../assets/picture.png';
+import articulos from '../../assets/home/articulos.png';
+import claves from '../../assets/home/claves.png';
+import consejos from '../../assets/home/consejos.png';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
 import { CardButton } from '../../components/ui/Buttons/CardButton';
@@ -10,23 +12,29 @@ import { CardButton } from '../../components/ui/Buttons/CardButton';
 export const UserHome = () => {
   const articles = [
     {
-      title: 'Articulo 1',
-      description: 'Lorem Ipsumis simply dummy text of the printing and typesetting industry.',
+      title: 'Reciclaje: Cómo y  por qué debemos hacerlo',
+      description:
+        'El reciclaje es una actividad fundamental para preservar nuestro medio ambiente y construir un futuro sostenible. A través de simples acciones cotidianas, podemos contribuir de manera significativa a la reducción de la contaminación y al cuidado de nuestros recursos naturales. A continuación, te presentamos algunos consejos prácticos sobre cómo y por qué debemos reciclar.',
+      picture: articulos,
     },
     {
-      title: 'Articulo 2',
-      description: 'Lorem Ipsumis simply dummy text of the printing and typesetting industry.',
+      title: 'Reciclar en casa: Consejos prácticos',
+      description:
+        'El reciclaje es una actividad fundamental para preservar nuestro medio ambiente y construir un futuro sostenible. A través de simples acciones cotidianas, podemos contribuir de manera significativa a la reducción de la contaminación y al cuidado de nuestros recursos naturales. A continuación, te presentamos algunos consejos prácticos sobre cómo y por qué debemos reciclar.',
+      picture: consejos,
     },
     {
-      title: 'Articulo 3',
-      description: 'Lorem Ipsumis simply dummy text of the printing and typesetting industry.',
+      title: 'Reciclaje: Claves para un mundo más saludable',
+      description:
+        'El reciclaje es una herramienta clave para promover un mundo más saludable y sostenible. Al adoptar prácticas de reciclaje en nuestra vida diaria, podemos marcar la diferencia en la preservación del medio ambiente y en la mejora de nuestra calidad de vida. A',
+      picture: claves,
     },
   ];
 
   const details = [
     {
       icon: <BsTicketPerforated />,
-      title: 'Vales otorgados',
+      title: 'Vales',
       quantity: '7000',
     },
     {
@@ -44,18 +52,17 @@ export const UserHome = () => {
   return (
     <div>
       <Navbar name="Usuario" />
-      <div className="px-5 py-28 bg-gray-200 flex flex-col gap-3">
+      <div className="px-5 py-28 bg-bgGreen flex flex-col gap-3">
         <div className="bg-white w-full flex justify-between py-3 px-6 rounded-[10px]">
           {details.map(({ icon, title, quantity }, i) => (
             <div key={i} className="flex flex-col gap-1 items-center font-medium">
-              <span className="text-2xl">{icon}</span>
+              <span className="text-2xl text-[#19CFD2]">{icon}</span>
               <h2 className="text-sm">{title}</h2>
               <p className="text-xl">{quantity}</p>
             </div>
           ))}
         </div>
-        <p className="text-xl font-bold">Hábitos medioambientales</p>
-
+        <p className="text-2xl font-bold text-darkBlue">Hábitos medioambientales</p>
         <DetailCard
           title="El progreso"
           description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
@@ -63,9 +70,9 @@ export const UserHome = () => {
         >
           <SimpleDonut />
         </DetailCard>
-        <p className="text-xl font-bold">Artículos recientes</p>
+        <p className="text-2xl font-bold text-darkBlue">Artículos recientes</p>
         <div className="flex flex-col gap-3">
-          {articles.map(({ title, description }, i) => (
+          {articles.map(({ title, description, picture }, i) => (
             <DetailCard
               key={i}
               title={title}

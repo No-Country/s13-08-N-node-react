@@ -6,6 +6,8 @@ export default {
       colors: {
         greenMain: '#099382',
         darkMain: '#302F2F',
+        bgGreen: '#E5F1F1',
+        darkBlue: '#062d46',
       },
     },
   },

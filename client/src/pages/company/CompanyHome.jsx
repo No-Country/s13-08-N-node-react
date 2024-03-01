@@ -6,9 +6,13 @@ import { RiLoopLeftLine } from 'react-icons/ri';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
 import { CardButton } from '../../components/ui/Buttons/CardButton';
-import picture from '../../assets/picture.png';
+import carton from '../../assets/home/carton.png';
+import vidrio from '../../assets/home/vidrio.png';
+import plastico from '../../assets/home/plastico.png';
+import metal from '../../assets/metal.jpg';
 import { MdAddCircleOutline } from 'react-icons/md';
 import { FiCompass } from 'react-icons/fi';
+import Materials from '../../components/Materials/Materials';
 
 export const CompanyHome = () => {
   const details = [
@@ -33,17 +37,17 @@ export const CompanyHome = () => {
   return (
     <div>
       <Navbar name="Nombre empresa" />
-      <div className="px-5 py-28 bg-gray-200 flex flex-col gap-3">
+      <div className="px-5 py-28 bg-bgGreen flex flex-col gap-3">
         <div className="bg-white w-full flex justify-between py-3 px-6 rounded-[10px]">
           {details.map(({ icon, title, quantity }, i) => (
             <div key={i} className="flex flex-col gap-1 items-center font-medium">
-              <span className="text-2xl">{icon}</span>
+              <span className="text-2xl text-[#19CFD2]">{icon}</span>
               <h2 className="text-sm">{title}</h2>
               <p className="text-xl">{quantity}</p>
             </div>
           ))}
         </div>
-        <p className="text-xl font-semibold">Estatus</p>
+        <p className="text-2xl text-darkBlue font-bold">Estatus</p>
         <div className="w-full flex gap-x-2">
           {status.map((item, i) => (
             <div key={i} className="flex items-center bg-white w-1/2 p-3 rounded-[10px] gap-x-3">
@@ -57,47 +61,41 @@ export const CompanyHome = () => {
             </div>
           ))}
         </div>
-        <p className="text-xl font-semibold">Estadísticas</p>
+        <p className="text-2xl text-darkBlue font-bold">Estadísticas</p>
         <DetailCard
-          title="El progreso"
+          title="Estadísticas de Recolección"
           description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
-          image={<SimpleDonut />}
           linkText={<CardButton linkText="Ver más" />}
-        />
+        >
+          <SimpleDonut />
+        </DetailCard>
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold">Materiales aceptados</h2>
-          <span className="bg-black py-1 px-3 text-white text-2xl rounded-xl">
-            <MdAddCircleOutline />
+          <h2 className="text-2xl text-darkBlue font-bold">Materiales aceptados</h2>
+          <span className="bg-darkBlue py-1 px-3 text-white text-2xl rounded-xl">
+            <MdAddCircleOutline style={{ backgroundColor: '#062D46', color: 'white' }} />
           </span>
         </div>
+
         <div className="flex gap-5 slider">
-          <div className="bg-white flex w-24 p-2 slide rounded-lg">
-            <img src={picture} alt="Article Image" />
-          </div>
-          <div className="bg-white flex w-24 p-2 slide rounded-lg">
-            <img src={picture} alt="Article Image" />
-          </div>
-          <div className="bg-white flex w-24 p-2 slide rounded-lg">
-            <img src={picture} alt="Article Image" />
-          </div>
-          <div className="bg-white flex w-24 p-2 slide rounded-lg">
-            <img src={picture} alt="Article Image" />
-          </div>
+          <Materials picture={plastico} />
+          <Materials picture={carton} />
+          <Materials picture={vidrio} />
+          <Materials picture={metal} />
         </div>
         <div className="flex justify-end">
-          <span className="underline">Ver más</span>
+          <span className="underline">ver más</span>
         </div>
-        <p className="text-xl font-semibold">Gestión</p>
-        <div className="w-full flex gap-x-2 text-slate-500">
+        <p className="text-2xl text-darkBlue font-bold">Gestión</p>
+        <div className="w-full flex gap-x-2 text-darkBlue">
           <div className="flex items-center bg-white w-1/2 p-3 rounded-[10px] gap-x-3">
             <span>
-              <FiCompass className="text-2xl" />
+              <FiCompass className="text-6xl" />
             </span>
             <p className="font-medium">Centros de Reciclaje</p>
           </div>
           <div className="flex items-center bg-white w-1/2 p-3 rounded-[10px] gap-x-3">
             <span>
-              <BsClockHistory className="text-2xl" />
+              <BsClockHistory className="text-6xl" />
             </span>
             <p className="font-medium">Historial de Recolección</p>
           </div>

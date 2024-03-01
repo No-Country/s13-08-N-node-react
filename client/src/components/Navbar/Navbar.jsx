@@ -30,7 +30,7 @@ export const Navbar = ({ name, image }) => {
   };
 
   return (
-    <div className="fixed top-0 w-full z-50 bg-white border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-5 pt-8 flex justify-between items-center">
+    <div className=" text-white fixed top-0 w-full z-50 bg-darkBlue border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-5 pt-8 flex justify-between items-center">
       <div className="flex items-center gap-x-2">
         <div className="w-12 h-12 flex justify-center items-center bg-slate-200 rounded-full">
           {image ? <img src={image} alt="Profile" /> : <ProfileIcon />}
@@ -42,7 +42,7 @@ export const Navbar = ({ name, image }) => {
           <MenuIcon onClick={handleChange} />
         </button>
         {openMenu && (
-          <div className="absolute text-sm font-medium -left-[132px] bg-white shadow-lg px-3 py-4 rounded-xl top-[60px]">
+          <div className="absolute text-sm font-medium -left-[132px] bg-white text-black shadow-lg px-3 py-4 rounded-xl top-[60px]">
             <button className="flex gap-x-2 mb-3 hover:bg-slate-100">
               <IoSettingsOutline className="text-2xl" /> Configuración
             </button>
