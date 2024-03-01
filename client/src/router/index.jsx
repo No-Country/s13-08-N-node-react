@@ -50,10 +50,10 @@ export const AppRouter = () => {
           <Route path="/user" element={<UserHome />} />
           <Route path="/user/map" element={<UserMap />} />
           <Route path="/user/map/:id" element={<DetailPoint />} />
+          <Route path="/user/profile" element={<Profile />} />
+          <Route path="/user/profile/edit" element={<ProfileEdit />} />
+          <Route path="/user/puntos" element={<UserVoucher />} />
           <Route path="/company" element={<CompanyHome />} />
-          <Route path="/company/profile" element={<Profile />} />
-          <Route path="/company/profile/edit" element={<ProfileEdit />} />
-          <Route path="/company/profile/voucher" element={<UserVoucher />} />
         </Route>
       </Route>
     </Routes>
