@@ -19,7 +19,7 @@ module.exports = {
   ],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
-  plugins: ['react', 'prettier'],
+  plugins: ['react',],
   rules: {
     'prettier/prettier': 'off',
     'comma-dangle': 'off',
