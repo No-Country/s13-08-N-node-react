@@ -2,7 +2,6 @@ import React from 'react';
 import { MenuIcon } from '../assets';
 import { DetailCard } from '../components/ui/Cards/DetailCard';
 import { CardButton } from '../components/ui/Buttons/CardButton';
-import picture from '../assets/picture.png';
 import reciclajeverde from '../assets/home/Empezemos.png';
 import articulos from '../assets/home/articulos.png';
 import claves from '../assets/home/claves.png';

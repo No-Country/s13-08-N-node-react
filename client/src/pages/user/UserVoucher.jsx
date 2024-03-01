@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { IoMenuSharp } from 'react-icons/io5';
-import CardVoucher from '../../components/Cards/CardVoucher';
+import { CardVoucher } from '../../components/Cards/CardVoucher';
 
 export default function UserVoucher() {
   return (
