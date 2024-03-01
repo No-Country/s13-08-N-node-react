@@ -8,6 +8,8 @@ import Auth from '../pages/auth/Auth';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import DetailPoint from '../components/DetailPoint/DetailPoint';
+import Profile from '../pages/profile/Profile';
+import ProfileEdit from '../pages/profile/ProfileEdit';
 import { UserHome } from '../pages/user/UserHome';
 import { UserMap } from '../pages/user/UserMap';
 import RequireAuth from '../components/RequireAuth';
@@ -48,6 +50,9 @@ export const AppRouter = () => {
           <Route path="/user/map" element={<UserMap />} />
           <Route path="/user/map/:id" element={<DetailPoint />} />
           <Route path="/company" element={<CompanyHome />} />
+          <Route path="/company/profile" element={<Profile />} />
+          <Route path="/company/profile/edit" element={<ProfileEdit />} />
+          <Route path="/company/profile/voucher" element={<UserVoucher />} />
         </Route>
       </Route>
     </Routes>

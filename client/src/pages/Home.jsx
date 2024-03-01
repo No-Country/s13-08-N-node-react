@@ -2,6 +2,7 @@ import React from 'react';
 import { MenuIcon } from '../assets';
 import { DetailCard } from '../components/ui/Cards/DetailCard';
 import { CardButton } from '../components/ui/Buttons/CardButton';
+import picture from '../assets/picture.png';
 import reciclajeverde from '../assets/home/Empezemos.png';
 import articulos from '../assets/home/articulos.png';
 import claves from '../assets/home/claves.png';
@@ -157,6 +158,7 @@ export const Home = () => {
             <span className="underline">Ver más</span>
           </div>
         </div>
+
         <h2 className="text-xl font-bold my-3">Empresas colaboradoras</h2>
         <div className="gap-5 slider max-w-[768px] mx-auto">
           <Company picture={darsentido} />
