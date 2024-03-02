@@ -159,7 +159,7 @@ export const Home = () => {
         </div>
 
         <h2 className="text-xl font-bold my-3">Empresas colaboradoras</h2>
-        <div className="gap-5 slider max-w-[768px] mx-auto">
+        <div className="gap-5 slider w-full mx-auto">
           <Company picture={darsentido} />
           <Company picture={psa} />
           <Company picture={kolibri} />
@@ -169,7 +169,7 @@ export const Home = () => {
           <span className="underline">Ver más</span>
         </div>
         <p className="text-xl font-bold my-3">Nuestro Equipo</p>
-        <div className="gap-5 slider max-w-[768px] mx-auto">
+        <div className="gap-5 slider w-full mx-auto">
           {teamMembers.map((teamMember, i) => (
             <TeamCard key={i} {...teamMember} />
           ))}
