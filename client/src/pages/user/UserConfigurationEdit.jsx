@@ -5,17 +5,15 @@ import { FaCamera } from 'react-icons/fa';
 export default function UserConfigurationEdit() {
   return (
     <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue">
-
-
       <div className="fixed top-0 w-full z-50 bg-darkBlue border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-7 pt-10 flex justify-between items-center text-white">
         <div className="w-full">
           <span className="text-2xl flex justify-end">
-            <IoMenuSharp/>
+            <IoMenuSharp />
           </span>
           <div className="relative bg-gray-100 w-[100px] h-[100px] rounded-full mx-auto">
             <img src="" alt="" className="" />
             <span className="absolute bottom-1 right-1 text-xl text-[#757171]">
-              <FaCamera className='text-greenMain'/>
+              <FaCamera className="text-greenMain" />
             </span>
           </div>
         </div>

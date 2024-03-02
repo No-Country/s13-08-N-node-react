@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import { useState } from 'react';
-function SearchMap({ setResults, setModalVisible }) {
+function SearchMap({ children, setResults, setModalVisible }) {
   const [input, setInput] = useState('');
   const fetchData = (value) => {
     fetch('https://points-89az.onrender.com/recycling-center/points')
@@ -68,6 +68,7 @@ function SearchMap({ setResults, setModalVisible }) {
           </button>
         </div>
       </div>
+      <div className="flex row gap-4 mt-1">{children}</div>
     </form>
   );
 }

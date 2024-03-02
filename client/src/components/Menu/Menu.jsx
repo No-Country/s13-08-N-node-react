@@ -13,7 +13,7 @@ export const Menu = () => {
         <ul className="flex flex-row justify-around items-center p-2">
           <li>
             <Link
-              to={isCompany ? '/' : '/user'}
+              to={isCompany ? '/company' : '/user'}
               className="text-gray-600 hover:text-gray-800 flex flex-col items-center"
             >
               <HomeIcon />

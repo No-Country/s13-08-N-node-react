@@ -17,6 +17,7 @@ export const Map = () => {
   const [location, setLocation] = useState([]);
   const [map, setMap] = useState([]);
   const [results, setResults] = useState([]);
+  const [materials, setMaterials] = useState([]);
   const [radiusCircle, setRadiusCircle] = useState(800);
   const [zoomRadius, setZoomRadius] = useState(15);
   const [modalVisible, setModalVisible] = useState(false);
@@ -25,6 +26,8 @@ export const Map = () => {
   const { selectedMapPoint } = useMapSearch();
 
   const cerrarModal = async (selectedMaterialIds) => {
+    console.log(selectedMaterialIds);
+    setMaterials(selectedMaterialIds);
     if (selectedMaterialIds && selectedMaterialIds.length > 0) {
       try {
         const requests = selectedMaterialIds.map((id) =>
@@ -94,7 +97,7 @@ export const Map = () => {
     <>
       <MapContainer
         key={`${initialPoint.lat}-${initialPoint.lng}-${zoomRadius}`}
-        className="h-[100vh] sm:h-[50vh] sm:w-3/4 mx-auto relative  sm:mt-10"
+        className="h-[100vh] sm:h-[80vh] sm:w-3/4 mx-auto relative  sm:mt-10"
         center={initialPoint}
         zoom={zoomRadius}
         scrollWheelZoom={true}
@@ -119,17 +122,18 @@ export const Map = () => {
           <Marker key={index} icon={markIcon} position={[ubicacion.latLng.lng, ubicacion.latLng.lat]}>
             <Popup minWidth={300}>
               <div className="flex flex-row gap-4">
-                <img
-                  className="w-1/3 h-2/3"
-                  src="https://defensoria.org.ar/wp-content/uploads/2022/12/Punto-Verde-scaled-1.jpg"
-                  alt={ubicacion.nombre}
-                />
+                <img className="w-1/3 h-2/3" src={ubicacion.imagen} alt={ubicacion.nombre} />
                 <div className="flex flex-col justify-between">
                   <div>
-                    <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
-                    Materiales: {ubicacion.materials.map((material) => `${material.nombre} `)}
-                    <br />
-                    Horario: {ubicacion.horario_atencion} <br />
+                    <span className="text-darkBlue text-lg font-bold">{ubicacion.nombre}</span> <br />
+                    <div className=" flex flex-row gap-2 mb-1">
+                      {ubicacion.materials.map((material, index) => (
+                        <span className="rouded-2xl bg-darkBlue  text-bgGreen font-bold px-2 " key={index}>
+                          {material.nombre.toLowerCase()}
+                        </span>
+                      ))}
+                    </div>
+                    🕒 {ubicacion.horario_atencion} <br />
                   </div>
                   <div className="text-right">
                     <button className="bg-transparent p-0">
@@ -145,13 +149,22 @@ export const Map = () => {
           className=" w-full flex flex-col justify-end items-end  "
           style={{ position: 'absolute', top: '10px', left: '10px', zIndex: '1000' }}
         >
-          <SearchMap setResults={setResults} setModalVisible={setModalVisible} />
+          <SearchMap setResults={setResults} setModalVisible={setModalVisible}>
+            <div className=" flex flex-row gap-1  ">
+              {!modalVisible && materials?.length > 0
+                ? materials.map((material, index) => (
+                    <p className="bg-[#E5F1F1] font-bold text-darkBlue px-2 py-1 rounded" key={index}>
+                      {material.toLowerCase()}
+                    </p>
+                  ))
+                : null}
+            </div>
+          </SearchMap>
 
+          {modalVisible && <ModalPoint onClose={cerrarModal} />}
           <div className="w-full flex justify-center items-center">
             {results && results.length > 0 && <SearchResultsList results={results} setResults={setResults} />}
           </div>
-
-          {modalVisible && <ModalPoint onClose={cerrarModal} />}
         </div>
       </MapContainer>
     </>

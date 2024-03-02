@@ -53,7 +53,6 @@ export const UserHome = () => {
     <div>
       <Navbar name="Usuario" />
       <div className="px-5 py-28 bg-bgGreen flex flex-col gap-3 mt-6">
-
         <div className="bg-white w-full flex justify-between py-3 px-6 rounded-[10px]">
           {details.map(({ icon, title, quantity }, i) => (
             <div key={i} className="flex flex-col gap-1 items-center font-medium">
