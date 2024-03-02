@@ -56,17 +56,16 @@ export const UserHome = () => {
     <div>
       <Navbar name="Usuario" />
       <div className="px-5 py-28 bg-bgGreen flex flex-col gap-3 mt-6">
-        <div className='flex justify-between gap-x-5'>
-            <Link to={'/user/codigo-canje'} className='bg-white w-full rounded-[10px] px-2 py-3'>
-              <img src={codigoqrImg} alt="" className='mx-auto mb-2 h-[60px]'/>
-              <p className='text-base text-center font-semibold'>Código de canejo</p>
-            </Link>
-            <Link to={'/user/puntos'} className='bg-white w-full rounded-[10px] px-2 py-3'>
-              <img src={entradasImg} alt="" className='mx-auto mb-2 h-[60px]'/>
-              <p className='text-base text-center font-semibold'>Vourchers a canjear</p>
-            </Link>
+        <div className="flex justify-between gap-x-5">
+          <Link to={'/user/codigo-canje'} className="bg-white w-full rounded-[10px] px-2 py-3">
+            <img src={codigoqrImg} alt="" className="mx-auto mb-2 h-[60px]" />
+            <p className="text-base text-center font-semibold">Código de canejo</p>
+          </Link>
+          <Link to={'/user/puntos'} className="bg-white w-full rounded-[10px] px-2 py-3">
+            <img src={entradasImg} alt="" className="mx-auto mb-2 h-[60px]" />
+            <p className="text-base text-center font-semibold">Vourchers a canjear</p>
+          </Link>
         </div>
-
 
         <div className="bg-white w-full flex justify-between py-3 px-6 rounded-[10px]">
           {details.map(({ icon, title, quantity }, i) => (
