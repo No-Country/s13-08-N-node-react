@@ -5,6 +5,7 @@ import { IoSettingsOutline } from 'react-icons/io5';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import Cookies from 'universal-cookie';
 import { AuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 export const Navbar = ({ name, image }) => {
   const authContext = useContext(AuthContext);
@@ -43,9 +44,9 @@ export const Navbar = ({ name, image }) => {
         </button>
         {openMenu && (
           <div className="absolute text-sm font-medium -left-[132px] bg-white text-black shadow-lg px-3 py-4 rounded-xl top-[60px]">
-            <button className="flex gap-x-2 mb-3 hover:bg-slate-100">
+            <Link to={'configuration'} className="flex gap-x-2 mb-3 hover:bg-slate-100">
               <IoSettingsOutline className="text-2xl" /> Configuración
-            </button>
+            </Link>
             <button className="flex gap-x-2 mb-3 hover:bg-slate-100">
               <FaqIcon className="text-2xl" /> FAQ y soporte
             </button>

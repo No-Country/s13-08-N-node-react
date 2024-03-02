@@ -1,7 +1,8 @@
 import React from 'react';
 import { IoMenuSharp } from 'react-icons/io5';
 import { FaCamera } from 'react-icons/fa';
-export default function ProfileEdit() {
+
+export default function UserConfigurationEdit() {
   return (
     <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue">
 

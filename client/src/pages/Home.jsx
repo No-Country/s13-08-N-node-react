@@ -19,6 +19,7 @@ import { Footer } from '../components/Footer/Footer';
 import SimpleDonut from '../components/Chart/SimpleDonut';
 import Materials from '../components/Materials/Materials';
 import Company from '../components/Company/Company';
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
   const articles = [
@@ -109,9 +110,7 @@ export const Home = () => {
     <>
       <div className="fixed top-0 w-full z-50 bg-[#062d46] text-[#feffff] shadow-md rounded-b-[40px] px-5 pb-5 pt-8 flex justify-between items-center">
         <p className="text-2xl font-bold text-center">Hola, Bienvenido</p>
-        <div>
-          <MenuIcon className="text-[#feffff]" />
-        </div>
+        <Link to={'/auth'} className='text-greenMain border border-greenMain px-5 py-1 rounded-md font-bold'>Login</Link>
       </div>
       <div className="px-5 pt-24 pb-10 flex flex-col gap-3 text-[#062D46]">
         <h2 className="text-xl font-bold mt-5">Hábitos Medioambientales</h2>
