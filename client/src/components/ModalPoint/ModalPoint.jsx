@@ -62,33 +62,31 @@ const ModalPoint = ({ onClose }) => {
   };
 
   return (
-    <div className="mt-2 flex items-center justify-center mr-[12.5vw]">
-      <div className="bg-white p-8 max-w-md rounded-lg relative flex flex-col" ref={modalRef}>
+    <div className=" flex items-center justify-center mr-[12.5vw]">
+      <div className="bg-white  p-6 max-w-md rounded-lg relative flex flex-col" ref={modalRef}>
         <h2 className="text-2xl font-bold mb-4">{ubicacionData.nombre}</h2>
-        <p>
-          <strong>Materiales Reciclables:</strong>
-        </p>
+        <p></p>
         <div>
           {ubicacionData.materiales &&
             ubicacionData.materiales.sort().map((material) => (
-              <div key={material} className="flex items-center mb-2">
+              <div key={material} className="flex items-center gap-2 mb-2">
                 <input
                   type="checkbox"
                   id={material}
                   checked={selectedMaterials.includes(material)}
                   onChange={() => handleMaterialToggle(material)}
-                  className={`mr-2 text-indigo-600 focus:ring-indigo-500 h-4 w-4 ${
+                  className={`  text-indigo-00 focus:ring-indigo-900 h-4 w-4 ${
                     selectedMaterials.includes(material) ? 'bg-green-500' : ''
                   }`}
                 />
-                <label htmlFor={material} className="text-gray-700">
-                  {material}
+                <label htmlFor={material} className="font-bold text-darkBlue ">
+                  {material.toUpperCase()}
                 </label>
               </div>
             ))}
         </div>
-        <button className="bg-black text-white center py-1 rounded-md" onClick={handleApplyClick}>
-          + Aplicar
+        <button className="bg-[#36da9e] text-1xl font-bold py-2 rounded-lg" onClick={handleApplyClick}>
+          APLICAR
         </button>
       </div>
     </div>
