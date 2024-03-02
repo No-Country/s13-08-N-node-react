@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchDataFronJson } from '../../helpers/fetchDataFromJson';
 import { DetailMap } from '../DetailMap/DetailMap';
-
 const DetailPoint = () => {
   const { id } = useParams();
   const [pointData, setPointData] = useState({});
