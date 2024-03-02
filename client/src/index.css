@@ -4,6 +4,10 @@
 
 /* Slider Home */
 
+body {
+  background-color: #e5f1f1;
+}
+
 .slider {
   display: flex;
   overflow-x: auto;

@@ -2,82 +2,171 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Popup, Marker, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getUserLocation } from '../../helpers/getUserLocation';
-
-const ubicaciones = [
-  {
-    nombre: 'EcoReciclaje',
-    latLng: { lat: '-34.574716', lng: '-58.421167' },
-    horario: '09:00 a 18:00',
-    direccion: 'Calle 123',
-  },
-  {
-    nombre: 'EcoVerde',
-    img: 'https://media.tenor.com/qG-IUmC8wQgAAAAM/pepe-tired-done.gif',
-    latLng: { lat: '-34.580716', lng: '-58.432167' },
-    horario: '10:00 a 19:00',
-    direccion: 'Avenida Principal 456',
-  },
-  {
-    nombre: 'ReciGreen',
-    latLng: { lat: '-34.583716', lng: '-58.426167' },
-    horario: '08:00 a 17:00',
-    direccion: 'Calle Secundaria 789',
-  },
-  {
-    nombre: 'EcoReutiliza',
-    latLng: { lat: '-34.576716', lng: '-58.424167' },
-    horario: '11:00 a 20:00',
-    direccion: 'Avenida Principal 0123',
-  },
-];
+import { fetchDataFronJson } from '../../helpers/fetchDataFromJson';
+import { Link } from 'react-router-dom';
+import SearchMap from '../SearchMap/SearchMap';
+import { Icon } from 'leaflet';
+import { SearchResultsList } from '../SearchResultsList/SearchResultsList';
+import useMapSearch from '../../stores/mapSearchStore';
+import ModalPoint from '../ModalPoint/ModalPoint';
 
 const greenOptions = { color: 'green', fillColor: 'green' };
-const purpleOptions = { color: 'red' };
+const redOptions = { color: 'red' };
 
 export const Map = () => {
   const [location, setLocation] = useState([]);
+  const [map, setMap] = useState([]);
+  const [results, setResults] = useState([]);
+  const [materials, setMaterials] = useState([]);
+  const [radiusCircle, setRadiusCircle] = useState(800);
+  const [zoomRadius, setZoomRadius] = useState(15);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [initialPoint, setInitialPoint] = useState({ lat: '-34.582716', lng: '-58.426167' });
+
+  const { selectedMapPoint } = useMapSearch();
+
+  const cerrarModal = async (selectedMaterialIds) => {
+    console.log(selectedMaterialIds);
+    setMaterials(selectedMaterialIds);
+    if (selectedMaterialIds && selectedMaterialIds.length > 0) {
+      try {
+        const requests = selectedMaterialIds.map((id) =>
+          fetch(`https://points-89az.onrender.com/recycling-center/filter-points-by-materials/${id}`).then(
+            (response) => {
+              return response.json();
+            }
+          )
+        );
+
+        const responses = await Promise.all(requests);
+        const filteredResponses = responses.filter((data) => !data.error);
+        const combinedData = filteredResponses.reduce((acc, curr) => acc.concat(curr), []);
+
+        // console.log(combinedData);
+        if (combinedData.length > 0) {
+          setZoomRadius(12);
+          setRadiusCircle(0);
+          setMap(combinedData);
+        } else {
+          window.alert('Ningún punto tiene ese material');
+        }
+      } catch (error) {
+        console.error('Error al obtener datos: ', error);
+      }
+    }
+
+    setModalVisible(false);
+  };
 
   useEffect(() => {
     getUserLocation().then((coords) => setLocation(coords));
+
+    fetchDataFronJson('https://points-89az.onrender.com/recycling-center/points')
+      .then((data) => {
+        setMap(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data: ', error);
+      });
   }, []);
 
+  useEffect(() => {}, [zoomRadius, location]);
+
+  useEffect(() => {
+    if (Object.keys(selectedMapPoint).length > 0) {
+      setInitialPoint((prevState) => {
+        const newPoint = { lat: selectedMapPoint.lng, lng: selectedMapPoint.lat };
+
+        return newPoint;
+      });
+      setRadiusCircle(0);
+      setResults([]);
+    }
+  }, [selectedMapPoint]);
+
+  const userIcon = new Icon({
+    iconUrl: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png',
+    iconSize: [32, 32],
+  });
+
+  const markIcon = new Icon({
+    iconUrl: 'https://cdn1.iconfinder.com/data/icons/flat-flags-1/32/flag_green-favorites-512.png',
+    iconSize: [48, 48],
+  });
   return (
     <>
       <MapContainer
-        className="h-[100vh] sm:h-[50vh] sm:w-3/4 mx-auto relative z-0"
-        center={{ lat: '-34.579716', lng: '-58.426167' }}
-        zoom={15}
+        key={`${initialPoint.lat}-${initialPoint.lng}-${zoomRadius}`}
+        className="h-[100vh] sm:h-[80vh] sm:w-3/4 mx-auto relative  sm:mt-10"
+        center={initialPoint}
+        zoom={zoomRadius}
         scrollWheelZoom={true}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="OpenStreetMap DE"
+          url="https://tile.openstreetmap.de/{z}/{x}/{y}.png"
+          key="b628c55280msheb2b2ae6c91c18bp1c71bejsncdb5e88638d6"
         />
-        {/* <Marker position={{ lat: 'longitud', lng: 'latitud' }}>
-          <Popup>Tu ubicación actual.</Popup>
-        </Marker> */}
 
-        <Circle center={{ lat: '-34.579716', lng: '-58.426167' }} pathOptions={purpleOptions} radius={3} />
-
-        <Circle center={{ lat: '-34.579716', lng: '-58.426167' }} pathOptions={greenOptions} radius={800}>
-          <Popup>Tu ubicación actual.</Popup>
+        <Circle center={initialPoint} pathOptions={greenOptions} radius={radiusCircle}>
+          <Marker position={['-34.582716', '-58.426167']} pathOptions={redOptions} icon={userIcon} radius={3}>
+            <Popup>
+              <p className=" text-center">
+                tu loc actual: lng: {location[0]} lat: {location[1]}{' '}
+              </p>
+            </Popup>
+          </Marker>
         </Circle>
 
-        {ubicaciones.map((ubicacion, index) => (
-          <Marker key={index} position={[ubicacion.latLng.lat, ubicacion.latLng.lng]}>
-            <Popup>
-              {ubicacion.img ? <img src={ubicacion.img} alt={ubicacion.titulo} /> : null}
-              <br />
-              {/* Condición para verificar si existe ubicacion.img */}
-              <span className="text-green-900 text-lg font-bold">{ubicacion.nombre}</span> <br />
-              {ubicacion.direccion} <br />⌚ {ubicacion.horario} <br />
+        {map.map((ubicacion, index) => (
+          <Marker key={index} icon={markIcon} position={[ubicacion.latLng.lng, ubicacion.latLng.lat]}>
+            <Popup minWidth={300}>
+              <div className="flex flex-row gap-4">
+                <img className="w-1/3 h-2/3" src={ubicacion.imagen} alt={ubicacion.nombre} />
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <span className="text-darkBlue text-lg font-bold">{ubicacion.nombre}</span> <br />
+                    <div className=" flex flex-row gap-2 mb-1">
+                      {ubicacion.materials.map((material, index) => (
+                        <span className="rouded-2xl bg-darkBlue  text-bgGreen font-bold px-2 " key={index}>
+                          {material.nombre.toLowerCase()}
+                        </span>
+                      ))}
+                    </div>
+                    🕒 {ubicacion.horario_atencion} <br />
+                  </div>
+                  <div className="text-right">
+                    <button className="bg-transparent p-0">
+                      <Link to={ubicacion._id}> Ir allá. </Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </Popup>
           </Marker>
         ))}
+        <div
+          className=" w-full flex flex-col justify-end items-end  "
+          style={{ position: 'absolute', top: '10px', left: '10px', zIndex: '1000' }}
+        >
+          <SearchMap setResults={setResults} setModalVisible={setModalVisible}>
+            <div className=" flex flex-row gap-1  ">
+              {!modalVisible && materials?.length > 0
+                ? materials.map((material, index) => (
+                    <p className="bg-[#E5F1F1] font-bold text-darkBlue px-2 py-1 rounded" key={index}>
+                      {material.toLowerCase()}
+                    </p>
+                  ))
+                : null}
+            </div>
+          </SearchMap>
+
+          {modalVisible && <ModalPoint onClose={cerrarModal} />}
+          <div className="w-full flex justify-center items-center">
+            {results && results.length > 0 && <SearchResultsList results={results} setResults={setResults} />}
+          </div>
+        </div>
       </MapContainer>
-      <p>
-        lat {location[0]} lng {location[1]}
-      </p>
     </>
   );
 };

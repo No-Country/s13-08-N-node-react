@@ -9,6 +9,7 @@ const SimpleDonut = () => {
       legend: {
         show: false,
       },
+      colors: ['#19CFD2', '#36DA9E', '#062D46', '#102735', '#775DD0'],
     },
     series: [44, 55, 41],
     plotOptions: {

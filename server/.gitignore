@@ -1,0 +1,10 @@
+node_modules/
+.env
+pnpm-lock.yaml
+request.http
+.log
+
+### macOS ###
+# General
+.DS_Store
+

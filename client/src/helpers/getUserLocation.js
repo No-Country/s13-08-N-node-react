@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const getUserLocation = async () =>
   new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
