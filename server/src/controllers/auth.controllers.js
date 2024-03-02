@@ -22,16 +22,21 @@ module.exports = {
           // Verifica si el usuario es administrador
           const isAdmin = user.roles.some((role) => role.name === "Admin");
 
+          // Obtén el nombre del usuario
+          const nombre = user.nombre;
+
           // Genera un token
           const tokenSession = await tokenSign({
             id: user._id,
             role: user.roles,
+            nombre: user.nombre, // Incluye el nombre del usuario en el token
           });
 
           // Retorna el tipo de usuario y el token
           return res.status(200).send({
             tokenSession,
             isAdmin,
+            nombre, // Envía el nombre del usuario en la respuesta
           });
         } else {
           // Las contraseñas no coinciden, retorna un mensaje de error
