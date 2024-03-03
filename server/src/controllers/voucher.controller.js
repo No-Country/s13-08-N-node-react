@@ -15,7 +15,7 @@ const {
 module.exports = {
   CreateVoucher: async (req, res) => {
     try {
-      const { titulo, codigo, stores, duracion } = req.body;
+      const { titulo, ptoscanjevoucher, stores, duracion } = req.body;
       const authHeader = req.headers.authorization;
 
       if (!authHeader) {
@@ -48,7 +48,7 @@ module.exports = {
 
       const newVoucher = new VoucherSchema({
         titulo,
-        codigo,
+        ptoscanjevoucher,
         stores: storeIds, // Aquí se usa la lista de IDs de tiendas en lugar de los nombres
         duracion,
         recyclingcompany: empresaId,
@@ -101,6 +101,9 @@ module.exports = {
       if (!existingVoucher) {
         return res.status(404).json({ message: "Voucher not found" });
       }
+
+      // Aplicar los cambios al voucher existente
+      existingVoucher.duracion = req.body.duracion;
 
       // Guardar el voucher actualizado en la base de datos
       await existingVoucher.save();

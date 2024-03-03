@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const materialSchema = new mongoose.Schema({
-  nombre: {
+  nombrematerial: {
     type: String,
     required: true,
   },
@@ -9,18 +9,21 @@ const materialSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  valor: {
+  pesoMaterial: {
     type: Number,
     required: true,
   },
-  recyclingCenters: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Material"
-  }],
+  recyclingCenters: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Material",
+    },
+  ],
   imagen: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Material", materialSchema);
+
 
