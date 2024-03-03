@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { IoMenuSharp } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
-import codigoImg from '../../assets/codigoqr.svg';
 import { BsTicketPerforated } from 'react-icons/bs';
 import kolibriImg from '../../assets/kolibri.jpg';
+import QRCode from 'react-qr-code';
 
 export default function UserCodigoCanje() {
   const [switchVales, setSwitchVales] = useState(true);
@@ -32,7 +32,16 @@ export default function UserCodigoCanje() {
       <div>
         <div className="bg-white p-4 mx-5 rounded-[10px] flex flex-col items-center gap-y-3">
           <p className="text-xl font-bold">Código de canjeo</p>
-          <img src={codigoImg} alt="" className="h-40" />
+          <div style={{ height: 'auto', margin: '0 auto', maxWidth: 200, width: '100%' }}>
+            <QRCode
+              size={500}
+              style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
+              fgColor="#062d46"
+              value="user5@gmail.com"
+              viewBox={`0 0 500 500`}
+            />
+          </div>
+          {/* <img src={codigoImg} alt="" className="h-40" /> */}
           <p className="text-base font-semibold">#12439</p>
         </div>
       </div>
