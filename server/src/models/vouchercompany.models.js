@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { generateRandomCode } = require("../utils/generateRandomCode.js");
 
 //muchos a muchos entre model material y punto de reciclaje
 const VoucherSchema = new mongoose.Schema({
