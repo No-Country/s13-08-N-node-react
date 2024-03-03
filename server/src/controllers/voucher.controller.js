@@ -13,7 +13,7 @@ const {
 } = require("../helpers/generateToken.js");
 
 module.exports = {
-      CreateVoucher: async (req, res) => {
+  CreateVoucher: async (req, res) => {
     try {
       const { titulo, ptoscanjevoucher, stores, duracion } = req.body;
       const authHeader = req.headers.authorization;
@@ -101,6 +101,9 @@ module.exports = {
       if (!existingVoucher) {
         return res.status(404).json({ message: "Voucher not found" });
       }
+
+      // Aplicar los cambios al voucher existente
+      existingVoucher.duracion = req.body.duracion;
 
       // Guardar el voucher actualizado en la base de datos
       await existingVoucher.save();
