@@ -38,7 +38,7 @@ const DetailPoint = () => {
     <>
       <div className=" bg-bgGreen sm:flex sm:flex-col   mt-1 p-4  rounded-lg ">
         <div className="flex sm:align-middle sm:justify-center sm:gap-20   bg-darkBlue  text-white rounded-xl p-4 gap-6 justify-start items-center mt-4">
-          <img src={pointData?.imagen} alt="Imagen" className="w-auto h-24 rounded mr-2" />
+          <img src={pointData?.imagen} alt="Imagen" className="w-auto h-16 sm:h-24 rounded mr-2" />
           <div className="flex row gap-4">
             <div className="flex flex-col gap-1 ">
               <h2 className="text-4xl font-bold mb-2 ">{pointData?.nombre}</h2>
