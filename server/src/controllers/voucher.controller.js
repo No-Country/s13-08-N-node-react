@@ -13,9 +13,9 @@ const {
 } = require("../helpers/generateToken.js");
 
 module.exports = {
-  CreateVoucher: async (req, res) => {
+    CreateVoucher: async (req, res) => {
     try {
-      const { titulo, codigo, stores, duracion } = req.body;
+      const { titulo, codigo, ptoscanjevoucher, stores, duracion } = req.body;
       const authHeader = req.headers.authorization;
 
       if (!authHeader) {
@@ -49,6 +49,7 @@ module.exports = {
       const newVoucher = new VoucherSchema({
         titulo,
         codigo,
+        ptoscanjevoucher,
         stores: storeIds, // Aquí se usa la lista de IDs de tiendas en lugar de los nombres
         duracion,
         recyclingcompany: empresaId,
