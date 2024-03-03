@@ -51,7 +51,7 @@ module.exports = {
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   },
-    LoginCompany: async (req, res) => {
+      LoginCompany: async (req, res) => {
     try {
       const { emailempresa, password } = req.body;
 
@@ -75,6 +75,7 @@ module.exports = {
           return res.status(200).send({
             tokenSession,
             nombreempresa,
+            emailempresa,
           });
         } else {
           // Las contraseñas no coinciden, retorna un mensaje de error
