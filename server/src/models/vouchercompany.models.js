@@ -17,11 +17,11 @@ const VoucherSchema = new mongoose.Schema({
 
   duracion: {
     inicio: {
-      type: Date,
+      type: String,
       required: true,
     },
     fin: {
-      type: Date,
+      type: String,
       required: true,
     },
   },
@@ -70,3 +70,4 @@ VoucherSchema.pre("save", function (next) {
 
 // Define el modelo a partir del esquema
 module.exports = mongoose.model("Voucher", VoucherSchema);
+
