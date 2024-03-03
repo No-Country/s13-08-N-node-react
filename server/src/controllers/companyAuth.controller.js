@@ -51,7 +51,7 @@ module.exports = {
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   },
-  LoginCompany: async (req, res) => {
+    LoginCompany: async (req, res) => {
     try {
       const { emailempresa, password } = req.body;
 
@@ -63,6 +63,9 @@ module.exports = {
         // Compara las contraseñas hasheadas usando bcrypt
         const isPasswordValid = bcrypt.compare(password, company.password);
         if (isPasswordValid) {
+          // Obtén el nombre de la empresa
+          const nombreempresa = company.nombreempresa;
+
           // Genera un token
           const tokenSession = await tokenSign({
             id: company._id,
@@ -71,6 +74,7 @@ module.exports = {
           // Retorna el tipo de usuario y el token
           return res.status(200).send({
             tokenSession,
+            nombreempresa,
           });
         } else {
           // Las contraseñas no coinciden, retorna un mensaje de error
