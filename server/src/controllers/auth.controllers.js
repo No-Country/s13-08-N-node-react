@@ -7,7 +7,7 @@ const Role = require("../models/role.models.js");
 const { emailRegistro } = require("../email/email.js");
 
 module.exports = {
-  LoginUA: async (req, res) => {
+      LoginUA: async (req, res) => {
     try {
       const { email, password } = req.body;
 
@@ -17,10 +17,17 @@ module.exports = {
       // Verifica si el usuario existe
       if (user) {
         // Compara las contraseñas hasheadas usando bcrypt
-        const isPasswordValid = bcrypt.compare(password, user.password);
+        const isPasswordValid = await bcrypt.compare(password, user.password); // Necesitas usar await aquí
+
         if (isPasswordValid) {
           // Verifica si el usuario es administrador
           const isAdmin = user.roles.some((role) => role.name === "Admin");
+
+          // Obtén el nombre del usuario
+          const nombre = user.nombre;
+
+          // Obtén los puntos acumulados del usuario
+          const puntosAcumulados = user.puntosAcumulados;
 
           // Genera un token
           const tokenSession = await tokenSign({
@@ -32,6 +39,9 @@ module.exports = {
           return res.status(200).send({
             tokenSession,
             isAdmin,
+            nombre, // Envía el nombre del usuario en la respuesta
+            email: user.email,
+            puntosAcumulados, // Agrega puntosAcumulados a la respuesta
           });
         } else {
           // Las contraseñas no coinciden, retorna un mensaje de error
