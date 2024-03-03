@@ -16,7 +16,8 @@ const {
 module.exports = {
   CreateVoucher: async (req, res) => {
     try {
-      const { titulo, stores, duracion, recycledMaterials } = req.body;
+      const { titulo, stores, duracion, puntosVale, recycledMaterials } =
+        req.body;
       const authHeader = req.headers.authorization;
 
       if (!authHeader) {
@@ -84,6 +85,7 @@ module.exports = {
         duracion,
         recyclingcompany: empresaId,
         recycledMaterials: recycledMaterialIds, // Aquí se utilizan los IDs encontrados
+        puntosVale,
       });
 
       await newVoucher.save();
@@ -171,4 +173,5 @@ module.exports = {
     }
   },
 };
+
 
