@@ -156,7 +156,7 @@ export const Map = () => {
                     <p className="bg-[#E5F1F1] font-bold text-darkBlue px-2 py-1 rounded" key={index}>
                       {material.toLowerCase()}
                     </p>
-                  ))
+                ))
                 : null}
             </div>
           </SearchMap>

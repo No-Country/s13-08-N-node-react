@@ -24,7 +24,12 @@ export const CardVoucher = () => {
         {hidePoints
           ? (
           <div className="flex justify-between">
-            <p className="text-base flex items-center gap-x-1"><span className="text-xl"><BsTicketPerforated /></span>200 Puntos</p>
+            <p className="text-base flex items-center gap-x-1">
+              <span className="text-xl">
+                <BsTicketPerforated />
+              </span>
+              200 Puntos
+            </p>
             <button onClick={() => setHidePoints(!hidePoints)} className="bg-greenMain text-darkBlue px-4 rounded-lg">
               Canjear
             </button>
