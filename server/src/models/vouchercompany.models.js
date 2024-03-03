@@ -3,11 +3,7 @@ const { generateRandomCode } = require("../utils/generateRandomCode.js");
 
 //muchos a muchos entre model material y punto de reciclaje
 const VoucherSchema = new mongoose.Schema({
-  codigo: {
-    type: String,
-    required: true,
-    default: () => generateRandomCode(5),
-  },
+
   titulo: {
     type: String,
     required: true,
@@ -47,6 +43,10 @@ const VoucherSchema = new mongoose.Schema({
     enum: ["activo", "usado", "vencido"],
     default: "activo",
   },
+  ptoscanjevoucher: {
+    type: Number,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -70,4 +70,5 @@ VoucherSchema.pre("save", function (next) {
 
 // Define el modelo a partir del esquema
 module.exports = mongoose.model("Voucher", VoucherSchema);
+
 
