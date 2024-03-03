@@ -24,6 +24,16 @@ const materialSchema = new mongoose.Schema({
   },
 });
 
+// Método para calcular los puntos a partir del peso
+materialSchema.methods.calcularPuntos = function () {
+  // Definir la tasa de conversión de peso a puntos (200 puntos por kilo)
+  const tasaConversion = 200;
+  // Calcular los puntos basados en el peso del material
+  const puntos = this.pesoMaterial * tasaConversion;
+  return puntos;
+};
+
 module.exports = mongoose.model("Material", materialSchema);
+
 
 
