@@ -7,7 +7,7 @@ const VoucherSchema = new mongoose.Schema({
     default: "Voucher para canje",
   },
   descripcion: String,
-  imagen: String, // Campo para almacenar la URL de la imagen
+  imagen: String,
   stores: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -24,10 +24,6 @@ const VoucherSchema = new mongoose.Schema({
     enum: ["activo", "usado", "vencido"],
     default: "activo",
   },
-  ptoscanjevoucher: {
-    type: Number,
-    required: true,
-  },
   duracion: {
     inicio: {
       type: Date,
@@ -38,7 +34,10 @@ const VoucherSchema = new mongoose.Schema({
       required: true,
     },
   },
-
+  puntosVale: {
+    type: Number,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -58,3 +57,4 @@ VoucherSchema.pre("save", function (next) {
 });
 
 module.exports = mongoose.model("Voucher", VoucherSchema);
+
