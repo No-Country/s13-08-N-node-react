@@ -21,7 +21,7 @@ export const Menu = () => {
             </Link>
           </li>
           <li>
-            <Link to="/user/puntos" className="text-gray-600 hover:text-gray-800 flex flex-col items-center">
+            <Link to="/user/vales" className="text-gray-600 hover:text-gray-800 flex flex-col items-center">
               <TicketIcon />
               Vales
             </Link>
@@ -40,7 +40,7 @@ export const Menu = () => {
             </Link>
           </li>
           <li>
-            <Link to="/user/profile" className="text-gray-600 hover:text-gray-800 flex flex-col items-center">
+            <Link to="/user/perfil" className="text-gray-600 hover:text-gray-800 flex flex-col items-center">
               <ProfileIcon />
               Perfil
             </Link>
