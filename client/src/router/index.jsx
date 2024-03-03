@@ -22,6 +22,7 @@ import UserConfigurationEdit from '../pages/user/UserConfigurationEdit';
 import UserConfiguration from '../pages/user/UserConfiguration';
 import UserValesPage from '../pages/user/UserPerfilPage';
 import UserPerfilPage from '../pages/user/UserPerfilPage';
+import UserCodigoCanje from '../pages/user/UserCodigoCanje';
 
 export const AppRouter = () => {
   const cookies = new Cookies();
@@ -56,6 +57,7 @@ export const AppRouter = () => {
           <Route path="/user/map" element={<UserMap />} />
           <Route path="/user/map/:id" element={<DetailPoint />} />
           <Route path="/user/vales" element={<UserVoucher />} />
+          <Route path="/user/codigo-canje" element={<UserCodigoCanje />} />
           <Route path="/user/perfil" element={<UserPerfilPage />} />
           <Route path="/user/configuration" element={<UserConfiguration />} />
           <Route path="/user/configuration/edit" element={<UserConfigurationEdit />} />
