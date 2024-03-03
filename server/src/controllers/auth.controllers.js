@@ -7,7 +7,7 @@ const Role = require("../models/role.models.js");
 const { emailRegistro } = require("../email/email.js");
 
 module.exports = {
-  LoginUA: async (req, res) => {
+    LoginUA: async (req, res) => {
     try {
       const { email, password } = req.body;
 
@@ -37,6 +37,7 @@ module.exports = {
             tokenSession,
             isAdmin,
             nombre, // Envía el nombre del usuario en la respuesta
+            email: user.email,
           });
         } else {
           // Las contraseñas no coinciden, retorna un mensaje de error
