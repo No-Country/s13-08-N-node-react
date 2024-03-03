@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { FaqIcon, MenuIcon, ProfileIcon } from '../../assets';
+import React, { useContext, useState } from 'react';
+import { FaqIcon, MenuIcon } from '../../assets';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import Cookies from 'universal-cookie';
