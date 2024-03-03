@@ -58,7 +58,7 @@ export default function UserVoucher() {
             </div>
             <div>
               <p className="text-2xl font-semibold">Andreina Godoy</p>
-              <Link to={'/user/profile/edit'} className="text-sm underline">
+              <Link to={'/user/configuration/edit'} className="text-sm underline">
                 Editar perfil
               </Link>
             </div>

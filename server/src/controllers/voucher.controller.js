@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const VoucherSchema = require("../models/vouchercompany.models.js");
 const StoreSchema = require("../models/stores.models.js");
+const MaterialSchema = require("../models/material.models.js");
 const {
   Types: { ObjectId },
 } = require("mongoose");
@@ -15,7 +16,7 @@ const {
 module.exports = {
   CreateVoucher: async (req, res) => {
     try {
-      const { titulo, codigo, stores, duracion } = req.body;
+      const { titulo, stores, duracion, recycledMaterials } = req.body;
       const authHeader = req.headers.authorization;
 
       if (!authHeader) {
@@ -37,7 +38,7 @@ module.exports = {
       for (const storeName of stores) {
         const store = await StoreSchema.findOne({ nombrestore: storeName });
         if (store) {
-          storeIds.push(store._id); // Aquí se obtiene el ID de la tienda y se agrega a la lista de IDs
+          storeIds.push(store._id);
         } else {
           console.error(`Store "${storeName}" not found`);
           return res
@@ -46,12 +47,43 @@ module.exports = {
         }
       }
 
+      // Verificar si recycledMaterials es un array
+      if (!Array.isArray(recycledMaterials)) {
+        return res
+          .status(400)
+          .json({ error: "Recycled materials debe ser un array" });
+      }
+
+      // Buscar los IDs de los materiales reciclados
+      const recycledMaterialIds = [];
+      for (const materialName of recycledMaterials) {
+        const material = await MaterialSchema.findOne({
+          nombrematerial: materialName,
+        });
+        if (material) {
+          recycledMaterialIds.push(material._id);
+        } else {
+          console.error(`Material "${materialName}" not found`);
+          // Puedes manejar el caso de que un material no se encuentre, por ejemplo, retornando un error o ignorándolo.
+        }
+      }
+
+      // Calcular los puntos a partir de los materiales reciclados
+      let totalPuntos = 0;
+      for (const materialId of recycledMaterialIds) {
+        const material = await MaterialSchema.findById(materialId);
+        if (material) {
+          totalPuntos += material.calcularPuntos();
+        }
+      }
+
       const newVoucher = new VoucherSchema({
         titulo,
-        codigo,
-        stores: storeIds, // Aquí se usa la lista de IDs de tiendas en lugar de los nombres
+        ptoscanjevoucher: totalPuntos,
+        stores: storeIds,
         duracion,
         recyclingcompany: empresaId,
+        recycledMaterials: recycledMaterialIds, // Aquí se utilizan los IDs encontrados
       });
 
       await newVoucher.save();
@@ -62,7 +94,6 @@ module.exports = {
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   },
-
   GetAllVouchers: (req, res) => {
     VoucherSchema.find({}, "empresa_reciclaje,duracion") // ver en front cuales son los capos de voucher a mostrar
       .then((data) => {
@@ -102,6 +133,9 @@ module.exports = {
         return res.status(404).json({ message: "Voucher not found" });
       }
 
+      // Aplicar los cambios al voucher existente
+      existingVoucher.duracion = req.body.duracion;
+
       // Guardar el voucher actualizado en la base de datos
       await existingVoucher.save();
 
@@ -137,3 +171,4 @@ module.exports = {
     }
   },
 };
+
