@@ -1,15 +1,12 @@
 import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import AuthLayout from '../hocs/layouts/AuthLayout';
-
 import { Home } from '../pages/Home';
 import { FullWithLayout } from '../hocs/layouts/FullWithLayout';
 import Auth from '../pages/auth/Auth';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import DetailPoint from '../components/DetailPoint/DetailPoint';
-import Profile from '../pages/profile/Profile';
-
 import { UserHome } from '../pages/user/UserHome';
 import { UserMap } from '../pages/user/UserMap';
 import RequireAuth from '../components/RequireAuth';
@@ -17,10 +14,8 @@ import { CompanyHome } from '../pages/company/CompanyHome';
 import { MainLayout } from '../hocs/layouts/MainLayout';
 import Cookies from 'universal-cookie';
 import UserVoucher from '../pages/user/UserVoucher';
-
 import UserConfigurationEdit from '../pages/user/UserConfigurationEdit';
 import UserConfiguration from '../pages/user/UserConfiguration';
-import UserValesPage from '../pages/user/UserPerfilPage';
 import UserPerfilPage from '../pages/user/UserPerfilPage';
 import UserCodigoCanje from '../pages/user/UserCodigoCanje';
 

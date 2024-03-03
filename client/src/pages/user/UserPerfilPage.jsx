@@ -2,14 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { IoMenuSharp } from 'react-icons/io5';
 import analiticaImg from '../../assets/analitica.svg';
-import { CardVoucher } from '../../components/Cards/CardVoucher';
 import { BsTicketPerforated, BsBagDash } from 'react-icons/bs';
 import { FaRegStar } from 'react-icons/fa';
 import codigoqrImg from '../../assets/codigoqr.svg';
 import entradasImg from '../../assets/entradas.svg';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
-import { CardButton } from '../../components/ui/Buttons/CardButton';
 export default function UserPerfilPage() {
   const details = [
     {
