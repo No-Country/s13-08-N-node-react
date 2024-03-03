@@ -7,7 +7,7 @@ const VoucherSchema = new mongoose.Schema({
     default: "Voucher para canje",
   },
   descripcion: String,
-  imagen: String,
+  imagen: String, // Campo para almacenar la URL de la imagen
   stores: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -28,6 +28,17 @@ const VoucherSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  duracion: {
+    inicio: {
+      type: Date,
+      required: true,
+    },
+    fin: {
+      type: Date,
+      required: true,
+    },
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,
@@ -47,4 +58,3 @@ VoucherSchema.pre("save", function (next) {
 });
 
 module.exports = mongoose.model("Voucher", VoucherSchema);
-
