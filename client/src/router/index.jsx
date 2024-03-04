@@ -18,6 +18,7 @@ import UserConfigurationEdit from '../pages/user/UserConfigurationEdit';
 import UserConfiguration from '../pages/user/UserConfiguration';
 import UserPerfilPage from '../pages/user/UserPerfilPage';
 import UserCodigoCanje from '../pages/user/UserCodigoCanje';
+import { UnderConstruction } from '../pages/UnderConstruction';
 import { ScanPage } from '../pages/company/ScanPage';
 import { FormTicket } from '../pages/company/FormTicket';
 
@@ -58,6 +59,7 @@ export const AppRouter = () => {
           <Route path="/user/perfil" element={<UserPerfilPage />} />
           <Route path="/user/configuration" element={<UserConfiguration />} />
           <Route path="/user/configuration/edit" element={<UserConfigurationEdit />} />
+          <Route path="/notification" element={<UnderConstruction />} />
 
           <Route path="/company" element={<CompanyHome />} />
           <Route path="/company/scan-qr" element={<ScanPage />} />

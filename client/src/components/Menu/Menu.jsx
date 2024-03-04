@@ -119,8 +119,8 @@ export const Menu = () => {
             )}
           </li>
           <li>
-            <Link
-              to={isCompany ? '/#' : '/locacion'}
+          <Link
+              to='/notification'
               className="text-gray-600 hover:text-gray-800 flex flex-col items-center"
             >
               <NotificationIcon />
