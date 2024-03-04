@@ -114,7 +114,7 @@ export const CardVoucher = ({ voucher }) => {
 CardVoucher.propTypes = {
   voucher: PropTypes.shape({
     titulo: PropTypes.string.isRequired,
-    codigo: PropTypes.string.isRequired,
+    codigo: PropTypes.string,
     ptoscanjevoucher: PropTypes.string,
     stores: PropTypes.any,
     duracion: PropTypes.any,

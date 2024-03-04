@@ -17,7 +17,7 @@ export const FormTicket = () => {
   return (
     <>
       <Navbar name={nombreEmpresa} />
-      <div className="h-[100vh] bg-white flex justify-center items-center">
+      <div className="py-48 h-full bg-white flex justify-center items-center">
         <div className="bg-white w-full grid place-items-center">
           <img src={ticketHeader} alt="Tickets Header" />
 
