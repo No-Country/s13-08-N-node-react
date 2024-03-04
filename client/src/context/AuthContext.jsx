@@ -1,12 +1,25 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useAuth } from './useAuth';
+import Cookies from 'universal-cookie';
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const { registerUsuario, loginUsuario, logoutUsuario, registerEmpresa, loginEmpresa, logoutEmpresa } = useAuth();
   const [isCompany, setIsCompany] = useState(false);
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    const token = cookies.get('token');
+    const rol = cookies.get('rol');
+
+    if (token && rol) {
+      setIsCompany(false);
+    } else if (token) {
+      setIsCompany(true);
+    }
+  }, []);
 
   const contextValue = {
     registerUsuario,

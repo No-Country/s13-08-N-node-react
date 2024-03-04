@@ -88,7 +88,6 @@ export const useAuth = () => {
       console.log(result);
       if (result) {
         cookies.set('token', result.tokenSession);
-        cookies.set('role', result.isAdmin);
         navigate('/company');
       } else {
         console.error('Error al iniciar sesión:', result.message);
@@ -107,7 +106,6 @@ export const useAuth = () => {
       console.log(result);
       if (result) {
         cookies.remove('token');
-        cookies.remove('role');
         console.log(result.message);
         navigate('/');
       } else {

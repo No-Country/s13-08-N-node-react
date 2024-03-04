@@ -18,6 +18,8 @@ import UserConfigurationEdit from '../pages/user/UserConfigurationEdit';
 import UserConfiguration from '../pages/user/UserConfiguration';
 import UserPerfilPage from '../pages/user/UserPerfilPage';
 import UserCodigoCanje from '../pages/user/UserCodigoCanje';
+import { ScanPage } from '../pages/company/ScanPage';
+import { FormTicket } from '../pages/company/FormTicket';
 
 export const AppRouter = () => {
   const cookies = new Cookies();
@@ -58,6 +60,8 @@ export const AppRouter = () => {
           <Route path="/user/configuration/edit" element={<UserConfigurationEdit />} />
 
           <Route path="/company" element={<CompanyHome />} />
+          <Route path="/company/scan-qr" element={<ScanPage />} />
+          <Route path="/company/scan-qr/form-ticket" element={<FormTicket />} />
         </Route>
       </Route>
     </Routes>
