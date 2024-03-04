@@ -19,6 +19,7 @@ import UserConfiguration from '../pages/user/UserConfiguration';
 import UserPerfilPage from '../pages/user/UserPerfilPage';
 import UserCodigoCanje from '../pages/user/UserCodigoCanje';
 import { UnderConstruction } from '../pages/UnderConstruction';
+import CompanyVoucher from '../pages/company/CompanyVoucher';
 import { ScanPage } from '../pages/company/ScanPage';
 import { FormTicket } from '../pages/company/FormTicket';
 
@@ -62,6 +63,7 @@ export const AppRouter = () => {
           <Route path="/notification" element={<UnderConstruction />} />
 
           <Route path="/company" element={<CompanyHome />} />
+          <Route path="/company/voucher" element={<CompanyVoucher />} />
           <Route path="/company/scan-qr" element={<ScanPage />} />
           <Route path="/company/scan-qr/form-ticket" element={<FormTicket />} />
         </Route>
