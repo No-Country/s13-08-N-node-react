@@ -4,7 +4,6 @@ import { FaRegImage } from 'react-icons/fa6';
 import kolibriImg from '../../assets/kolibri.jpg';
 import { BsTicketPerforated } from 'react-icons/bs';
 import center from '../../assets/center.png';
-import { MenuHamburger } from '../../components/ui/Buttons/MenuHamburger';
 import Cookies from 'universal-cookie';
 import { Navbar } from '../../components/Navbar/Navbar';
 
