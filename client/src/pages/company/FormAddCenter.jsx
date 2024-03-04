@@ -4,7 +4,7 @@ import { HiCamera } from 'react-icons/hi2';
 import picture from '../../assets/center.png';
 
 export const FormAddCenter = () => {
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState('');
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
