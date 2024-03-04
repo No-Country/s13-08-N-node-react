@@ -53,7 +53,7 @@ const DetailPoint = () => {
                       <p className="bg-[#36da9e] text-sm font-bold p-1 text-darkBlue rounded" key={index}>
                         {material.nombre.toUpperCase()}
                       </p>
-                  ))
+                    ))
                   : 'No especificado'}
               </div>
             </div>

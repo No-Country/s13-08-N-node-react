@@ -68,8 +68,7 @@ export const CardVoucher = ({ voucher }) => {
           <strong>{nombreStore}</strong> - {fechaFormateada}
         </p>
 
-        {hidePoints
-          ? (
+        {hidePoints ? (
           <div className="flex flex-row justify-between ">
             <p className="text-base flex items-center gap-x-1">
               <span className="text-xl">
@@ -81,8 +80,7 @@ export const CardVoucher = ({ voucher }) => {
               Canjear
             </button>
           </div>
-            )
-          : (
+        ) : (
           <div className="flex justify-between">
             <p className="text-base flex items-center gap-x-1">
               <span className="text-xl">
@@ -97,7 +95,7 @@ export const CardVoucher = ({ voucher }) => {
               Canjeado
             </button>
           </div>
-            )}
+        )}
       </div>
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center">
