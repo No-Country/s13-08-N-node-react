@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MenuHamburger } from '../../components/ui/Buttons/MenuHamburger';
 import { HiCamera } from 'react-icons/hi2';
 import picture from '../../assets/center.png';
 
 export const FormAddCenter = () => {
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
   const recyclingOptions = [
     { value: 'papel', label: 'Papel' },
     { value: 'plastico', label: 'Plástico' },
@@ -60,7 +66,7 @@ export const FormAddCenter = () => {
           <label htmlFor="" className="text-sm mb-2">
             Materiales que recibe
           </label>
-          <select value="">
+          <select value={selectedValue} onChange={handleChange}>
             {recyclingOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
