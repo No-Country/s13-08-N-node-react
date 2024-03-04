@@ -7,6 +7,7 @@ import QRCode from 'react-qr-code';
 
 export default function UserCodigoCanje() {
   const [switchVales, setSwitchVales] = useState(true);
+  const email = 'usuario@gmail.com';
 
   return (
     <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue flex flex-col gap-y-3 mt-10">
@@ -37,12 +38,12 @@ export default function UserCodigoCanje() {
               size={500}
               style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
               fgColor="#062d46"
-              value="user5@gmail.com"
+              value={email}
               viewBox={`0 0 500 500`}
             />
           </div>
           {/* <img src={codigoImg} alt="" className="h-40" /> */}
-          <p className="text-base font-semibold">#12439</p>
+          <p className="text-base font-semibold">{email}</p>
         </div>
       </div>
 

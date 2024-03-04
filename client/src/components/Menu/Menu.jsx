@@ -48,11 +48,21 @@ export const Menu = () => {
           </li>
           <li>
             <Link
-              to={isCompany ? '/#' : '/user/vales'}
+              to={isCompany ? '/company/center' : '/user/vales'}
               className="text-gray-600 hover:text-gray-800 flex flex-col items-center"
             >
-              <TicketIcon />
-              Vales
+              {isCompany
+                ? (
+                <span className="flex justify-center items-center flex-col">
+                  <RecycleIcon className="text-gary-200" /> Centro
+                </span>
+                  )
+                : (
+                <span className="flex justify-center items-center flex-col">
+                  <TicketIcon />
+                  Vales
+                </span>
+                  )}
             </Link>
           </li>
           <li className="relative flex justify-center">
@@ -126,7 +136,7 @@ export const Menu = () => {
           </li>
           <li>
             <Link
-              to={isCompany ? '/#' : '/user/perfil'}
+              to={isCompany ? '/company/profile' : '/user/perfil'}
               className="text-gray-600 hover:text-gray-800 flex flex-col items-center"
             >
               <ProfileIcon />
