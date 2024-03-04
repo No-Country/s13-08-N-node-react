@@ -34,7 +34,7 @@ export const Menu = () => {
             </div>
           </li>
           <li>
-            <Link to="/locacion" className="text-gray-600 hover:text-gray-800 flex flex-col items-center">
+            <Link to="/notification" className="text-gray-600 hover:text-gray-800 flex flex-col items-center">
               <NotificationIcon />
               Notificación
             </Link>
