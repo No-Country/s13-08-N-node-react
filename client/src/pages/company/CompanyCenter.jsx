@@ -4,8 +4,8 @@ import { FaRegImage } from 'react-icons/fa6';
 import kolibriImg from '../../assets/kolibri.jpg';
 import { BsTicketPerforated } from 'react-icons/bs';
 import center from '../../assets/center.png';
-import { MenuHamburger } from '../../components/ui/Buttons/MenuHamburger';
 import Cookies from 'universal-cookie';
+import { Navbar } from '../../components/Navbar/Navbar';
 
 export const CompanyCenter = () => {
   const cookies = new Cookies();
@@ -14,23 +14,8 @@ export const CompanyCenter = () => {
   const [switchVales, setSwitchVales] = useState(true);
 
   return (
-    <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue flex flex-col gap-y-3 mt-10">
-      <div className="fixed top-0 w-full z-50 bg-darkBlue border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-7 pt-10 flex justify-between items-center text-white">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center gap-x-5">
-            <div className="relative bg-gray-100 w-[100px] h-[100px] rounded-full mx-auto">
-              <img src="" alt="" className="" />
-            </div>
-            <div>
-              <p className="text-2xl font-semibold">{nombreEmpresa}</p>
-              <Link to={'/company/configuration/edit'} className="text-sm underline">
-                Editar perfil
-              </Link>
-            </div>
-          </div>
-          <MenuHamburger />
-        </div>
-      </div>
+    <div className=" h-full pt-36 bg-bgGreen text-darkBlue flex flex-col gap-y-3 mt-10">
+      <Navbar name={nombreEmpresa} />
       <p className="font-semibold mx-5 text-lg">Centros de Reciclaje</p>
       <div className="mx-5 flex flex-col gap-5">
         <div className="flex gap-4 w-full slider">
@@ -80,8 +65,7 @@ export const CompanyCenter = () => {
               Vales
             </button>
           </div>
-          {switchVales
-            ? (
+          {switchVales ? (
             <>
               <div className="px-3">
                 <div className="flex justify-between items-center border-b border-gray-300 py-2">
@@ -123,8 +107,7 @@ export const CompanyCenter = () => {
                 </div>
               </div>
             </>
-              )
-            : (
+          ) : (
             <>
               <div className="flex items-center gap-x-3 p-2 border-b border-gray-300">
                 <img src={kolibriImg} alt="" className="max-h-10" />
@@ -147,7 +130,7 @@ export const CompanyCenter = () => {
                 </div>
               </div>
             </>
-              )}
+          )}
         </div>
       </div>
     </div>

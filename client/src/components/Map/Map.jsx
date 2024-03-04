@@ -27,6 +27,7 @@ export const Map = () => {
 
   const cerrarModal = async (selectedMaterialIds) => {
     console.log(selectedMaterialIds);
+
     setMaterials(selectedMaterialIds);
     if (selectedMaterialIds && selectedMaterialIds.length > 0) {
       try {
@@ -64,6 +65,7 @@ export const Map = () => {
     fetchDataFronJson('https://points-89az.onrender.com/recycling-center/points')
       .then((data) => {
         setMap(data);
+        console.log('data: ', data);
       })
       .catch((error) => {
         console.error('Error fetching data: ', error);
@@ -129,7 +131,7 @@ export const Map = () => {
                     <div className=" flex flex-row gap-2 mb-1">
                       {ubicacion.materials.map((material, index) => (
                         <span className="rouded-2xl bg-darkBlue  text-bgGreen font-bold px-2 " key={index}>
-                          {material.nombre.toLowerCase()}
+                          {material.nombrematerial.toLowerCase()}
                         </span>
                       ))}
                     </div>
@@ -156,7 +158,7 @@ export const Map = () => {
                     <p className="bg-[#E5F1F1] font-bold text-darkBlue px-2 py-1 rounded" key={index}>
                       {material.toLowerCase()}
                     </p>
-                ))
+                  ))
                 : null}
             </div>
           </SearchMap>

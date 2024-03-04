@@ -51,9 +51,9 @@ const DetailPoint = () => {
                 {pointData?.materials?.length > 0
                   ? pointData?.materials?.map((material, index) => (
                       <p className="bg-[#36da9e] text-sm font-bold p-1 text-darkBlue rounded" key={index}>
-                        {material.nombre.toUpperCase()}
+                        {material.nombrematerial.toUpperCase()}
                       </p>
-                  ))
+                    ))
                   : 'No especificado'}
               </div>
             </div>
