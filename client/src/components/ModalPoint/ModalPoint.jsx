@@ -39,7 +39,7 @@ const ModalPoint = ({ onClose }) => {
 
   const ubicacionData = {
     nombre: 'Filtrado de material',
-    materiales: listedMaterials.map((material) => material.nombre) || [],
+    materiales: listedMaterials.map((material) => material.nombrematerial) || [],
   };
 
   const handleMaterialToggle = (material) => {
@@ -54,8 +54,8 @@ const ModalPoint = ({ onClose }) => {
 
   const handleApplyClick = () => {
     const selectedMaterialIds = selectedMaterials.map((material) => {
-      const foundMaterial = listedMaterials.find((item) => item.nombre === material);
-      return foundMaterial.nombre;
+      const foundMaterial = listedMaterials.find((item) => item.nombrematerial === material);
+      return foundMaterial.nombrematerial;
     });
 
     onClose(selectedMaterialIds);
