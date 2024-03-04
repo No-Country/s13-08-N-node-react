@@ -19,6 +19,7 @@ import UserConfiguration from '../pages/user/UserConfiguration';
 import UserPerfilPage from '../pages/user/UserPerfilPage';
 import UserCodigoCanje from '../pages/user/UserCodigoCanje';
 import { UnderConstruction } from '../pages/UnderConstruction';
+import CompanyVoucher from '../pages/company/CompanyVoucher';
 
 export const AppRouter = () => {
   const cookies = new Cookies();
@@ -60,6 +61,7 @@ export const AppRouter = () => {
           <Route path="/notification" element={<UnderConstruction />} />
 
           <Route path="/company" element={<CompanyHome />} />
+          <Route path="/company/voucher" element={<CompanyVoucher />} />
         </Route>
       </Route>
     </Routes>
