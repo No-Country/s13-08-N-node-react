@@ -13,7 +13,7 @@ export const UnderConstruction = () => {
         <div className="flex justify-center items-center h-full">
           <span className=" bg-darkBlue p-6 text-white font-bold text-2xl border-4 rounded-xl border-bgGreen">
             {' '}
-            🏗️ Funcionalidad en proceso de construcción
+            🏗️ EN DESARROLLO
           </span>
         </div>
       </div>

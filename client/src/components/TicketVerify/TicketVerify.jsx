@@ -40,7 +40,7 @@ export const TicketVerify = ({ setVerify, setMaterialsVerified, materialsVerifie
   };
 
   return (
-    <div className="p-4 w-full ">
+    <div className="p-4 w-full pb-32">
       <div className="flex flex-row justify-end items-center gap-2">
         <p className="text-[#697077]">Agregar nuevo</p>
         <button className="bg-darkBlue  text-white font-bold py-1.5 px-4 rounded-xl" onClick={addMaterial}>
@@ -48,7 +48,7 @@ export const TicketVerify = ({ setVerify, setMaterialsVerified, materialsVerifie
         </button>
       </div>
       {materials.map((material, index) => (
-        <div key={index} className=" mt-4 flex flex-row justify-between px-8">
+        <div key={index} className=" mt-4 flex flex-row justify-around">
           <select
             className="inline shadow-md  text-[#697077] bg-[#F2F4F8] rounded h-14"
             value={material.material}

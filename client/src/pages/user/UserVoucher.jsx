@@ -52,12 +52,11 @@ export default function UserVoucher() {
   // console.log(vouchers);
 
   return (
-    <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue">
+    <div className="h-[100vh] pt-40  bg-bgGreen text-darkBlue">
       <Navbar name={usuarioNombre} />
-
-      <div className="px-5 ">
+      <div className="px-5 pb-36">
         <p className="text-xl font-bold mb-4">Para canjear</p>
-        <div className="flex flex-col gap-y-5">
+        <div className="flex flex-col gap-y-5 ">
           {vouchers.length > 0 && vouchers.map((voucher, index) => <CardVoucher voucher={voucher} key={index} />)}
         </div>
       </div>
