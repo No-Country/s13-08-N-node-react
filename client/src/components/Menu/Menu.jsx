@@ -56,21 +56,23 @@ export const Menu = () => {
             </Link>
           </li>
           <li className="relative flex justify-center">
-            {isCompany ? (
+            {isCompany
+              ? (
               <button
                 onClick={handleLinkClick}
                 className="w-[75px] h-[75px] bg-slate-800 rounded-full flex justify-center items-center absolute -top-20 -left-7 border-[5px] border- border-white"
               >
                 <ScanIcon className="text-white" />
               </button>
-            ) : (
+                )
+              : (
               <Link
                 to="/user/map"
                 className="w-[75px] h-[75px] bg-slate-800 rounded-full flex justify-center items-center absolute -top-20 -left-7 border-[5px] border- border-white"
               >
                 <RecycleIcon className="text-white" />
               </Link>
-            )}
+                )}
             {isModalOpen && (
               <div className="absolute bottom-20 bg-white border rounded-xl p-5 flex flex-col w-[300px]">
                 <h2 className="text-sm font-bold mb-2">Escaneo de QR para Canje de Puntos</h2>

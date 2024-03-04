@@ -14,13 +14,15 @@ export const FormTicket = () => {
       <div className="bg-white w-full grid place-items-center">
         <img src={ticketHeader} alt="Tickets Header" />
 
-        {verify ? (
+        {verify
+          ? (
           <TicketVerify
             setVerify={setVerify}
             setMaterialsVerified={setMaterialsVerified}
             materialsVerified={materialsVerified}
           />
-        ) : null}
+            )
+          : null}
 
         {!verify && !submited && (
           <TicketsScan setSubmited={setSubmited} materials={materialsVerified} setVerify={setVerify} />
