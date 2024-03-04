@@ -8,7 +8,11 @@ import entradasImg from '../../assets/entradas.svg';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
 import { Navbar } from '../../components/Navbar/Navbar';
+import Cookies from 'universal-cookie';
 export default function UserPerfilPage() {
+  const cookies = new Cookies();
+  const usuarioNombre = cookies.get('name');
+
   const details = [
     {
       icon: <BsTicketPerforated />,
@@ -28,7 +32,7 @@ export default function UserPerfilPage() {
   ];
   return (
     <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue flex flex-col gap-y-3 mt-10">
-      <Navbar name="Usuario" />
+      <Navbar name={usuarioNombre} />
 
       <div className="flex justify-between gap-x-5 px-5">
         <Link to={'/user/codigo-canje'} className="bg-white w-full rounded-[10px] px-2 py-3">

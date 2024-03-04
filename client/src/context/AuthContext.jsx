@@ -8,16 +8,22 @@ export const AuthContext = createContext();
 const AuthContextProvider = ({ children }) => {
   const { registerUsuario, loginUsuario, logoutUsuario, registerEmpresa, loginEmpresa, logoutEmpresa } = useAuth();
   const [isCompany, setIsCompany] = useState(false);
+  console.log(isCompany);
 
   useEffect(() => {
     const cookies = new Cookies();
     const token = cookies.get('token');
     const rol = cookies.get('rol');
 
+    console.log('Token:', token);
+    console.log('Rol:', rol);
+
     if (token && rol) {
       setIsCompany(false);
-    } else if (token) {
+    } else if (token && !rol) {
       setIsCompany(true);
+    } else {
+      setIsCompany(false);
     }
   }, []);
 

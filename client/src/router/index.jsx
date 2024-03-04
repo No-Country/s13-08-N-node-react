@@ -22,6 +22,11 @@ import { UnderConstruction } from '../pages/UnderConstruction';
 import CompanyVoucher from '../pages/company/CompanyVoucher';
 import { ScanPage } from '../pages/company/ScanPage';
 import { FormTicket } from '../pages/company/FormTicket';
+import { CompanyProfile } from '../pages/company/CompanyProfile';
+import { CompanyConfiguration } from '../pages/company/CompanyConfiguration';
+import { CompanyConfigurationEdit } from '../pages/company/CompanyConfigurationEdit';
+import { CompanyCenter } from '../pages/company/CompanyCenter';
+import { FormAddCenter } from '../pages/company/FormAddCenter';
 
 export const AppRouter = () => {
   const cookies = new Cookies();
@@ -63,7 +68,12 @@ export const AppRouter = () => {
           <Route path="/notification" element={<UnderConstruction />} />
 
           <Route path="/company" element={<CompanyHome />} />
+          <Route path="/company/center" element={<CompanyCenter />} />
+          <Route path="/company/center/form-add-center" element={<FormAddCenter />} />
+          <Route path="/company/profile" element={<CompanyProfile />} />
           <Route path="/company/voucher" element={<CompanyVoucher />} />
+          <Route path="/company/configuration" element={<CompanyConfiguration />} />
+          <Route path="/company/configuration/edit" element={<CompanyConfigurationEdit />} />
           <Route path="/company/scan-qr" element={<ScanPage />} />
           <Route path="/company/scan-qr/form-ticket" element={<FormTicket />} />
         </Route>

@@ -8,8 +8,12 @@ import consejos from '../../assets/home/consejos.png';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
 import { CardButton } from '../../components/ui/Buttons/CardButton';
+import Cookies from 'universal-cookie';
 
 export const UserHome = () => {
+  const cookies = new Cookies();
+  const usuarioNombre = cookies.get('name');
+
   const articles = [
     {
       title: 'Reciclaje: Cómo y  por qué debemos hacerlo',
@@ -51,7 +55,7 @@ export const UserHome = () => {
 
   return (
     <div>
-      <Navbar name="Usuario" />
+      <Navbar name={usuarioNombre} />
       <div className="px-5 py-28 bg-bgGreen flex flex-col gap-3 mt-6">
         <div className="bg-white w-full flex justify-between py-3 px-6 rounded-[10px]">
           {details.map(({ icon, title, quantity }, i) => (

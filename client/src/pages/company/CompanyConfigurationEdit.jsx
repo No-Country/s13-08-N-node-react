@@ -2,7 +2,7 @@ import React from 'react';
 import { FaCamera } from 'react-icons/fa';
 import { MenuHamburger } from '../../components/ui/Buttons/MenuHamburger';
 
-export default function UserConfigurationEdit() {
+export const CompanyConfigurationEdit = () => {
   return (
     <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue">
       <div className="fixed top-0 w-full z-50 bg-darkBlue border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-7 pt-10 flex justify-between items-center text-white">
@@ -40,4 +40,4 @@ export default function UserConfigurationEdit() {
       </form>
     </div>
   );
-}
+};
