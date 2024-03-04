@@ -13,8 +13,12 @@ import metal from '../../assets/metal.jpg';
 import { MdAddCircleOutline } from 'react-icons/md';
 import { FiCompass } from 'react-icons/fi';
 import Materials from '../../components/Materials/Materials';
+import Cookies from 'universal-cookie';
 
 export const CompanyHome = () => {
+  const cookies = new Cookies();
+  const nombreEmpresa = cookies.get('nameCompany');
+
   const details = [
     {
       icon: <BsTicketPerforated />,
@@ -36,7 +40,7 @@ export const CompanyHome = () => {
   const status = ['122523', '122523'];
   return (
     <div>
-      <Navbar name="Nombre empresa" />
+      <Navbar name={nombreEmpresa} />
       <div className="px-5 py-28 bg-bgGreen flex flex-col gap-3">
         <div className="bg-white w-full flex justify-between py-3 px-6 rounded-[10px]">
           {details.map(({ icon, title, quantity }, i) => (

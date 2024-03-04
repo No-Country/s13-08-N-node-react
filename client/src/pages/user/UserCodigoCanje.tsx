@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom';
 import { BsTicketPerforated } from 'react-icons/bs';
 import kolibriImg from '../../assets/kolibri.jpg';
 import QRCode from 'react-qr-code';
+import Cookies from 'universal-cookie';
+import { MenuHamburger } from '../../components/ui/Buttons/MenuHamburger';
 
 export default function UserCodigoCanje() {
   const [switchVales, setSwitchVales] = useState(true);
-  const email = 'usuario@gmail.com';
+
+  const cookies = new Cookies();
+  const usuarioNombre = cookies.get('name');
+  const usuarioEmail = cookies.get('email');
 
   return (
     <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue flex flex-col gap-y-3 mt-10">
@@ -18,15 +23,13 @@ export default function UserCodigoCanje() {
               <img src="" alt="" className="" />
             </div>
             <div>
-              <p className="text-2xl font-semibold">Andreina Godoy</p>
+              <p className="text-2xl font-semibold">{usuarioNombre}</p>
               <Link to={'/user/configuration/edit'} className="text-sm underline">
                 Editar perfil
               </Link>
             </div>
           </div>
-          <span className="text-2xl">
-            <IoMenuSharp />
-          </span>
+          <MenuHamburger />
         </div>
       </div>
 
@@ -38,12 +41,12 @@ export default function UserCodigoCanje() {
               size={500}
               style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
               fgColor="#062d46"
-              value={email}
+              value={usuarioEmail}
               viewBox={`0 0 500 500`}
             />
           </div>
           {/* <img src={codigoImg} alt="" className="h-40" /> */}
-          <p className="text-base font-semibold">{email}</p>
+          <p className="text-base font-semibold">{usuarioEmail}</p>
         </div>
       </div>
 

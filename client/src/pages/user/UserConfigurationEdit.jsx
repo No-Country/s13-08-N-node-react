@@ -1,6 +1,6 @@
 import React from 'react';
-import { IoMenuSharp } from 'react-icons/io5';
 import { FaCamera } from 'react-icons/fa';
+import { MenuHamburger } from '../../components/ui/Buttons/MenuHamburger';
 
 export default function UserConfigurationEdit() {
   return (
@@ -8,7 +8,7 @@ export default function UserConfigurationEdit() {
       <div className="fixed top-0 w-full z-50 bg-darkBlue border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-7 pt-10 flex justify-between items-center text-white">
         <div className="w-full">
           <span className="text-2xl flex justify-end">
-            <IoMenuSharp />
+            <MenuHamburger />
           </span>
           <div className="relative bg-gray-100 w-[100px] h-[100px] rounded-full mx-auto">
             <img src="" alt="" className="" />

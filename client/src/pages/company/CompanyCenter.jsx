@@ -5,8 +5,12 @@ import kolibriImg from '../../assets/kolibri.jpg';
 import { BsTicketPerforated } from 'react-icons/bs';
 import center from '../../assets/center.png';
 import { MenuHamburger } from '../../components/ui/Buttons/MenuHamburger';
+import Cookies from 'universal-cookie';
 
 export const CompanyCenter = () => {
+  const cookies = new Cookies();
+  const nombreEmpresa = cookies.get('nameCompany');
+
   const [switchVales, setSwitchVales] = useState(true);
 
   return (
@@ -18,8 +22,8 @@ export const CompanyCenter = () => {
               <img src="" alt="" className="" />
             </div>
             <div>
-              <p className="text-2xl font-semibold">Usuario</p>
-              <Link to={'/user/configuration/edit'} className="text-sm underline">
+              <p className="text-2xl font-semibold">{nombreEmpresa}</p>
+              <Link to={'/company/configuration/edit'} className="text-sm underline">
                 Editar perfil
               </Link>
             </div>

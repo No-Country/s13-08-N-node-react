@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { CardVoucher } from '../../components/Cards/CardVoucher';
 import { Navbar } from '../../components/Navbar/Navbar';
+import Cookies from 'universal-cookie';
 
 export default function UserVoucher() {
   const [vouchers, setVouchers] = useState([]);
   const [voucherIds, setVoucherIds] = useState([]);
+
+  const cookies = new Cookies();
+  const usuarioNombre = cookies.get('name');
 
   useEffect(() => {
     async function fetchData() {
@@ -49,7 +53,7 @@ export default function UserVoucher() {
 
   return (
     <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue">
-      <Navbar name="Usuario" />
+      <Navbar name={usuarioNombre} />
 
       <div className="px-5 ">
         <p className="text-xl font-bold mb-4">Para canjear</p>

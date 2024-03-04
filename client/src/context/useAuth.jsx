@@ -34,6 +34,9 @@ export const useAuth = () => {
       if (result) {
         cookies.set('token', result.tokenSession);
         cookies.set('role', result.isAdmin);
+        cookies.set('points', result.puntos);
+        cookies.set('name', result.nombre);
+        cookies.set('email', result.email);
         navigate('/user');
       } else {
         console.error('Error al iniciar sesión:', result.message);
@@ -53,6 +56,9 @@ export const useAuth = () => {
       if (result) {
         cookies.remove('token');
         cookies.remove('role');
+        cookies.remove('points');
+        cookies.remove('name');
+        cookies.remove('email');
         console.log(result.message);
         navigate('/');
       } else {
@@ -88,6 +94,8 @@ export const useAuth = () => {
       console.log(result);
       if (result) {
         cookies.set('token', result.tokenSession);
+        cookies.set('nameCompany', result.nombreempresa);
+        cookies.set('emailCompany', result.emailempresa);
         navigate('/company');
       } else {
         console.error('Error al iniciar sesión:', result.message);
@@ -106,6 +114,8 @@ export const useAuth = () => {
       console.log(result);
       if (result) {
         cookies.remove('token');
+        cookies.remove('nameCompany');
+        cookies.remove('emailCompany');
         console.log(result.message);
         navigate('/');
       } else {
