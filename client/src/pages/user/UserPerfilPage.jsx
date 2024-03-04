@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IoMenuSharp } from 'react-icons/io5';
 import analiticaImg from '../../assets/analitica.svg';
 import { BsTicketPerforated, BsBagDash } from 'react-icons/bs';
 import { FaRegStar } from 'react-icons/fa';
@@ -8,6 +7,7 @@ import codigoqrImg from '../../assets/codigoqr.svg';
 import entradasImg from '../../assets/entradas.svg';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
+import { Navbar } from '../../components/Navbar/Navbar';
 export default function UserPerfilPage() {
   const details = [
     {
@@ -28,24 +28,7 @@ export default function UserPerfilPage() {
   ];
   return (
     <div className="h-[100vh] pt-40 bg-bgGreen text-darkBlue flex flex-col gap-y-3 mt-10">
-      <div className="fixed top-0 w-full z-50 bg-darkBlue border-t border-gray-500 shadow-md rounded-b-[40px] px-5 pb-7 pt-10 flex justify-between items-center text-white">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center gap-x-5">
-            <div className="relative bg-gray-100 w-[100px] h-[100px] rounded-full mx-auto">
-              <img src="" alt="" className="" />
-            </div>
-            <div>
-              <p className="text-2xl font-semibold">Andreina Godoy</p>
-              <Link to={'/user/configuration/edit'} className="text-sm underline">
-                Editar perfil
-              </Link>
-            </div>
-          </div>
-          <span className="text-2xl">
-            <IoMenuSharp />
-          </span>
-        </div>
-      </div>
+      <Navbar name="Usuario" />
 
       <div className="flex justify-between gap-x-5 px-5">
         <Link to={'/user/codigo-canje'} className="bg-white w-full rounded-[10px] px-2 py-3">
