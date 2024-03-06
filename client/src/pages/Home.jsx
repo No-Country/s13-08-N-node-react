@@ -15,13 +15,23 @@ import carton from '../assets/home/carton.png';
 import vidrio from '../assets/home/vidrio.png';
 import plastico from '../assets/home/plastico.png';
 import metal from '../assets/ticket/latas.jpeg';
+import adan from '../assets/profile/adan.jpg';
+import andreina from '../assets/profile/andreina.jpg';
+import daisy from '../assets/profile/daisy.jpg';
+import enrique from '../assets/profile/enrique.jpg';
+import ezequiel from '../assets/profile/ezequiel.jpg';
+import henry from '../assets/profile/henry.jpg';
+import malvina from '../assets/profile/malvina.jpg';
+import marcos from '../assets/profile/marcos.jpg';
+import nazareno from '../assets/profile/nazareno.jpg';
+import tomas from '../assets/profile/tomas.jpg';
+
 import { TeamCard } from '../components/ui/Cards/TeamCard';
 import { Footer } from '../components/Footer/Footer';
 import SimpleDonut from '../components/Chart/SimpleDonut';
 import Materials from '../components/Materials/Materials';
 import Company from '../components/Company/Company';
 import { Link } from 'react-router-dom';
-
 export const Home = () => {
   const articles = [
     {
@@ -48,61 +58,61 @@ export const Home = () => {
     {
       name: 'Adan Jimenez',
       rol: 'Front End',
-      image: '/src/assets/profile/adan.jpg',
+      image: adan,
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/adan-jimenez-dev/' }],
     },
     {
       name: 'Andreina Godoy',
       rol: 'UX UI',
-      image: '/src/assets/profile/andreina.jpg',
+      image: andreina,
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/gvandre/' }],
     },
     {
       name: 'Daisy Castillo',
       rol: 'Back End',
-      image: '/src/assets/profile/daisy.jpg',
+      image: daisy,
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/daisycastillos/' }],
     },
     {
       name: 'Enrique M.',
       rol: 'Back End',
-      image: '/src/assets/profile/enrique.jpg',
+      image: enrique,
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/enrique-moreira-23189b216/' }],
     },
     {
       name: 'Ezequiel Berretta',
       rol: 'Front End',
-      image: '/src/assets/profile/ezequiel.jpg',
+      image: ezequiel,
       socialLinks: [{ name: 'linkedin', link: 'https://linkedin.com/in/ezequiel-berretta' }],
     },
     {
       name: 'Henry Ramirez',
       rol: 'Front End',
-      image: '/src/assets/profile/henry.jpg',
+      image: henry,
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/henry-ramirez-417861259' }],
     },
     {
       name: 'Malvina Christiansen',
       rol: 'QA',
-      image: '/src/assets/profile/malvina.jpg',
+      image: malvina,
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/malvina-christiansen' }],
     },
     {
       name: 'Marcos Kruppa',
       rol: 'Front End',
-      image: '/src/assets/profile/marcos.jpg',
+      image: marcos,
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/kruppamarcos' }],
     },
     {
       name: 'Nazareno Susunday',
       rol: 'PM',
-      image: '/src/assets/profile/nazareno.jpg',
+      image: nazareno,
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/nazareno-susunday-990243a1/' }],
     },
     {
       name: 'Tomas Lona',
       rol: 'Back End',
-      image: '/src/assets/profile/tomas.jpg',
+      image: tomas,
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/tomydeveloper' }],
     },
   ];
@@ -139,9 +149,7 @@ export const Home = () => {
       </div>
       <div className="px-5 pt-24 pb-10 flex flex-col gap-3 text-[#062D46]">
         <h2 className="text-xl font-bold mt-5">Hábitos Medioambientales</h2>
-        <DetailCard
-          title="El Progreso"
-        >
+        <DetailCard title="El Progreso">
           <SimpleDonut />
         </DetailCard>
         <h2 className="text-xl font-bold my-3">Materiales a Reciclar</h2>
@@ -170,7 +178,9 @@ export const Home = () => {
               image={picture}
               linkText={
                 <div className="flex justify-end">
-                  <span className="underline cursor-pointer" onClick={() => handleLinkClick(i)}>Leer más</span>
+                  <span className="underline cursor-pointer" onClick={() => handleLinkClick(i)}>
+                    Leer más
+                  </span>
                 </div>
               }
               showDetails={showDetails[i]} // Cambiado a un solo booleano
@@ -186,7 +196,6 @@ export const Home = () => {
           <Company picture={zafran} />
           <Company picture={chemical} />
           <Company picture={advance} />
-
         </div>
         <div className="flex justify-end">
           <span className="underline cursor-pointer" onClick={handleMostrarEmpresas}></span>
@@ -197,8 +206,7 @@ export const Home = () => {
             <TeamCard key={i} {...teamMember} />
           ))}
         </div>
-        <span className="underline text-right cursor-pointer" onClick={handleMostrarEquipo}>
-    </span>
+        <span className="underline text-right cursor-pointer" onClick={handleMostrarEquipo}></span>
       </div>
       <Footer />
     </>
