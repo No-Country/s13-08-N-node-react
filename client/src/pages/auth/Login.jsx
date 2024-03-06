@@ -131,7 +131,7 @@ export default function Login() {
             </div>
           )}
 
-          <Link className="flex justify-center">Olvidaste tu constraseña?</Link>
+          <Link className="flex justify-center">Olvidaste tu contraseña?</Link>
         </div>
 
         <div className="flex flex-col gap-y-3">
@@ -154,7 +154,7 @@ export default function Login() {
       <p className="text-center font-light">
         No tienes cuenta?{' '}
         <Link to="/auth/register" className="text-sm text-darkMain font-bold">
-          Registrate ahora
+        Regístrate ahora
         </Link>{' '}
       </p>
     </div>
