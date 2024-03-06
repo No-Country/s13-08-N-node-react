@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { BsTicketPerforated, BsBagDash } from 'react-icons/bs';
 import { FaRegStar } from 'react-icons/fa';
@@ -7,7 +7,6 @@ import claves from '../../assets/home/claves.png';
 import consejos from '../../assets/home/consejos.png';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
-import { CardButton } from '../../components/ui/Buttons/CardButton';
 import Cookies from 'universal-cookie';
 
 export const UserHome = () => {
@@ -30,7 +29,7 @@ export const UserHome = () => {
     {
       title: 'Reciclaje: Claves para un mundo más saludable',
       description:
-        'El reciclaje es una herramienta clave para promover un mundo más saludable y sostenible. Al adoptar prácticas de reciclaje en nuestra vida diaria, podemos marcar la diferencia en la preservación del medio ambiente y en la mejora de nuestra calidad de vida. A',
+        'El reciclaje es una herramienta clave para promover un mundo más saludable y sostenible. Al adoptar prácticas de reciclaje en nuestra vida diaria, podemos marcar la diferencia en la preservación del medio ambiente y en la mejora de nuestra calidad de vida.',
       picture: claves,
     },
   ];
@@ -52,6 +51,15 @@ export const UserHome = () => {
       quantity: '4.8',
     },
   ];
+  const [showDetails, setShowDetails] = useState(Array(articles.length).fill(false));
+
+  const handleLinkClick = (index) => {
+    setShowDetails((prevShowDetails) => {
+      const newShowDetails = [...prevShowDetails];
+      newShowDetails[index] = !newShowDetails[index];
+      return newShowDetails;
+    });
+  };
 
   return (
     <div>
@@ -68,9 +76,7 @@ export const UserHome = () => {
         </div>
         <p className="text-2xl font-bold text-darkBlue">Hábitos medioambientales</p>
         <DetailCard
-          title="El progreso"
-          description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
-          linkText={<CardButton linkText="Ver más" />}
+          title="Cómo Has Estado Reciclando"
         >
           <SimpleDonut />
         </DetailCard>
@@ -84,14 +90,12 @@ export const UserHome = () => {
               image={picture}
               linkText={
                 <div className="flex justify-end">
-                  <span className="underline">Leer más</span>
+                  <span className="underline cursor-pointer" onClick={() => handleLinkClick(i)}>Leer más</span>
                 </div>
               }
+              showDetails={showDetails[i]} // Cambiado a un solo booleano
             />
           ))}
-          <div className="flex justify-end">
-            <span className="underline">Ver más</span>
-          </div>
         </div>
       </div>
     </div>

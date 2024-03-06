@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { BsTicketPerforated, BsBagDash, BsClockHistory } from 'react-icons/bs';
 import { FaRegStar } from 'react-icons/fa';
 import { RiLoopLeftLine } from 'react-icons/ri';
 import { DetailCard } from '../../components/ui/Cards/DetailCard';
 import SimpleDonut from '../../components/Chart/SimpleDonut';
-import { CardButton } from '../../components/ui/Buttons/CardButton';
 import carton from '../../assets/home/carton.png';
 import vidrio from '../../assets/home/vidrio.png';
 import plastico from '../../assets/home/plastico.png';
@@ -36,8 +35,14 @@ export const CompanyHome = () => {
       quantity: '4.8',
     },
   ];
-
   const status = ['122523', '122523'];
+  const [mostrarMateriales, setMostrarMAteriales] = useState(false);
+  const handleMostrarMateriales = () => {
+    setMostrarMAteriales((prevMostrarMateriales) => !prevMostrarMateriales);
+  };
+  const handleAgregarMaterial = () => {
+    alert('Se agrego un material');
+  };
   return (
     <div>
       <Navbar name={nombreEmpresa} />
@@ -68,26 +73,23 @@ export const CompanyHome = () => {
         <p className="text-2xl text-darkBlue font-bold">Estadísticas</p>
         <DetailCard
           title="Estadísticas de Recolección"
-          description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
-          linkText={<CardButton linkText="Ver más" />}
         >
           <SimpleDonut />
         </DetailCard>
         <div className="flex justify-between items-center">
-          <h2 className="text-2xl text-darkBlue font-bold">Materiales aceptados</h2>
+          <h2 className="text-2xl text-darkBlue font-bold">Materiales Aceptados</h2>
           <span className="bg-darkBlue py-1 px-3 text-white text-2xl rounded-xl">
-            <MdAddCircleOutline style={{ backgroundColor: '#062D46', color: 'white' }} />
+            <MdAddCircleOutline className='cursor-pointer' onClick={handleAgregarMaterial} style={{ backgroundColor: '#062D46', color: 'white' }} />
           </span>
         </div>
-
-        <div className="flex gap-5 slider">
+        <div className={`gap-5 ${mostrarMateriales ? 'grid grid-cols-2' : 'slider'}`}>
           <Materials picture={plastico} />
           <Materials picture={carton} />
           <Materials picture={vidrio} />
           <Materials picture={metal} />
         </div>
         <div className="flex justify-end">
-          <span className="underline">ver más</span>
+          <span className="underline cursor-pointer" onClick={handleMostrarMateriales}>Ver más</span>
         </div>
         <p className="text-2xl text-darkBlue font-bold">Gestión</p>
         <div className="w-full flex gap-x-2 text-darkBlue">

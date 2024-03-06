@@ -20,12 +20,12 @@ export default function Auth() {
   return (
     <div className="flex flex-col gap-y-8">
       <div className="flex flex-col gap-y-4 px-5">
-        <Link to="/auth/login" className="bg-greenMain text-white rounded-lg py-2 text-center text-base">
+        <Link to="/auth/login" className="bg-greenMain text-zinc-800 rounded-lg py-2 text-center text-lg font-bold">
           Inicio de sesión
         </Link>
         <Link
           to="/auth/register"
-          className="bg-white text-greenMain rounded-lg py-2 text-center text-base border border-greenMain"
+          className="text-zinc-800 font-bold rounded-lg py-2 text-center text-lg border-2 border-zinc-800"
         >
           Registro
         </Link>
@@ -41,25 +41,25 @@ export default function Auth() {
       <p className="text-center">
         No tienes cuenta?{' '}
         <Link to="/auth/register" className="text-sm text-darkMain font-bold">
-          Registrate ahora
+        Regístrate ahora
         </Link>{' '}
       </p>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-grow">
         <button
           onClick={handleUser}
-          className={`${isCompany ? '' : 'bg-green-100'} w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center`}
+          className={`${isCompany ? '' : 'bg-green-100 font-extrabold text-lg transition-all duration-500'} w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center`}
         >
-          <span className="text-base">
+          <span className={`${isCompany ? '' : 'font-bold text-lg transition-all duration-500'} w-full text-darkMain flex flex-col items-center`}>
             <LuUser2 />
           </span>
           Usuario
         </button>
         <button
           onClick={handleCompany}
-          className={`${isCompany ? 'bg-green-100' : ''} w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center`}
+          className={`${isCompany ? 'bg-green-100 font-extrabold text-lg transition-all duration-500' : ''}  w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center`}
         >
-          <span className="text-base">
+          <span className={`${isCompany ? 'font-bold text-lg transition-all duration-500' : ''} w-full text-darkMain flex flex-col items-center`}>
             <IoBusinessOutline />
           </span>
           Empresa

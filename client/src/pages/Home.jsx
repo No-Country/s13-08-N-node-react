@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DetailCard } from '../components/ui/Cards/DetailCard';
 import { CardButton } from '../components/ui/Buttons/CardButton';
 import reciclajeverde from '../assets/home/Empezemos.png';
@@ -9,10 +9,12 @@ import darsentido from '../assets/dar_sentido.jpg';
 import psa from '../assets/psa.jpg';
 import kolibri from '../assets/kolibri.jpg';
 import zafran from '../assets/zafran.jpg';
+import chemical from '../assets/chemical.jpg';
+import advance from '../assets/advance.jpg';
 import carton from '../assets/home/carton.png';
 import vidrio from '../assets/home/vidrio.png';
 import plastico from '../assets/home/plastico.png';
-import metal from '../assets/metal.jpg';
+import metal from '../assets/ticket/latas.jpeg';
 import { TeamCard } from '../components/ui/Cards/TeamCard';
 import { Footer } from '../components/Footer/Footer';
 import SimpleDonut from '../components/Chart/SimpleDonut';
@@ -23,7 +25,7 @@ import { Link } from 'react-router-dom';
 export const Home = () => {
   const articles = [
     {
-      title: 'Reciclaje: Cómo y  por qué debemos hacerlo',
+      title: 'Reciclaje: Cómo y por qué debemos hacerlo',
       description:
         'El reciclaje es una actividad fundamental para preservar nuestro medio ambiente y construir un futuro sostenible. A través de simples acciones cotidianas, podemos contribuir de manera significativa a la reducción de la contaminación y al cuidado de nuestros recursos naturales. A continuación, te presentamos algunos consejos prácticos sobre cómo y por qué debemos reciclar.',
       picture: articulos,
@@ -37,73 +39,95 @@ export const Home = () => {
     {
       title: 'Reciclaje: Claves para un mundo más saludable',
       description:
-        'El reciclaje es una herramienta clave para promover un mundo más saludable y sostenible. Al adoptar prácticas de reciclaje en nuestra vida diaria, podemos marcar la diferencia en la preservación del medio ambiente y en la mejora de nuestra calidad de vida. A',
+        'El reciclaje es una herramienta clave para promover un mundo más saludable y sostenible. Al adoptar prácticas de reciclaje en nuestra vida diaria, podemos marcar la diferencia en la preservación del medio ambiente y en la mejora de nuestra calidad de vida.',
       picture: claves,
     },
   ];
 
   const teamMembers = [
     {
-      name: 'Nazareno S.',
-      rol: 'PM',
-      image: '',
-      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/nazareno-susunday-990243a1/' }],
-    },
-    {
-      name: 'Andreina G.',
-      rol: 'UX UI',
-      image: '',
-      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/gvandre/' }],
-    },
-    {
-      name: 'Malvina C.',
-      rol: 'QA',
-      image: '',
-      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/malvina-christiansen' }],
-    },
-    {
-      name: 'Marcos K.',
+      name: 'Adan Jimenez',
       rol: 'Front End',
-      image: '',
-      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/kruppamarcos' }],
-    },
-    {
-      name: 'Adan J.',
-      rol: 'Front End',
-      image: '',
+      image: '/src/assets/profile/adan.jpg',
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/adan-jimenez-dev/' }],
     },
     {
-      name: 'Henry R.',
-      rol: 'Front End',
-      image: '',
-      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/henry-ramirez-417861259' }],
+      name: 'Andreina Godoy',
+      rol: 'UX UI',
+      image: '/src/assets/profile/andreina.jpg',
+      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/gvandre/' }],
     },
     {
-      name: 'Ezequiel B.',
-      rol: 'Front End',
-      image: '',
-      socialLinks: [{ name: 'linkedin', link: 'https://linkedin.com/in/ezequiel-berretta' }],
-    },
-    {
-      name: 'Daisy C.',
+      name: 'Daisy Castillo',
       rol: 'Back End',
-      image: '',
+      image: '/src/assets/profile/daisy.jpg',
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/daisycastillos/' }],
-    },
-    {
-      name: 'Tomas A.',
-      rol: 'Back End',
-      image: '',
-      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/tomydeveloper' }],
     },
     {
       name: 'Enrique M.',
       rol: 'Back End',
-      image: '',
+      image: '/src/assets/profile/enrique.jpg',
       socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/enrique-moreira-23189b216/' }],
     },
+    {
+      name: 'Ezequiel Berretta',
+      rol: 'Front End',
+      image: '/src/assets/profile/ezequiel.jpg',
+      socialLinks: [{ name: 'linkedin', link: 'https://linkedin.com/in/ezequiel-berretta' }],
+    },
+    {
+      name: 'Henry Ramirez',
+      rol: 'Front End',
+      image: '/src/assets/profile/henry.jpg',
+      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/henry-ramirez-417861259' }],
+    },
+    {
+      name: 'Malvina Christiansen',
+      rol: 'QA',
+      image: '/src/assets/profile/malvina.jpg',
+      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/malvina-christiansen' }],
+    },
+    {
+      name: 'Marcos Kruppa',
+      rol: 'Front End',
+      image: '/src/assets/profile/marcos.jpg',
+      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/kruppamarcos' }],
+    },
+    {
+      name: 'Nazareno Susunday',
+      rol: 'PM',
+      image: '/src/assets/profile/nazareno.jpg',
+      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/nazareno-susunday-990243a1/' }],
+    },
+    {
+      name: 'Tomas Lona',
+      rol: 'Back End',
+      image: '/src/assets/profile/tomas.jpg',
+      socialLinks: [{ name: 'linkedin', link: 'https://www.linkedin.com/in/tomydeveloper' }],
+    },
   ];
+
+  const [showDetails, setShowDetails] = useState(Array(articles.length).fill(false));
+
+  const handleLinkClick = (index) => {
+    setShowDetails((prevShowDetails) => {
+      const newShowDetails = [...prevShowDetails];
+      newShowDetails[index] = !newShowDetails[index];
+      return newShowDetails;
+    });
+  };
+  const [mostrarMateriales, setMostrarMAteriales] = useState(false);
+  const handleMostrarMateriales = () => {
+    setMostrarMAteriales((prevMostrarMateriales) => !prevMostrarMateriales);
+  };
+  const [mostrarEquipo, setMostrarEquipo] = useState(false);
+  const handleMostrarEquipo = () => {
+    setMostrarEquipo((prevMostrarEquipo) => !prevMostrarEquipo);
+  };
+  const [mostrarEmpresas, setMostrarEmpresas] = useState(false);
+  const handleMostrarEmpresas = () => {
+    setMostrarEmpresas((prevMostrarEmpresas) => !prevMostrarEmpresas);
+  };
 
   return (
     <>
@@ -116,29 +140,27 @@ export const Home = () => {
       <div className="px-5 pt-24 pb-10 flex flex-col gap-3 text-[#062D46]">
         <h2 className="text-xl font-bold mt-5">Hábitos Medioambientales</h2>
         <DetailCard
-          title="El progreso"
-          description="Lorem Ipsumis simply dummy text of the printing and typesetting industry."
-          linkText={<CardButton linkText="Ver más" />}
+          title="El Progreso"
         >
           <SimpleDonut />
         </DetailCard>
         <h2 className="text-xl font-bold my-3">Materiales a Reciclar</h2>
-        <div className="flex gap-5 slider">
+        <div className={`gap-5 ${mostrarMateriales ? 'grid grid-cols-2' : 'slider'}`}>
           <Materials picture={plastico} />
           <Materials picture={carton} />
           <Materials picture={vidrio} />
           <Materials picture={metal} />
         </div>
         <div className="flex justify-end">
-          <span className="underline">Ver más</span>
+          <span className="underline cursor-pointer" onClick={handleMostrarMateriales}></span>
         </div>
         <DetailCard
-          title="Listo para Reciclar?"
-          description="Unete a Ecovale, aprende a reciclar y suma puntos en el proceso"
+          title="¿Listo para reciclar?"
+          description="Únete a Ecovale, aprende a reciclar y suma puntos en el proceso."
           image={reciclajeverde}
           linkText={<CardButton linkText="Empezemos" path="auth" />}
         />
-        <h2 className="text-xl font-bold my-3">Articulos publicados</h2>
+        <h2 className="text-xl font-bold my-3">Artículos Publicados</h2>
         <div className="flex flex-col gap-3">
           {articles.map(({ title, description, picture }, i) => (
             <DetailCard
@@ -148,32 +170,35 @@ export const Home = () => {
               image={picture}
               linkText={
                 <div className="flex justify-end">
-                  <span className="underline">Leer más</span>
+                  <span className="underline cursor-pointer" onClick={() => handleLinkClick(i)}>Leer más</span>
                 </div>
               }
+              showDetails={showDetails[i]} // Cambiado a un solo booleano
             />
           ))}
-          <div className="flex justify-end">
-            <span className="underline">Ver más</span>
-          </div>
         </div>
 
-        <h2 className="text-xl font-bold my-3">Empresas colaboradoras</h2>
-        <div className="gap-5 slider w-full mx-auto">
+        <h2 className="text-xl font-bold my-3">Empresas Colaboradoras</h2>
+        <div className={`gap-5 w-full mx-auto ${mostrarEmpresas ? 'grid grid-cols-2' : 'slider'}`}>
           <Company picture={darsentido} />
           <Company picture={psa} />
           <Company picture={kolibri} />
           <Company picture={zafran} />
+          <Company picture={chemical} />
+          <Company picture={advance} />
+
         </div>
         <div className="flex justify-end">
-          <span className="underline">Ver más</span>
+          <span className="underline cursor-pointer" onClick={handleMostrarEmpresas}></span>
         </div>
         <p className="text-xl font-bold my-3">Nuestro Equipo</p>
-        <div className="gap-5 slider w-full mx-auto">
+        <div className={`${mostrarEquipo ? 'grid grid-cols-2' : 'slider'} gap-5 w-full mx-auto `}>
           {teamMembers.map((teamMember, i) => (
             <TeamCard key={i} {...teamMember} />
           ))}
         </div>
+        <span className="underline text-right cursor-pointer" onClick={handleMostrarEquipo}>
+    </span>
       </div>
       <Footer />
     </>

@@ -31,7 +31,7 @@ export const TeamCard = ({ name, rol, image, socialLinks = [] }) => {
 
       if (IconComponent && link) {
         return (
-          <a key={iconName} to={link} target="_blank" rel="noopener noreferrer">
+          <a key={iconName} href={link} target="_blank" rel="noopener noreferrer">
             <IconComponent />
           </a>
         );
@@ -44,15 +44,15 @@ export const TeamCard = ({ name, rol, image, socialLinks = [] }) => {
 
   return (
     <div>
-      <div className="bg-white w-[111px] h-[156px] flex flex-col items-center justify-between p-2 rounded-[10px]">
-        <div className="w-12 h-12 flex justify-center items-center bg-slate-200 rounded-full">
-          {image ? <img src={image} alt="Profile" /> : <ProfileIcon />}
+      <div className="bg-white w-[150px] h-[156px] flex flex-col items-center justify-between p-2 rounded-[10px]">
+        <div className="h-14 flex justify-center items-center bg-slate-200 rounded-full">
+        {image ? <img src={image} alt="Profile" /> : <ProfileIcon />}
         </div>
-        <p className="text-sm font-bold">{name}</p>
-        <div className="flex items-center gap-x-3">
-          <p className="text-sm font-bold line-clamp-2">{rol}</p>
+        <p className="text-sm font-bold text-center">{name}</p>
+        <div className="flex justify-between align-bottom gap-1">
+          <p className="text-sm font-bold">{rol}</p>
           <hr className="border border-slate-500 h-full" />
-          <div className="flex justify-center gap-2">{renderSocialIcons()}</div>
+          {renderSocialIcons()}
         </div>
       </div>
     </div>

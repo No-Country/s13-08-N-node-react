@@ -120,7 +120,7 @@ export default function Register() {
     <div className="flex flex-col gap-y-10 px-5 pb-14">
       <p className="flex flex-col">
         <span className="text-3xl font-bold text-center">Hola!</span>
-        <span className="text-xl font-bold text-center">Registrese para empezar</span>
+        <span className="text-xl font-bold text-center">Regístrese para empezar</span>
       </p>
       <form ref={userRef} onSubmit={handleRegister} className="flex flex-col gap-y-10">
         <div className="flex flex-col gap-y-4">
@@ -142,8 +142,8 @@ export default function Register() {
                 className="border border-gray-400 p-2 rounded-lg w-full appearance-none"
               >
                 <option value="">Rubro</option>
-                <option value="Carton">Carton</option>
-                <option value="Plastico">Plastico</option>
+                <option value="Carton">Cartón</option>
+                <option value="Plastico">Plástico</option>
                 <option value="Vidrio">Vidrio</option>
                 <option value="Metal">Metal</option>
               </select>
@@ -179,7 +179,7 @@ export default function Register() {
               id="address"
               name="address"
               type="text"
-              placeholder="Direccion"
+              placeholder="Dirección"
               className="border border-gray-400 p-2 rounded-lg"
             />
           )}
@@ -224,29 +224,29 @@ export default function Register() {
         </div>
 
         <div className="flex flex-col gap-y-3">
-          <button type="submit" className="bg-greenMain text-white rounded-lg py-2 text-center text-base block">
+          <button type="submit" className="bg-greenMain text-zinc-800 rounded-lg py-2 text-center text-lg font-bold">
             Registrarse
           </button>
           <span className="my-3">
             <hr />{' '}
             <span className="flex justify-center relative">
-              <span className="absolute -top-3 bg-white px-5 text-gray-500 text-base">o registre con</span>
+              <span className="absolute -top-3 bg-white px-5 text-gray-500 text-base">o Registrese con</span>
             </span>
           </span>
           <div className="flex justify-between gap-x-5">
-            <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
+            <Link to={'/#'} className="border-2 text-zinc-800 border-zinc-800 w-full py-2 rounded-xl flex justify-center text-xl">
               <FaGoogle />
             </Link>
-            <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
+            <Link to={'/#'} className="border-2 text-zinc-800 border-zinc-800 w-full py-2 rounded-xl flex justify-center text-xl">
               <FaFacebookF />
             </Link>
-            <Link to={'/#'} className="border border-black w-full py-2 rounded-xl flex justify-center text-xl">
+            <Link to={'/#'} className="border-2 text-zinc-800 border-zinc-800 w-full py-2 rounded-xl flex justify-center text-xl">
               <RiAppleFill />
             </Link>
           </div>
 
           <p className="text-xs text-center">
-            Al continuar, usted acepta las Condiciones del servicio y la Política de privacidad de Nombre de la App
+            Al continuar, usted acepta las Condiciones del servicio y la Política de privacidad de Nombre de la Ecovale
           </p>
         </div>
       </form>
