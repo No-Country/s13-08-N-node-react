@@ -166,7 +166,7 @@ export const Home = () => {
           title="¿Listo para reciclar?"
           description="Únete a Ecovale, aprende a reciclar y suma puntos en el proceso."
           image={reciclajeverde}
-          linkText={<CardButton linkText="Empezemos" path="auth" />}
+          linkText={<CardButton linkText="Empecemos" path="auth" />}
         />
         <h2 className="text-xl font-bold my-3">Artículos Publicados</h2>
         <div className="flex flex-col gap-3">

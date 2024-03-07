@@ -15,7 +15,7 @@ export const UserHome = () => {
 
   const articles = [
     {
-      title: 'Reciclaje: Cómo y  por qué debemos hacerlo',
+      title: 'Reciclaje: Cómo y por qué debemos hacerlo',
       description:
         'El reciclaje es una actividad fundamental para preservar nuestro medio ambiente y construir un futuro sostenible. A través de simples acciones cotidianas, podemos contribuir de manera significativa a la reducción de la contaminación y al cuidado de nuestros recursos naturales. A continuación, te presentamos algunos consejos prácticos sobre cómo y por qué debemos reciclar.',
       picture: articulos,
