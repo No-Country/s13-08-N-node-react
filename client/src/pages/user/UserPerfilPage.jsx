@@ -21,12 +21,12 @@ export default function UserPerfilPage() {
     },
     {
       icon: <BsBagDash />,
-      title: 'Articulo 2',
+      title: 'Artículo 2',
       quantity: '7000Kg',
     },
     {
       icon: <FaRegStar />,
-      title: 'Articulo 3',
+      title: 'Artículo 3',
       quantity: '4.8',
     },
   ];
