@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 function SearchMap({ children, setResults, setModalVisible }) {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const [input, setInput] = useState('');
   const fetchData = (value) => {
-    fetch('https://points-89az.onrender.com/recycling-center/points')
+    fetch(`${baseUrl}/recycling-center/points`)
       .then((response) => response.json())
       .then((json) => {
         const results = json.filter((point) => {

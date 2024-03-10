@@ -46,7 +46,7 @@ export const TeamCard = ({ name, rol, image, socialLinks = [] }) => {
     <div>
       <div className="bg-white w-[150px] h-[156px] flex flex-col items-center justify-between p-2 rounded-[10px]">
         <div className="h-14 flex justify-center items-center bg-slate-200 rounded-full">
-        {image ? <img src={image} alt="Profile" /> : <ProfileIcon />}
+          {image ? <img src={image} alt="Profile" /> : <ProfileIcon />}
         </div>
         <p className="text-sm font-bold text-center">{name}</p>
         <div className="flex justify-between align-bottom gap-1">

@@ -6,14 +6,14 @@ import Cookies from 'universal-cookie';
 export default function UserVoucher() {
   const [vouchers, setVouchers] = useState([]);
   const [voucherIds, setVoucherIds] = useState([]);
-
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const cookies = new Cookies();
   const usuarioNombre = cookies.get('name');
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('https://points-89az.onrender.com/vouchers');
+        const response = await fetch(`${baseUrl}/vouchers`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -32,7 +32,7 @@ export default function UserVoucher() {
     const fetchData = async () => {
       try {
         const promises = voucherIds.map(async (id) => {
-          const response = await fetch(`https://points-89az.onrender.com/vouchers/${id}`);
+          const response = await fetch(`${baseUrl}/vouchers/${id}`);
           if (!response.ok) {
             throw new Error(`Error al obtener datos para el ID ${id}`);
           }

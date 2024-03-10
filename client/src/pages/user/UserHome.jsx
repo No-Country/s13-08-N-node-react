@@ -75,9 +75,7 @@ export const UserHome = () => {
           ))}
         </div>
         <p className="text-2xl font-bold text-darkBlue">Hábitos medioambientales</p>
-        <DetailCard
-          title="Cómo Has Estado Reciclando"
-        >
+        <DetailCard title="Cómo Has Estado Reciclando">
           <SimpleDonut />
         </DetailCard>
         <p className="text-2xl font-bold text-darkBlue">Artículos recientes</p>
@@ -90,7 +88,9 @@ export const UserHome = () => {
               image={picture}
               linkText={
                 <div className="flex justify-end">
-                  <span className="underline cursor-pointer" onClick={() => handleLinkClick(i)}>Leer más</span>
+                  <span className="underline cursor-pointer" onClick={() => handleLinkClick(i)}>
+                    Leer más
+                  </span>
                 </div>
               }
               showDetails={showDetails[i]} // Cambiado a un solo booleano

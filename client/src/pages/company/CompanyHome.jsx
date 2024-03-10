@@ -71,15 +71,17 @@ export const CompanyHome = () => {
           ))}
         </div>
         <p className="text-2xl text-darkBlue font-bold">Estadísticas</p>
-        <DetailCard
-          title="Estadísticas de Recolección"
-        >
+        <DetailCard title="Estadísticas de Recolección">
           <SimpleDonut />
         </DetailCard>
         <div className="flex justify-between items-center">
           <h2 className="text-2xl text-darkBlue font-bold">Materiales Aceptados</h2>
           <span className="bg-darkBlue py-1 px-3 text-white text-2xl rounded-xl">
-            <MdAddCircleOutline className='cursor-pointer' onClick={handleAgregarMaterial} style={{ backgroundColor: '#062D46', color: 'white' }} />
+            <MdAddCircleOutline
+              className="cursor-pointer"
+              onClick={handleAgregarMaterial}
+              style={{ backgroundColor: '#062D46', color: 'white' }}
+            />
           </span>
         </div>
         <div className={`gap-5 ${mostrarMateriales ? 'grid grid-cols-2' : 'slider'}`}>
@@ -89,7 +91,9 @@ export const CompanyHome = () => {
           <Materials picture={metal} />
         </div>
         <div className="flex justify-end">
-          <span className="underline cursor-pointer" onClick={handleMostrarMateriales}>Ver más</span>
+          <span className="underline cursor-pointer" onClick={handleMostrarMateriales}>
+            Ver más
+          </span>
         </div>
         <p className="text-2xl text-darkBlue font-bold">Gestión</p>
         <div className="w-full flex gap-x-2 text-darkBlue">

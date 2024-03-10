@@ -234,13 +234,22 @@ export default function Register() {
             </span>
           </span>
           <div className="flex justify-between gap-x-5">
-            <Link to={'/#'} className="border-2 text-zinc-800 border-zinc-800 w-full py-2 rounded-xl flex justify-center text-xl">
+            <Link
+              to={'/#'}
+              className="border-2 text-zinc-800 border-zinc-800 w-full py-2 rounded-xl flex justify-center text-xl"
+            >
               <FaGoogle />
             </Link>
-            <Link to={'/#'} className="border-2 text-zinc-800 border-zinc-800 w-full py-2 rounded-xl flex justify-center text-xl">
+            <Link
+              to={'/#'}
+              className="border-2 text-zinc-800 border-zinc-800 w-full py-2 rounded-xl flex justify-center text-xl"
+            >
               <FaFacebookF />
             </Link>
-            <Link to={'/#'} className="border-2 text-zinc-800 border-zinc-800 w-full py-2 rounded-xl flex justify-center text-xl">
+            <Link
+              to={'/#'}
+              className="border-2 text-zinc-800 border-zinc-800 w-full py-2 rounded-xl flex justify-center text-xl"
+            >
               <RiAppleFill />
             </Link>
           </div>

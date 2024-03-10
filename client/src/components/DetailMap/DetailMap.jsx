@@ -5,7 +5,6 @@ import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
 export const DetailMap = ({ latLng }) => {
-  // Verificar si latLng tiene un valor válido antes de renderizar
   if (!latLng || (!latLng.lat && !latLng.lng)) {
     return <p>No se pudo mostrar el mapa</p>;
   }

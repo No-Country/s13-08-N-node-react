@@ -5,11 +5,12 @@ const ModalPoint = ({ onClose }) => {
   const [selectedMaterials, setSelectedMaterials] = useState([]);
   const [listedMaterials, setListedMaterials] = useState([]);
   const modalRef = useRef(null);
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://points-89az.onrender.com/materials');
+        const response = await fetch(`${baseUrl}/materials`);
         if (!response.ok) {
           throw new Error('Failed to fetch materials');
         }

@@ -4,12 +4,13 @@ import { fetchDataFronJson } from '../../helpers/fetchDataFromJson';
 import { DetailMap } from '../DetailMap/DetailMap';
 const DetailPoint = () => {
   const { id } = useParams();
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const [pointData, setPointData] = useState({});
   const [distancia, setDistancia] = useState(null);
   const initialPoint = { lat: '-34.582716', lng: '-58.426167' };
 
   useEffect(() => {
-    const url = `https://points-89az.onrender.com/recycling-center/point/${id}`;
+    const url = `${baseUrl}/recycling-center/point/${id}`;
     fetchDataFronJson(url)
       .then((data) => {
         setPointData(data);
@@ -53,7 +54,7 @@ const DetailPoint = () => {
                       <p className="bg-[#36da9e] text-sm font-bold p-1 text-darkBlue rounded" key={index}>
                         {material.nombrematerial.toUpperCase()}
                       </p>
-                    ))
+                  ))
                   : 'No especificado'}
               </div>
             </div>

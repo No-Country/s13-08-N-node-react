@@ -6,6 +6,7 @@ import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 export const CardVoucher = ({ voucher }) => {
   const [hidePoints, setHidePoints] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   // const [recyclingCompanyInfo, setRecyclingCompanyInfo] = useState(null);
   const [nombreStore, setNombreStore] = useState(null);
 
@@ -29,7 +30,7 @@ export const CardVoucher = ({ voucher }) => {
   //   const fetchRecyclingCompanyInfo = async () => {
   //     try {
   //       const response = await fetch(
-  //         `https://points-89az.onrender.com/recyclingcompany/FindRecyclingCompany/${voucher.recyclingcompany}`
+  //         `${baseUrl}/recyclingcompany/FindRecyclingCompany/${voucher.recyclingcompany}`
   //       );
 
   //       const data = await response.json();
@@ -46,7 +47,7 @@ export const CardVoucher = ({ voucher }) => {
   useEffect(() => {
     const fetchStoreInfo = async () => {
       try {
-        const response = await fetch(`https://points-89az.onrender.com/stores/${voucher.stores[0]}`);
+        const response = await fetch(`${baseUrl}/stores/${voucher.stores[0]}`);
 
         const data = await response.json();
 
