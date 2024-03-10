@@ -41,7 +41,7 @@ export default function Auth() {
       <p className="text-center">
         No tienes cuenta?{' '}
         <Link to="/auth/register" className="text-sm text-darkMain font-bold">
-        Regístrate ahora
+          Regístrate ahora
         </Link>{' '}
       </p>
 
@@ -50,7 +50,9 @@ export default function Auth() {
           onClick={handleUser}
           className={`${isCompany ? '' : 'bg-green-100 font-extrabold text-lg transition-all duration-500'} w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center`}
         >
-          <span className={`${isCompany ? '' : 'font-bold text-lg transition-all duration-500'} w-full text-darkMain flex flex-col items-center`}>
+          <span
+            className={`${isCompany ? '' : 'font-bold text-lg transition-all duration-500'} w-full text-darkMain flex flex-col items-center`}
+          >
             <LuUser2 />
           </span>
           Usuario
@@ -59,7 +61,9 @@ export default function Auth() {
           onClick={handleCompany}
           className={`${isCompany ? 'bg-green-100 font-extrabold text-lg transition-all duration-500' : ''}  w-full text-darkMain text-xs py-2 rounded-xl flex flex-col items-center`}
         >
-          <span className={`${isCompany ? 'font-bold text-lg transition-all duration-500' : ''} w-full text-darkMain flex flex-col items-center`}>
+          <span
+            className={`${isCompany ? 'font-bold text-lg transition-all duration-500' : ''} w-full text-darkMain flex flex-col items-center`}
+          >
             <IoBusinessOutline />
           </span>
           Empresa

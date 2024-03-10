@@ -14,6 +14,7 @@ const greenOptions = { color: 'green', fillColor: 'green' };
 const redOptions = { color: 'red' };
 
 export const Map = () => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const [location, setLocation] = useState([]);
   const [map, setMap] = useState([]);
   const [results, setResults] = useState([]);
@@ -26,17 +27,13 @@ export const Map = () => {
   const { selectedMapPoint } = useMapSearch();
 
   const cerrarModal = async (selectedMaterialIds) => {
-    console.log(selectedMaterialIds);
-
     setMaterials(selectedMaterialIds);
     if (selectedMaterialIds && selectedMaterialIds.length > 0) {
       try {
         const requests = selectedMaterialIds.map((id) =>
-          fetch(`https://points-89az.onrender.com/recycling-center/filter-points-by-materials/${id}`).then(
-            (response) => {
-              return response.json();
-            }
-          )
+          fetch(`${baseUrl}/recycling-center/filter-points-by-materials/${id}`).then((response) => {
+            return response.json();
+          })
         );
 
         const responses = await Promise.all(requests);
@@ -62,10 +59,9 @@ export const Map = () => {
   useEffect(() => {
     getUserLocation().then((coords) => setLocation(coords));
 
-    fetchDataFronJson('https://points-89az.onrender.com/recycling-center/points')
+    fetchDataFronJson(`${baseUrl}/recycling-center/points`)
       .then((data) => {
         setMap(data);
-        console.log('data: ', data);
       })
       .catch((error) => {
         console.error('Error fetching data: ', error);
@@ -158,7 +154,7 @@ export const Map = () => {
                     <p className="bg-[#E5F1F1] font-bold text-darkBlue px-2 py-1 rounded" key={index}>
                       {material.toLowerCase()}
                     </p>
-                  ))
+                ))
                 : null}
             </div>
           </SearchMap>

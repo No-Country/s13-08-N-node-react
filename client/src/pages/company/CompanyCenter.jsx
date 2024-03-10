@@ -65,7 +65,8 @@ export const CompanyCenter = () => {
               Vales
             </button>
           </div>
-          {switchVales ? (
+          {switchVales
+            ? (
             <>
               <div className="px-3">
                 <div className="flex justify-between items-center border-b border-gray-300 py-2">
@@ -107,7 +108,8 @@ export const CompanyCenter = () => {
                 </div>
               </div>
             </>
-          ) : (
+              )
+            : (
             <>
               <div className="flex items-center gap-x-3 p-2 border-b border-gray-300">
                 <img src={kolibriImg} alt="" className="max-h-10" />
@@ -130,7 +132,7 @@ export const CompanyCenter = () => {
                 </div>
               </div>
             </>
-          )}
+              )}
         </div>
       </div>
     </div>

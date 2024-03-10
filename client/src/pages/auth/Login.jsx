@@ -154,7 +154,7 @@ export default function Login() {
       <p className="text-center font-light">
         No tienes cuenta?{' '}
         <Link to="/auth/register" className="text-sm text-darkMain font-bold">
-        Regístrate ahora
+          Regístrate ahora
         </Link>{' '}
       </p>
     </div>

@@ -1,3 +1,4 @@
 export function getBaseUrl() {
-  return 'https://points-89az.onrender.com';
+  const baseUrl = import.meta.env.VITE_BASE_URL;
+  return baseUrl;
 }
