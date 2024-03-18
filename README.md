@@ -4,6 +4,19 @@
 
 #### EcoVale es una plataforma web dedicada a fomentar el reciclaje y recompensar a los usuarios por su contribución al medio ambiente. Nuestro objetivo es conectar a las empresas que utilizan materiales reciclables en la creación de productos con los usuarios interesados en reciclar y ganar premios.
 
+[DEPLOY](https://https://ecovale.vercel.app) 
+
+## Usuarios para pruebas
+
+Usuario reciclador:
+mail: root@gmail.com
+clave: Root123
+
+Usuario Empresa:
+mail: info@ecopapelreciclaje.com
+clave: Password@1A
+
+
 - ### EcoVale - Video promocional:
 
 Url
@@ -43,6 +56,22 @@ npm install
 
 ```bash
 npm run dev
+```
+
+- Crear los `.ENV` necesarios:
+
+FRONTEND:
+```js
+VITE_BASE_URL=
+```
+
+BACKEND:
+```js
+MONGODB_URI=
+EMAIL_USER=
+EMAIL_PASS=
+EMAIL_HOST=
+TOKEN_KEY=
 ```
 
 
